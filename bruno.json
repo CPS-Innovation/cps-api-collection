@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Central_QA_Team",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

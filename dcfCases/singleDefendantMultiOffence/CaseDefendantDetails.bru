@@ -1,0 +1,71 @@
+meta {
+  name: CaseDefendantDetails
+  type: http
+  seq: 13
+}
+
+get {
+  url: {{StagingWmUrl}}//api/cases/{{DCFCaseID}}
+  body: formUrlEncoded
+  auth: inherit
+}
+
+headers {
+  Cms-Auth-Values: {{StagingWmCMSAuthValue}}
+  x-functions-key: {{StagingWmKey}}
+  User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+}
+
+script:post-response {
+  // let responseData = res.getBody();
+  
+  // if() {
+    
+    
+  // }
+  
+  // else {
+  //     console.log("No URN");
+  // }
+  
+  
+  
+  
+  // if (responseData.caseId) {
+  //     bru.setGlobalEnvVar("DCFCaseID", responseData.caseId);
+  //     console.log("DCFCaseID:", responseData.caseId);
+  // } else {
+  //     console.log("No Case Id");
+  // }
+  // if (responseData.urn) {
+  //     bru.setGlobalEnvVar("DCFCaseUrn", responseData.urn);
+  //     console.log("DCFCaseUrn:", responseData.urn);
+  
+  //    var getPTInumber = responseData.urn.substring(4,9);
+  //    bru.setGlobalEnvVar("DCFptnNo", getPTInumber);
+  //    console.log("DCFptnNo:", getPTInumber);
+  
+  //    var getForcenumber = responseData.urn.substring(0,2);
+  //    bru.setGlobalEnvVar("DCFforceNo", getForcenumber);
+  //    console.log("DCFforceNo:", getForcenumber);
+  
+  //    var getUnit = responseData.urn.substring(2,4);
+  //    bru.setGlobalEnvVar("DCFunit", getUnit);
+  //    console.log("DCFunit:", getUnit);
+  
+  //    var getYear = responseData.urn.substring(9,11);
+  //    bru.setGlobalEnvVar("DCFyear", getYear);
+  //    console.log("DCFyear:", getYear);
+  
+  
+  // } 
+  
+  // else {
+  //     console.log("No URN");
+  // }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

@@ -1,0 +1,3 @@
+# Files Not to included in git
+*Environment.bru
+bruno-collection-environments.json

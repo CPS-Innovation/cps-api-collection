@@ -1,0 +1,1016 @@
+meta {
+  name: DCF_CM01_MultiDefendantMultiOffence
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{CIN5_baseUrl}}/inbound-json
+  body: json
+  auth: inherit
+}
+
+headers {
+  session-id: 672da61b-10d8-4588-9add-3a59311efc79
+}
+
+body:json {
+  {
+    "PreChargeDecisionRequest": {
+      "ItemId": "{{DCFCM01itemId}}",
+      "PTIURN": {
+        "Force": "45",
+        "Unit": "AA",
+        "Number": "{{DCFPtiUrnNumber}}",
+        "Year": "26",
+        "Split": null
+      },
+      "CPSUnit": {
+        "TopLevel": "A",
+        "SecondLevel": "45",
+        "ThirdLevel": "AA",
+        "BottomLevel": "00",
+        "LiteralValue": null
+      },
+      "CaseClassification": [
+        {
+          "ClassificationType": "Case Monitoring",
+          "ClassificationCode": "NGAP",
+          "ClassificationValue": {
+            "ClassificationValueFlag": true
+          }
+        },
+        {
+          "ClassificationType": "Case Monitoring",
+          "ClassificationCode": "CSEA",
+          "ClassificationValue": {
+            "ClassificationValueFlag": true
+          }
+        }
+      ],
+      "AdviceDetails": null,
+      "FactualSummary": {
+        "Observers": null,
+        "Paragraphs": [
+          {
+            "ItemHeading": {
+              "ClassificationType": "Police Narrative",
+              "ClassificationCode": "Factual Summary",
+              "ClassificationValue": {
+                "ClassificationValueText": "SCO"
+              }
+            },
+            "ItemText": "Summary of Circumstances of Offence(s)"
+          },
+          {
+            "ItemHeading": {
+              "ClassificationType": "Police Narrative",
+              "ClassificationCode": "Factual Summary",
+              "ClassificationValue": {
+                "ClassificationValueText": "AD"
+              }
+            },
+            "ItemText": "Arrest Details",
+            "PersonUniqueId": "{{DefPersonId01}}"
+          },
+          {
+            "ItemHeading": {
+              "ClassificationType": "Police Narrative",
+              "ClassificationCode": "Factual Summary",
+              "ClassificationValue": {
+                "ClassificationValueText": "INTS"
+              }
+            },
+            "ItemText": "Interview Summary",
+            "PersonUniqueId": "{{DefPersonId01}}"
+          },
+          {
+            "ItemHeading": {
+              "ClassificationType": "PoliceNarrative",
+              "ClassificationCode": "Factual Summary",
+              "ClassificationValue": {
+                "ClassificationValueText": "WITI"
+              }
+            },
+            "ItemText": "Witness Involvement",
+            "PersonUniqueId": "{{VictimWitnessRef_1}}"
+          },
+          {
+            "ItemHeading": {
+              "ClassificationType": "PoliceNarrative",
+              "ClassificationCode": "Factual Summary",
+              "ClassificationValue": {
+                "ClassificationValueText": "WITI"
+              }
+            },
+            "ItemText": "Witness Involvement",
+            "PersonUniqueId": "{{Victim_Child}}"
+          },
+          {
+            "ItemHeading": {
+              "ClassificationType": "PoliceNarrative",
+              "ClassificationCode": "Factual Summary",
+              "ClassificationValue": {
+                "ClassificationValueText": "WITI"
+              }
+            },
+            "ItemText": "Witness Involvement",
+            "PersonUniqueId": "{{Victim_Vulnerable}}"
+          },
+          {
+            "ItemHeading": {
+              "ClassificationType": "PoliceNarrative",
+              "ClassificationCode": "Factual Summary",
+              "ClassificationValue": {
+                "ClassificationValueText": "WITI"
+              }
+            },
+            "ItemText": "Witness Involvement",
+            "PersonUniqueId": "{{Victim_Intimidated}}"
+          },
+          {
+            "ItemHeading": {
+              "ClassificationType": "PoliceNarrative",
+              "ClassificationCode": "Factual Summary",
+              "ClassificationValue": {
+                "ClassificationValueText": "WITI"
+              }
+            },
+            "ItemText": "Witness Involvement",
+            "PersonUniqueId": "{{WitnessRef_1}}"
+          },
+          {
+            "ItemHeading": {
+              "ClassificationType": "PoliceNarrative",
+              "ClassificationCode": "Factual Summary",
+              "ClassificationValue": {
+                "ClassificationValueText": "WITI"
+              }
+            },
+            "ItemText": "Witness Involvement",
+            "PersonUniqueId": "{{Witness_Child}}"
+          },
+          {
+            "ItemHeading": {
+              "ClassificationType": "PoliceNarrative",
+              "ClassificationCode": "Factual Summary",
+              "ClassificationValue": {
+                "ClassificationValueText": "WITI"
+              }
+            },
+            "ItemText": "Witness Involvement",
+            "PersonUniqueId": "{{Witness_Police}}"
+          },
+          {
+            "ItemHeading": {
+              "ClassificationType": "PoliceNarrative",
+              "ClassificationCode": "Factual Summary",
+              "ClassificationValue": {
+                "ClassificationValueText": "WITI"
+              }
+            },
+            "ItemText": "Witness Involvement",
+            "PersonUniqueId": "{{Witness_Vulnerable}}"
+          },
+          {
+            "ItemHeading": {
+              "ClassificationType": "PoliceNarrative",
+              "ClassificationCode": "Factual Summary",
+              "ClassificationValue": {
+                "ClassificationValueText": "WITI"
+              }
+            },
+            "ItemText": "Witness Involvement",
+            "PersonUniqueId": "{{Witness_Intimidated}}"
+          }
+        ]
+      },
+      "CITP": {
+        "Paragraphs": [
+          {
+            "ItemHeading": {
+              "ClassificationType": "Police Narrative",
+              "ClassificationCode": "Confidential Information",
+              "ClassificationValue": {
+                "ClassificationValueText": "EI"
+              }
+            },
+            "ItemText": "Evidential",
+            "PersonUniqueId": null
+          },
+          {
+            "ItemHeading": {
+              "ClassificationType": "Police Narrative",
+              "ClassificationCode": "Confidential Information",
+              "ClassificationValue": {
+                "ClassificationValueText": "RLE"
+              }
+            },
+            "ItemText": "Reasonable Lines of Enquiry",
+            "PersonUniqueId": null
+          }
+        ]
+      },
+      "Suspect": [
+        {
+          "ReviewType": null,
+          "ConditionalCaution": null,
+          "PossibleOrProposedCharge": [
+            {
+              "Particulars": {
+                "Address": {
+                  "AddressLine": [
+                    "{{$randomStreetName}}",
+                    "{{$randomStreetName}}",
+                    "{{$randomCity}}"
+                  ],
+                  "Postcode": "NE1 1AA",
+                  "Country": "UK"
+                }
+              },
+              "AnticipatedPlea": "Not Guilty",
+              "UniqueID": "{{CaseOffenceId01}}",
+              "CJSCode": {
+                "Code": {
+                  "Alternative": {
+                    "ActOrSource": "OF",
+                    "Year": "61"
+                  },
+                  "Reason": "102"
+                },
+                "Qualifier": null,
+                "LiteralValue": null
+              },
+              "Description": "OF 61 102 - Assault a person thereby occasioning them actual bodily harm",
+              "Category": "Either Way",
+              "FromDate": "2025-12-15T00:00:00",
+              "ToDate": null
+            },
+            {
+              "Particulars": {
+                "Address": {
+                  "AddressLine": [
+                    "{{$randomStreetName}}",
+                    "{{$randomStreetName}}",
+                    "{{$randomCity}}"
+                  ],
+                  "Postcode": "NE1 1AA",
+                  "Country": "UK"
+                }
+              },
+              "AnticipatedPlea": "Not Guilty",
+              "UniqueID": "{{CaseOffenceId02}}",
+              "CJSCode": {
+                "Code": {
+                  "Alternative": {
+                    "ActOrSource": "OF",
+                    "Year": "61"
+                  },
+                  "Reason": "017"
+                },
+                "Qualifier": null,
+                "LiteralValue": null
+              },
+              "Description": "OF 61 017 - Section 18 - grievous bodily harm with intent",
+              "Category": "Either Way",
+              "FromDate": "2025-12-15T00:00:00",
+              "ToDate": null
+            },
+            {
+              "Particulars": {
+                "Address": {
+                  "AddressLine": [
+                    "{{$randomStreetName}}",
+                    "{{$randomStreetName}}",
+                    "{{$randomCity}}"
+                  ],
+                  "Postcode": "NE1 1AA",
+                  "Country": "UK"
+                }
+              },
+              "AnticipatedPlea": "Not Guilty",
+              "UniqueID": "{{CaseOffenceId03}}",
+              "CJSCode": {
+                "Code": {
+                  "Alternative": {
+                    "ActOrSource": "OF",
+                    "Year": "61"
+                  },
+                  "Reason": "016"
+                },
+                "Qualifier": null,
+                "LiteralValue": null
+              },
+              "Description": "OF 61 016 - Section 18 - wounding with intent",
+              "Category": "Either Way",
+              "FromDate": "2025-12-15T00:00:00",
+              "ToDate": null
+            }
+          ],
+          "Person": {
+            "DateOfBirth": "2004-03-20",
+            "Nationality": "England",
+            "Occupation": "Defender Occupation",
+            "Alias": null,
+            "PNCId": {
+              "Year": "26",
+              "SerialNumber": "{{DCFPtiUrnNumber}}",
+              "CheckCharacter": "X"
+            },
+            "ParentGuardian": null,
+            "AppropriateAdult": null,
+            "PolicePreChargeRemand": {
+              "PolicePreChargeRemandStatus": "Released Under Investigation",
+              "BailConditions": null,
+              "ProposedRemandAfterCharge": "Unconditional Bail"
+            },
+            "PolicePostChargeRemand": null,
+            "AppropriateAdultPresentId": null,
+            "RemandApplicationIssues": null,
+            "UniqueId": "{{DefPersonId01}}",
+            "Name": {
+              "Title": "{{$randomNamePrefix}}",
+              "GivenName": [
+                {
+                  "NameSequenceSpecified": false,
+                  "Value": "{{$randomFirstName}}"
+                }
+              ],
+              "RequestedName": null,
+              "FamilyName": {
+                "NameSequenceSpecified": false,
+                "Value": "{{$randomLastName}}"
+              },
+              "Suffix": null,
+              "TypeSpecified": false
+            },
+            "ContactDetails": {
+              "Address": {
+                "AddressLine": [
+                  "{{$randomStreetName}}",
+                  "{{$randomStreetName}}",
+                  "{{$randomCity}}"
+                ],
+                "Postcode": "NE1 1AB",
+                "Country": "UK"
+              },
+              "ContactNumber": [
+                {
+                  "Number": {
+                    "TelNationalNumber": "07111111111"
+                  },
+                  "TypeOfNumber": "mobile"
+                }
+              ],
+              "Email": "{{$randomEmail}}",
+              "DXAddress": null,
+              "SocialMedia": null,
+              "ContactPreferences": null
+            },
+            "PersonClassification": [
+              {
+                "ClassificationType": "EqualityDiversity",
+                "ClassificationCode": "SelfDefinedEthnicity",
+                "ClassificationValue": {
+                  "ClassificationValueText": "A9"
+                }
+              },
+              {
+                "ClassificationType": "EqualityDiversity",
+                "ClassificationCode": "SelfDefinedReligiousBelief",
+                "ClassificationValue": {
+                  "ClassificationValueText": "MU"
+                }
+              },
+              {
+                "ClassificationType": "EqualityDiversity",
+                "ClassificationCode": "SelfDefinedGender",
+                "ClassificationValue": {
+                  "ClassificationValueText": "M"
+                }
+              },
+              {
+                "ClassificationType": "EqualityDiversity",
+                "ClassificationCode": "PoliceDefinedEthnicity",
+                "ClassificationValue": {
+                  "ClassificationValueText": "ASN"
+                }
+              },
+              {
+                "ClassificationType": "Language",
+                "ClassificationCode": "SelfDefinedPreferredLanguageCorrespondence",
+                "ClassificationValue": {
+                  "ClassificationValueText": "en"
+                }
+              },
+              {
+                "ClassificationType": "Language",
+                "ClassificationCode": "SelfDefinedPreferredLanguageHearing",
+                "ClassificationValue": {
+                  "ClassificationValueText": "en"
+                }
+              },
+              {
+                "ClassificationType": "StatusInformation",
+                "ClassificationCode": "PreviousTransgression",
+                "ClassificationValue": {
+                  "ClassificationValueText": "Y"
+                }
+              },
+              {
+                "ClassificationType": "StatusInformation",
+                "ClassificationCode": "ACROConvictions",
+                "ClassificationValue": {
+                  "ClassificationValueText": "NA"
+                }
+              },
+              {
+                "ClassificationType": "StatusInformation",
+                "ClassificationCode": "PrisonerOnLicense",
+                "ClassificationValue": {
+                  "ClassificationValueText": "N"
+                }
+              },
+              {
+                "ClassificationType": "StatusInformation",
+                "ClassificationCode": "SuspectDecisionPriority",
+                "ClassificationValue": {
+                  "ClassificationValueText": "G"
+                }
+              }
+            ]
+          },
+          "DefenceSolicitor": {
+            "Firm": "DEFENDER SOLICITOR COMPANY",
+            "UniqueId": "{{Solicitor}}",
+            "Name": {
+              "Title": null,
+              "GivenName": [
+                {
+                  "NameSequenceSpecified": false,
+                  "Value": "{{$randomFirstName}}"
+                }
+              ],
+              "RequestedName": null,
+              "FamilyName": {
+                "NameSequenceSpecified": false,
+                "Value": "{{$randomLastName}}"
+              },
+              "TypeSpecified": false
+            },
+            "ContactDetails": {
+              "SocialMedia": null,
+              "ContactPreferences": null,
+              "Address": {
+                "AddressLine": [
+                  "{{$randomStreetName}}",
+                  "{{$randomStreetName}}",
+                  "{{$randomCity}}"
+                ],
+                "Postcode": "NE1 1AB",
+                "Country": "UK"
+              },
+              "ContactNumber": null,
+              "Email": "{{$randomEmail}}"
+            },
+            "PersonClassification": null
+          },
+          "VersionId": "1",
+          "CandidateCourtOrders": null
+        },
+        {
+          "ReviewType": null,
+          "ConditionalCaution": null,
+          "PossibleOrProposedCharge": [
+            {
+              "Particulars": {
+                "Address": {
+                  "AddressLine": [
+                    "{{$randomStreetName}}",
+                    "{{$randomStreetName}}",
+                    "{{$randomCity}}"
+                  ],
+                  "Postcode": "NE1 1AA",
+                  "Country": "UK"
+                }
+              },
+              "AnticipatedPlea": "Not Guilty",
+              "UniqueID": "{{CaseOffenceId01}}",
+              "CJSCode": {
+                "Code": {
+                  "Alternative": {
+                    "ActOrSource": "OF",
+                    "Year": "61"
+                  },
+                  "Reason": "102"
+                },
+                "Qualifier": null,
+                "LiteralValue": null
+              },
+              "Description": "OF 61 102 - Assault a person thereby occasioning them actual bodily harm",
+              "Category": "Either Way",
+              "FromDate": "2025-12-15T00:00:00",
+              "ToDate": null
+            },
+            {
+              "Particulars": {
+                "Address": {
+                  "AddressLine": [
+                    "{{$randomStreetName}}",
+                    "{{$randomStreetName}}",
+                    "{{$randomCity}}"
+                  ],
+                  "Postcode": "NE1 1AA",
+                  "Country": "UK"
+                }
+              },
+              "AnticipatedPlea": "Not Guilty",
+              "UniqueID": "{{CaseOffenceId02}}",
+              "CJSCode": {
+                "Code": {
+                  "Alternative": {
+                    "ActOrSource": "OF",
+                    "Year": "61"
+                  },
+                  "Reason": "017"
+                },
+                "Qualifier": null,
+                "LiteralValue": null
+              },
+              "Description": "OF 61 017 - Section 18 - grievous bodily harm with intent",
+              "Category": "Either Way",
+              "FromDate": "2025-12-15T00:00:00",
+              "ToDate": null
+            },
+            {
+              "Particulars": {
+                "Address": {
+                  "AddressLine": [
+                    "{{$randomStreetName}}",
+                    "{{$randomStreetName}}",
+                    "{{$randomCity}}"
+                  ],
+                  "Postcode": "NE1 1AA",
+                  "Country": "UK"
+                }
+              },
+              "AnticipatedPlea": "Not Guilty",
+              "UniqueID": "{{CaseOffenceId03}}",
+              "CJSCode": {
+                "Code": {
+                  "Alternative": {
+                    "ActOrSource": "OF",
+                    "Year": "61"
+                  },
+                  "Reason": "016"
+                },
+                "Qualifier": null,
+                "LiteralValue": null
+              },
+              "Description": "OF 61 016 - Section 18 - wounding with intent",
+              "Category": "Either Way",
+              "FromDate": "2025-12-15T00:00:00",
+              "ToDate": null
+            }
+          ],
+          "Person": {
+            "DateOfBirth": "2004-03-20",
+            "Nationality": "England",
+            "Occupation": "Defender Occupation",
+            "Alias": null,
+            "PNCId": {
+              "Year": "26",
+              "SerialNumber": "{{DCFPtiUrnNumber}}",
+              "CheckCharacter": "X"
+            },
+            "ParentGuardian": null,
+            "AppropriateAdult": null,
+            "PolicePreChargeRemand": {
+              "PolicePreChargeRemandStatus": "Released Under Investigation",
+              "BailConditions": null,
+              "ProposedRemandAfterCharge": "Unconditional Bail"
+            },
+            "PolicePostChargeRemand": null,
+            "AppropriateAdultPresentId": null,
+            "RemandApplicationIssues": null,
+            "UniqueId": "{{DefPersonId02}}",
+            "Name": {
+              "Title": "{{$randomNamePrefix}}",
+              "GivenName": [
+                {
+                  "NameSequenceSpecified": false,
+                  "Value": "{{$randomFirstName}}"
+                }
+              ],
+              "RequestedName": null,
+              "FamilyName": {
+                "NameSequenceSpecified": false,
+                "Value": "{{$randomLastName}}"
+              },
+              "Suffix": null,
+              "TypeSpecified": false
+            },
+            "ContactDetails": {
+              "Address": {
+                "AddressLine": [
+                  "{{$randomStreetName}}",
+                  "{{$randomStreetName}}",
+                  "{{$randomCity}}"
+                ],
+                "Postcode": "NE1 1AB",
+                "Country": "UK"
+              },
+              "ContactNumber": [
+                {
+                  "Number": {
+                    "TelNationalNumber": "07111111111"
+                  },
+                  "TypeOfNumber": "mobile"
+                }
+              ],
+              "Email": "{{$randomEmail}}",
+              "DXAddress": null,
+              "SocialMedia": null,
+              "ContactPreferences": null
+            },
+            "PersonClassification": [
+              {
+                "ClassificationType": "EqualityDiversity",
+                "ClassificationCode": "SelfDefinedEthnicity",
+                "ClassificationValue": {
+                  "ClassificationValueText": "A9"
+                }
+              },
+              {
+                "ClassificationType": "EqualityDiversity",
+                "ClassificationCode": "SelfDefinedReligiousBelief",
+                "ClassificationValue": {
+                  "ClassificationValueText": "MU"
+                }
+              },
+              {
+                "ClassificationType": "EqualityDiversity",
+                "ClassificationCode": "SelfDefinedGender",
+                "ClassificationValue": {
+                  "ClassificationValueText": "M"
+                }
+              },
+              {
+                "ClassificationType": "EqualityDiversity",
+                "ClassificationCode": "PoliceDefinedEthnicity",
+                "ClassificationValue": {
+                  "ClassificationValueText": "ASN"
+                }
+              },
+              {
+                "ClassificationType": "Language",
+                "ClassificationCode": "SelfDefinedPreferredLanguageCorrespondence",
+                "ClassificationValue": {
+                  "ClassificationValueText": "en"
+                }
+              },
+              {
+                "ClassificationType": "Language",
+                "ClassificationCode": "SelfDefinedPreferredLanguageHearing",
+                "ClassificationValue": {
+                  "ClassificationValueText": "en"
+                }
+              },
+              {
+                "ClassificationType": "StatusInformation",
+                "ClassificationCode": "PreviousTransgression",
+                "ClassificationValue": {
+                  "ClassificationValueText": "Y"
+                }
+              },
+              {
+                "ClassificationType": "StatusInformation",
+                "ClassificationCode": "ACROConvictions",
+                "ClassificationValue": {
+                  "ClassificationValueText": "NA"
+                }
+              },
+              {
+                "ClassificationType": "StatusInformation",
+                "ClassificationCode": "PrisonerOnLicense",
+                "ClassificationValue": {
+                  "ClassificationValueText": "N"
+                }
+              },
+              {
+                "ClassificationType": "StatusInformation",
+                "ClassificationCode": "SuspectDecisionPriority",
+                "ClassificationValue": {
+                  "ClassificationValueText": "G"
+                }
+              }
+            ]
+          },
+          "DefenceSolicitor": {
+            "Firm": "DEFENDER SOLICITOR COMPANY",
+            "UniqueId": "{{Solicitor02}}",
+            "Name": {
+              "Title": null,
+              "GivenName": [
+                {
+                  "NameSequenceSpecified": false,
+                  "Value": "{{$randomFirstName}}"
+                }
+              ],
+              "RequestedName": null,
+              "FamilyName": {
+                "NameSequenceSpecified": false,
+                "Value": "{{$randomLastName}}"
+              },
+              "TypeSpecified": false
+            },
+            "ContactDetails": {
+              "SocialMedia": null,
+              "ContactPreferences": null,
+              "Address": {
+                "AddressLine": [
+                  "{{$randomStreetName}}",
+                  "{{$randomStreetName}}",
+                  "{{$randomCity}}"
+                ],
+                "Postcode": "NE1 1AB",
+                "Country": "UK"
+              },
+              "ContactNumber": null,
+              "Email": "{{$randomEmail}}"
+            },
+            "PersonClassification": null
+          },
+          "VersionId": "1",
+          "CandidateCourtOrders": null
+        }
+      ],
+      "CaseContacts": [
+        {
+          "Officer": {
+            "PoliceOfficerRank": "Sergeant",
+            "ShoulderNumber": "{{SergeantShoulderNo}}"
+          },
+          "UniqueId": "{{SergeantPersonId}}",
+          "Name": {
+            "Title": "DS",
+            "GivenName": [
+              {
+                "NameSequenceSpecified": false,
+                "Value": "{{$randomFirstName}}"
+              }
+            ],
+            "RequestedName": null,
+            "FamilyName": {
+              "NameSequenceSpecified": false,
+              "Value": "{{$randomLastName}}"
+            },
+            "Suffix": null,
+            "TypeSpecified": false
+          },
+          "ContactDetails": {
+            "Address": {
+              "AddressLine": [
+                "{{$randomStreetName}}",
+                "{{$randomStreetName}}",
+                "{{$randomCity}}"
+              ],
+              "Postcode": "NE1 1AB",
+              "Country": "UK"
+            },
+            "ContactNumber": [
+              {
+                "Number": {
+                  "TelCountryCode": "44",
+                  "TelNationalNumber": "07777777777"
+                },
+                "TypeOfNumber": "mobile"
+              }
+            ],
+            "Email": "police.sergeant@police-station.uk",
+            "DXAddress": null,
+            "SocialMedia": null,
+            "ContactPreferences": {
+              "PreferredMethod": "Email"
+            }
+          },
+          "PersonClassification": [
+            {
+              "ClassificationType": "RoleInCase",
+              "ClassificationCode": "Role",
+              "ClassificationValue": {
+                "ClassificationValueText": "PS"
+              }
+            }
+          ]
+        },
+        {
+          "Officer": {
+            "PoliceOfficerRank": "PoliceUnit",
+            "ShoulderNumber": "{{ConstableShoulderNo}}"
+          },
+          "UniqueId": "{{ConstablePersonId}}",
+          "Name": {
+            "Title": "PC",
+            "GivenName": [
+              {
+                "NameSequenceSpecified": false,
+                "Value": "{{$randomFirstName}}"
+              }
+            ],
+            "RequestedName": null,
+            "FamilyName": {
+              "NameSequenceSpecified": false,
+              "Value": "{{$randomLastName}}"
+            },
+            "Suffix": null,
+            "TypeSpecified": false
+          },
+          "ContactDetails": {
+            "Address": {
+              "AddressLine": [
+                "{{$randomStreetName}}",
+                "{{$randomStreetName}}",
+                "{{$randomCity}}"
+              ],
+              "Postcode": "NE1 1AB",
+              "Country": "UK"
+            },
+            "ContactNumber": [
+              {
+                "Number": {
+                  "TelCountryCode": "44",
+                  "TelNationalNumber": "07888888888"
+                },
+                "TypeOfNumber": "mobile"
+              }
+            ],
+            "Email": "police.constable@police-station.uk",
+            "DXAddress": null,
+            "SocialMedia": null,
+            "ContactPreferences": {
+              "PreferredMethod": "Post"
+            }
+          },
+          "PersonClassification": [
+            {
+              "ClassificationType": "RoleInCase",
+              "ClassificationCode": "Role",
+              "ClassificationValue": {
+                "ClassificationValueText": "PO"
+              }
+            },
+            {
+              "ClassificationType": "RoleInCase",
+              "ClassificationCode": "Role",
+              "ClassificationValue": {
+                "ClassificationValueText": "DO"
+              }
+            }
+          ]
+        }
+      ],
+      "AssociatedCases": null
+    }
+  }
+}
+
+script:pre-request {
+  function generateFiveDigitNumber() {
+      return Math.floor(10000 + Math.random() * 90000);
+  }
+  
+  function generateSevenDigitNumber() {
+      return Math.floor(1000000 + Math.random() * 9000000);
+  }
+  
+  function generateUppercaseAlphaNumeric(length) {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let result = '';
+      for (let i = 0; i < length; i++) {
+          result += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return result;
+  }
+  
+  
+  let ptiURN = generateFiveDigitNumber();
+  let asnNumber = generateSevenDigitNumber();
+  let cm01 = generateUppercaseAlphaNumeric(12);
+  let defPer01 = generateUppercaseAlphaNumeric(12);
+  let defPer02 = generateUppercaseAlphaNumeric(12);
+  let caseOff01 = generateUppercaseAlphaNumeric(12);
+  let caseOff02 = generateUppercaseAlphaNumeric(12);
+  let caseOff03 = generateUppercaseAlphaNumeric(12);
+  let soliciRef01 = generateUppercaseAlphaNumeric(12);
+  let soliciRef02 = generateUppercaseAlphaNumeric(12);
+  let SerShoNo = generateUppercaseAlphaNumeric(10);
+  let SerPerId = generateUppercaseAlphaNumeric(10);
+  let ConsShoNo = generateFiveDigitNumber(5);
+  let ConsPerId = generateUppercaseAlphaNumeric(10);
+  
+  let wtRef = generateUppercaseAlphaNumeric(12);
+  let wtChild = generateUppercaseAlphaNumeric(12);
+  let wtPolice = generateUppercaseAlphaNumeric(12);
+  let wtVulnerable = generateUppercaseAlphaNumeric(12);
+  let wtIntimidated = generateUppercaseAlphaNumeric(12);
+  
+  let victimRef = generateUppercaseAlphaNumeric(12);
+  let childVictim = generateUppercaseAlphaNumeric(12);
+  let vulnerableVictim = generateUppercaseAlphaNumeric(12);
+  let intimidatedVictim = generateUppercaseAlphaNumeric(12);
+  
+  
+  bru.setGlobalEnvVar("DCFCM01itemId", cm01);
+  bru.setGlobalEnvVar("DCFPtiUrnNumber", ptiURN);
+  bru.setGlobalEnvVar("DefPersonId01", defPer01);
+  bru.setGlobalEnvVar("DefPersonId02", defPer02);
+  bru.setGlobalEnvVar("CaseOffenceId01", caseOff01);
+  bru.setGlobalEnvVar("CaseOffenceId02", caseOff02);
+  bru.setGlobalEnvVar("CaseOffenceId03", caseOff03);
+  bru.setGlobalEnvVar("Solicitor01", soliciRef01);
+  bru.setGlobalEnvVar("Solicitor02", soliciRef02);
+  bru.setGlobalEnvVar("ASNNumber", asnNumber);
+  bru.setGlobalEnvVar("SergeantShoulderNo", SerShoNo);
+  bru.setGlobalEnvVar("SergeantPersonId", SerPerId);
+  bru.setGlobalEnvVar("ConstableShoulderNo", "PC"+ConsShoNo);
+  bru.setGlobalEnvVar("ConstablePersonId", ConsPerId);
+  
+  bru.setGlobalEnvVar("WitnessRef_1", wtRef);
+  bru.setGlobalEnvVar("Witness_Child", wtChild);
+  bru.setGlobalEnvVar("Witness_Police", wtPolice);
+  bru.setGlobalEnvVar("Witness_Vulnerable", wtVulnerable);
+  bru.setGlobalEnvVar("Witness_Intimidated", wtIntimidated);
+  
+  bru.setGlobalEnvVar("VictimWitnessRef_1", victimRef);
+  bru.setGlobalEnvVar("Victim_Child", childVictim);
+  bru.setGlobalEnvVar("Victim_Vulnerable", vulnerableVictim);
+  bru.setGlobalEnvVar("Victim_Intimidated", intimidatedVictim);
+  
+  console.log("DCFCM01itemId:", cm01);
+  console.log("DCFPtiUrnNumber:", ptiURN);
+  console.log("DefPersonId01:", defPer01);
+  console.log("DefPersonId02:", defPer02);
+  console.log("CaseOffenceId01:", caseOff01);
+  console.log("CaseOffenceId02:", caseOff02);
+  console.log("CaseOffenceId03:", caseOff03);
+  console.log("ASNNumber:", asnNumber);
+  console.log("ConstableShoulderNo:", "PC"+ConsShoNo);
+  
+  console.log("WitnessRef_1:", wtRef);
+  console.log("Witness_Child:", wtChild);
+  console.log("Witness_Police:", wtPolice);
+  console.log("Witness_Vulnerable:", wtVulnerable);
+  console.log("Witness_Intimidated:", wtIntimidated);
+  
+  console.log("VictimWitnessRef_1:", victimRef);
+  console.log("Victim_Child:", childVictim);
+  console.log("Victim_Vulnerable:", vulnerableVictim);
+  console.log("Victim_Intimidated:", intimidatedVictim);
+  
+  
+  
+  
+  
+}
+
+script:post-response {
+  let responseData = res.getBody();
+  if (responseData.caseId) {
+      bru.setGlobalEnvVar("DCFCaseID", responseData.caseId);
+      console.log("DCFCaseID:", responseData.caseId);
+  } else {
+      console.log("No Case Id");
+  }
+  if (responseData.urn) {
+      bru.setGlobalEnvVar("DCFCaseUrn", responseData.urn);
+      console.log("DCFCaseUrn:", responseData.urn);
+  
+     var getPTInumber = responseData.urn.substring(4,9);
+     bru.setGlobalEnvVar("DCFptnNo", getPTInumber);
+     console.log("DCFptnNo:", getPTInumber);
+  
+     var getForcenumber = responseData.urn.substring(0,2);
+     bru.setGlobalEnvVar("DCFforceNo", getForcenumber);
+     console.log("DCFforceNo:", getForcenumber);
+  
+     var getUnit = responseData.urn.substring(2,4);
+     bru.setGlobalEnvVar("DCFunit", getUnit);
+     console.log("DCFunit:", getUnit);
+  
+     var getYear = responseData.urn.substring(9,11);
+     bru.setGlobalEnvVar("DCFyear", getYear);
+     console.log("DCFyear:", getYear);
+  
+  
+  } 
+  
+  else {
+      console.log("No URN");
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

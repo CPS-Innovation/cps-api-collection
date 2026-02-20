@@ -1,0 +1,126 @@
+meta {
+  name: DCF_LM04_Create_Witness_Intimidated
+  type: http
+  seq: 10
+}
+
+post {
+  url: {{CIN5_baseUrl}}/inbound-json
+  body: json
+  auth: inherit
+}
+
+headers {
+  session-id: 672da61b-10d8-4588-9add-3a59311efc79
+  ~transaction-id: d63ea439-adae-4503-9d54-366650b4216b
+  ~cms-api-version: 1
+}
+
+body:json {
+  {
+    "WitnessOrVictim": {
+      "CaseId": "{{DCFCaseID}}",
+      "ItemId": "{{WitnessIntimidatedLM04ItemId}}",
+      "PTIURN": {
+        "Force": "{{DCFforceNo}}",
+        "Unit": "{{DCFunit}}",
+        "Number": "{{DCFptnNo}}",
+        "Year": "{{DCFyear}}",
+        "Split": null
+      },
+      "UpdateStatus": {
+        "VersionId": "1",
+        "UpdateReasonType": "Create",
+        "UpdateReason": "Need to create witness"
+      },
+      "VictimWitness": {
+        "Person": {
+          "UniqueId": "{{Witness_Intimidated}}",
+          "Name": {
+            "Title": "{{$randomNamePrefix}}",
+            "GivenName": [
+              {
+                "NameSequenceSpecified": false,
+                "Value": "{{$randomFirstName}}"
+              }
+            ],
+            "RequestedName": null,
+            "FamilyName": {
+              "Value": "{{$randomLastName}}"
+            }
+          },
+          "ContactDetails": {
+            "Address": null,
+            "ContactNumber": null,
+            "Email": null,
+            "DXAddress": null,
+            "SocialMedia": null,
+            "ContactPreferences": null
+          },
+          "PNCId": null,
+          "DateOfBirth": null,
+          "Nationality": null,
+          "AlternativeContact": null,
+          "Occupation": null,
+          "PersonClassification": [
+            {
+              "ClassificationType": "StatusInformation",
+              "ClassificationCode": "KeyWitness",
+              "ClassificationValue": {
+                "ClassificationValueText": "Y"
+              }
+            },
+            {
+              "ClassificationType": "TypeOfWitness",
+              "ClassificationCode": "T",
+              "ClassificationValue": {
+                "ClassificationValueFlag": true
+              }
+            }
+          ]
+        },
+        "TypeOfPerson": "Witness",
+        "DateOfBirth": "1988-08-03",
+        "Witness": {
+          "Occupation": "Worker",
+          "Officer": null,
+          "WitnessNeeds": null,
+          "WarnedByPolice": false,
+          "AvailabilityToAttendCourt": null
+        },
+        "LinkedSuspects": null
+      }
+    }
+  }
+}
+
+script:pre-request {
+  console.log("DCFCaseID:", bru.getGlobalEnvVar("DCFCaseID"));
+  console.log("DCFCaseUrn:", bru.getGlobalEnvVar("DCFCaseUrn"));
+  console.log("Witness_Intimidated:", bru.getGlobalEnvVar("Witness_Intimidated"));
+  console.log("CaseOffenceId:", bru.getGlobalEnvVar("CaseOffenceId"));
+  
+  console.log("DCFptnNo:", bru.getGlobalEnvVar("DCFptnNo"));
+  console.log("DCFforceNo:", bru.getGlobalEnvVar("DCFforceNo"));
+  console.log("DCFunit:", bru.getGlobalEnvVar("DCFunit"));
+  console.log("DCFyear:", bru.getGlobalEnvVar("DCFyear"));
+  
+  
+  function generateUppercaseAlphaNumeric(length) {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let result = '';
+      for (let i = 0; i < length; i++) {
+          result += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return result;
+  }
+  
+  let lm04Witness = generateUppercaseAlphaNumeric(12);
+  
+  bru.setGlobalEnvVar("WitnessIntimidatedLM04ItemId", lm04Witness);
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

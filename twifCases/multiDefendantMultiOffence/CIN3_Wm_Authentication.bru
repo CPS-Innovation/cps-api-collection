@@ -1,0 +1,43 @@
+meta {
+  name: CIN3_Wm_Authentication
+  type: http
+  seq: 11
+}
+
+post {
+  url: {{StagingWmUrl}}/api/authenticate
+  body: formUrlEncoded
+  auth: inherit
+}
+
+headers {
+  accept: application/json
+  x-functions-key: {{StagingWmKey}}
+}
+
+body:form-urlencoded {
+  username: {{CIN3_Username}}
+  password: {{CIN3_Password}}
+}
+
+script:post-response {
+  const response = res.getBody();
+   
+  bru.setEnvVar("StagingWmCMSAuthValue", JSON.stringify(response));
+   
+  console.log("environment variables set:", response);
+  
+  if (response.Token) {
+      bru.setGlobalEnvVar("StagingWmCMSAuthToken", response.Token);
+      console.log("StagingWmCMSAuthToken:", response.Token);
+  } else {
+      console.log("No Token");
+  }
+  
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
