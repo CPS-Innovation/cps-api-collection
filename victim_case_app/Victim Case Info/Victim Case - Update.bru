@@ -1,0 +1,166 @@
+meta {
+  name: Victim Case - Update
+  type: http
+  seq: 5
+}
+
+patch {
+  url: {{EnvUrl}}/api/victims/guid/{{VcaCaseGuid}}
+  body: json
+  auth: inherit
+}
+
+headers {
+  Cms-Auth-Values: {{Cookie-Auth}}
+  x-functions-key: {{EnvKey}}
+  User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+}
+
+body:json {
+  {
+      "PreferredName": "Joey123",
+      "IsYouth": true,
+      "PreferredMethodOfContact": 1,
+      "SuitableContactTimes": "9-3pm",
+      "SpecialConsiderationNeeds": "none",
+      "LastModifiedBy": "DavidK"
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+example {
+  name: Victim Case- Update
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/guid/e202a1b4-fbab-42d1-9f99-e332b6b2d1aa
+    method: PATCH
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+          "PreferredName": "David",
+          "IsYouth": false,
+          "PreferredMethodOfContact": 2,
+          "SuitableContactTimes": "10-6pm",
+          "SpecialConsiderationNeeds": "none",
+          "LastModifiedBy": "JK2"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Tue, 19 Nov 2024 15:00:49 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": {
+                "urn": "45MZ1008323",
+                "caseId": 2150188,
+                "partyId": 501,
+                "preferredName": "David",
+                "isYouth": false,
+                "preferredMethodOfContact": 2,
+                "suitableContactTimes": "10-6pm",
+                "specialConsiderationNeeds": "none",
+                "victimCaseInfoGuid": "e202a1b4-fbab-42d1-9f99-e332b6b2d1aa",
+                "createdBy": "Joey19A",
+                "createdOn": "2024-11-19T14:48:51.401494+00:00",
+                "lastModifiedBy": "Joey19A",
+                "lastModifiedOn": "2024-11-19T14:59:40.4134635+00:00",
+                "isRemoved": false
+            },
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Victim Case - Update 06sc
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/guid/c6456807-d154-4b10-83eb-9baba2691362
+    method: PATCH
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+          "PreferredName": "Joey",
+          "IsYouth": false,
+          "PreferredMethodOfContact": 3,
+          "SuitableContactTimes": "9-12pm",
+          "SpecialConsiderationNeeds": "Something",
+          "LastModifiedBy": "DavidK"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Thu, 28 Nov 2024 18:11:29 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": {
+                "urn": "06SC1234572",
+                "caseId": 2155069,
+                "partyId": 2771801,
+                "preferredName": "Joey",
+                "isYouth": false,
+                "preferredMethodOfContact": 3,
+                "suitableContactTimes": "9-12pm",
+                "specialConsiderationNeeds": "Something",
+                "victimCaseInfoGuid": "c6456807-d154-4b10-83eb-9baba2691362",
+                "createdBy": "JoeyD",
+                "createdOn": "2024-11-28T18:07:11.396822+00:00",
+                "lastModifiedBy": "DavidK",
+                "lastModifiedOn": "2024-11-28T18:11:12.6770869+00:00",
+                "isRemoved": false
+            },
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}

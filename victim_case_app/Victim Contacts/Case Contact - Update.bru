@@ -1,0 +1,413 @@
+meta {
+  name: Case Contact - Update
+  type: http
+  seq: 2
+}
+
+patch {
+  url: {{EnvUrl}}/api/victims/{{VCAGuid}}/cps-contacts
+  body: json
+  auth: inherit
+}
+
+headers {
+  Cms-Auth-Values: {{Cookie-Auth}}
+  x-functions-key: {{EnvKey}}
+  User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+}
+
+body:json {
+  {
+    "ContactName": "All New Name",
+      "ContactTelephone": "987654",
+      "ContactEmail": "newemail@cps.com",
+      "CollarNumber": "NX-02",
+      "ContactType" : 4,
+      "Address": {
+          "AddressLine1": "111",
+          "AddressLine2": "122",
+          "AddressLine3": "133",
+          "AddressLine4": "144",
+          "AddressLine5": "155",
+          "City": "London",
+          "Country": "UK",
+          "Postcode": "FGH 987"
+      },
+    "LastModifiedBy": "maria.essex.cin3"
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+example {
+  name: Case Contact - Update success no add type
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/casecontact/guid/f5d89da1-3729-4105-9656-c90bb2e75629
+    method: PATCH
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+          "ContactName": "Chris",
+          "ContactTelephone": "333",
+          "ContactEmail": "chris@cps.com",
+          "CollarNumber": "",
+          "ContactType" : 1,
+          "LastModifiedBy": "Nicole",
+          "Address": {
+              "AddressLine1": "1A Update",
+              "AddressLine2": "2B Update",
+              "AddressLine3": "3C Update",
+              "AddressLine4": "4DUpdate",
+              "AddressLine5": "5E Update",
+              "City": "City 17 update",
+              "Country": "UK update",
+              "Postcode": "ABC 999"
+          }
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Mon, 02 Dec 2024 15:40:46 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": {
+                "name": "Chris",
+                "telephone": "333",
+                "email": "chris@cps.com",
+                "collarNumber": null,
+                "contactType": 1,
+                "addressId": 1,
+                "addressFields": null,
+                "createdBy": "JoeyKhattak",
+                "createdOn": "2024-12-02T15:10:18.989961+00:00",
+                "lastModifiedBy": "Nicole",
+                "lastModifiedOn": "2024-12-02T15:39:44.0873314+00:00",
+                "isRemoved": false
+            },
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Case Contact - Update fail no addr input
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/casecontact/guid/f5d89da1-3729-4105-9656-c90bb2e75629
+    method: PATCH
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+          "ContactName": "Michael",
+          "ContactTelephone": "555",
+          "ContactEmail": "mick@cps.com",
+          "CollarNumber": "",
+          "ContactType" : 4,
+          "LastModifiedBy": "Jesse",
+          "Address": null
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Mon, 02 Dec 2024 15:43:02 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": false,
+            "value": null,
+            "errorMessage": "No Address Input",
+            "statusCode": 15
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Case Contact - Update success full update
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/casecontact/guid/f5d89da1-3729-4105-9656-c90bb2e75629
+    method: PATCH
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+          "ContactName": "Michael",
+          "ContactTelephone": "555",
+          "ContactEmail": "mick@cps.com",
+          "CollarNumber": "",
+          "ContactType" : 4,
+          "LastModifiedBy": "Jesse",
+          "Address": {
+              "AddressLine1": "1A Update",
+              "AddressLine2": "2B Update",
+              "AddressLine3": "3C Update",
+              "AddressLine4": "4DUpdate",
+              "AddressLine5": "5E Update",
+              "City": "City 17 update",
+              "Country": "UK update",
+              "Postcode": "ABC 999"
+          }
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Mon, 02 Dec 2024 15:44:50 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": {
+                "name": "Michael",
+                "telephone": "555",
+                "email": "mick@cps.com",
+                "collarNumber": null,
+                "contactType": 4,
+                "addressId": 2,
+                "addressFields": {
+                    "addressLine1": "1A Update",
+                    "addressLine2": "2B Update",
+                    "addressLine3": "3C Update",
+                    "addressLine4": "4DUpdate",
+                    "addressLine5": "5E Update",
+                    "city": "City 17 update",
+                    "country": "UK update",
+                    "postcode": "ABC 999",
+                    "createdBy": null,
+                    "createdOn": "2024-12-02T15:43:54.9729886+00:00",
+                    "lastModifiedBy": "Jesse",
+                    "lastModifiedOn": "2024-12-02T15:43:55.1919832+00:00",
+                    "isRemoved": false
+                },
+                "createdBy": "JoeyKhattak",
+                "createdOn": "2024-12-02T15:22:46.683742+00:00",
+                "lastModifiedBy": "Jesse",
+                "lastModifiedOn": "2024-12-02T15:43:29.168076+00:00",
+                "isRemoved": false
+            },
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Case Contact - Update success
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/casecontact/guid/cefc5b1f-f90f-4554-b492-ce948a70e3b8
+    method: PATCH
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+        "ContactName": "David Kay",
+        "ContactTelephone": "07987654321",
+        "ContactEmail": "david.kay@flo.gov.uk",
+        "ContactType": 1,
+        "LastModifiedBy": "maria.essex.cin3",
+        "Address": null
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Tue, 24 Dec 2024 15:46:27 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": {
+                "name": "David Kay",
+                "telephone": "07987654321",
+                "email": "david.kay@flo.gov.uk",
+                "collarNumber": null,
+                "contactType": 1,
+                "addressId": 1,
+                "addressFields": null,
+                "createdBy": "JoeyKhattak",
+                "createdOn": "2024-12-24T15:39:39.419443+00:00",
+                "lastModifiedBy": "maria.essex.cin3",
+                "lastModifiedOn": "2024-12-24T15:46:27.8420955+00:00",
+                "isRemoved": false
+            },
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Case Contact - Update success
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/casecontact/guid/cefc5b1f-f90f-4554-b492-ce948a70e3b8
+    method: PATCH
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+        "ContactName": "Joey K",
+          "ContactTelephone": "987654",
+          "ContactEmail": "joe222@cps.com",
+          "CollarNumber": "NX-02",
+          "ContactType" : 4,
+          "Address": {
+              "AddressLine1": "AA",
+              "AddressLine2": "BB",
+              "AddressLine3": "CC",
+              "AddressLine4": "DD",
+              "AddressLine5": "EE",
+              "City": "London",
+              "Country": "UK",
+              "Postcode": "FGH 987"
+          },
+        "LastModifiedBy": "maria.essex.cin3"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Tue, 24 Dec 2024 15:57:04 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": {
+                "name": "Joey K",
+                "telephone": "987654",
+                "email": "joe222@cps.com",
+                "collarNumber": "NX-02",
+                "contactType": 4,
+                "addressId": 3,
+                "addressFields": {
+                    "addressLine1": "AA",
+                    "addressLine2": "BB",
+                    "addressLine3": "CC",
+                    "addressLine4": "DD",
+                    "addressLine5": "EE",
+                    "city": "London",
+                    "country": "UK",
+                    "postcode": "FGH 987",
+                    "createdBy": "JoeyKhattak",
+                    "createdOn": "2024-12-24T15:52:28.832469+00:00",
+                    "lastModifiedBy": "maria.essex.cin3",
+                    "lastModifiedOn": "2024-12-24T15:56:48.719373+00:00",
+                    "isRemoved": false
+                },
+                "createdBy": "JoeyKhattak",
+                "createdOn": "2024-12-24T15:52:54.482237+00:00",
+                "lastModifiedBy": "maria.essex.cin3",
+                "lastModifiedOn": "2024-12-24T15:55:56.1623886+00:00",
+                "isRemoved": false
+            },
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}

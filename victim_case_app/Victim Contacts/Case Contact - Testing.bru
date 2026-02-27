@@ -1,0 +1,350 @@
+meta {
+  name: Case Contact - Testing
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{EnvUrl}}/api/victims/{{VCAGuid}}/cps-contacts
+  body: none
+  auth: inherit
+}
+
+headers {
+  Cms-Auth-Values: {{Cookie-Auth}}
+  x-functions-key: {{EnvKey}}
+  User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+}
+
+settings {
+  encodeUrl: true
+}
+
+example {
+  name: Case Contact - Read 1 Contact
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/casecontact/Guid/e202a1b4-fbab-42d1-9f99-e332b6b2d1aa
+    method: GET
+    mode: none
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Wed, 20 Nov 2024 17:47:03 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": [
+                {
+                    "name": "David K",
+                    "telephone": "98765",
+                    "email": "david@cps.com",
+                    "collarNumber": "NX-02",
+                    "contactType": 1,
+                    "address": {
+                        "addressLine1": null,
+                        "addressLine2": null,
+                        "addressLine3": null,
+                        "addressLine4": null,
+                        "addressLine5": null,
+                        "city": null,
+                        "country": null,
+                        "postcode": null
+                    },
+                    "createdBy": "JoeyKhattak",
+                    "createdOn": "2024-11-20T17:30:41.275259+00:00",
+                    "lastModifiedBy": "JoeyKhattak",
+                    "lastModifiedOn": "2024-11-20T17:41:51.704269+00:00",
+                    "isRemoved": false
+                }
+            ],
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Case Contact - Read 06sc
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/casecontact/Guid/c6456807-d154-4b10-83eb-9baba2691362
+    method: GET
+    mode: none
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Thu, 28 Nov 2024 18:58:57 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": [
+                {
+                    "name": "David K",
+                    "telephone": "98765",
+                    "email": "david@cps.com",
+                    "collarNumber": "NX-02",
+                    "contactType": 2,
+                    "address": {
+                        "addressLine1": null,
+                        "addressLine2": null,
+                        "addressLine3": null,
+                        "addressLine4": null,
+                        "addressLine5": null,
+                        "city": null,
+                        "country": null,
+                        "postcode": null,
+                        "createdBy": "JoeyKhattak",
+                        "createdOn": "2024-11-28T18:52:30.683852+00:00",
+                        "lastModifiedBy": "DavidKhattak",
+                        "lastModifiedOn": "2024-11-28T18:58:24.05317+00:00",
+                        "isRemoved": false
+                    },
+                    "createdBy": "JoeyKhattak",
+                    "createdOn": "2024-11-28T18:52:30.863715+00:00",
+                    "lastModifiedBy": "DavidKhattak",
+                    "lastModifiedOn": "2024-11-28T18:58:23.975046+00:00",
+                    "isRemoved": false
+                }
+            ],
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Case Contact - Read success multiple types
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/casecontact/Guid/f5d89da1-3729-4105-9656-c90bb2e75629
+    method: GET
+    mode: none
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Mon, 02 Dec 2024 15:27:41 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": [
+                {
+                    "name": "Joey K",
+                    "telephone": "012345",
+                    "email": "joe@cps.com",
+                    "collarNumber": "NX-01",
+                    "contactType": 2,
+                    "addressId": 1,
+                    "addressFields": null,
+                    "createdBy": "JoeyKhattak",
+                    "createdOn": "2024-12-02T15:02:50.093639+00:00",
+                    "lastModifiedBy": "JoeyKhattak",
+                    "lastModifiedOn": "2024-12-02T15:02:50.093639+00:00",
+                    "isRemoved": false
+                },
+                {
+                    "name": "David K",
+                    "telephone": "876",
+                    "email": "dave@cps.com",
+                    "collarNumber": "NA",
+                    "contactType": 1,
+                    "addressId": 1,
+                    "addressFields": null,
+                    "createdBy": "JoeyKhattak",
+                    "createdOn": "2024-12-02T15:10:18.989961+00:00",
+                    "lastModifiedBy": "JoeyKhattak",
+                    "lastModifiedOn": "2024-12-02T15:10:18.989962+00:00",
+                    "isRemoved": false
+                },
+                {
+                    "name": "David J",
+                    "telephone": "456",
+                    "email": "dave@cps.com",
+                    "collarNumber": null,
+                    "contactType": 4,
+                    "addressId": 2,
+                    "addressFields": {
+                        "addressLine1": "1A",
+                        "addressLine2": "2B",
+                        "addressLine3": "3C",
+                        "addressLine4": "4D",
+                        "addressLine5": "5E",
+                        "city": "City 17",
+                        "country": "UK",
+                        "postcode": "ABC 123",
+                        "createdBy": null,
+                        "createdOn": "2024-12-02T15:27:23.6772629+00:00",
+                        "lastModifiedBy": null,
+                        "lastModifiedOn": "2024-12-02T15:27:23.6772634+00:00",
+                        "isRemoved": false
+                    },
+                    "createdBy": "JoeyKhattak",
+                    "createdOn": "2024-12-02T15:22:46.683742+00:00",
+                    "lastModifiedBy": "JoeyKhattak",
+                    "lastModifiedOn": "2024-12-02T15:22:46.683743+00:00",
+                    "isRemoved": false
+                }
+            ],
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Case Contact - Read success
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/casecontact/Guid/cefc5b1f-f90f-4554-b492-ce948a70e3b8
+    method: GET
+    mode: none
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Tue, 24 Dec 2024 15:44:29 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": [
+                {
+                    "name": "Denise Hyam",
+                    "telephone": "07987654321",
+                    "email": "denise.hyam@flo.gov.uk",
+                    "collarNumber": null,
+                    "contactType": 3,
+                    "addressId": 2,
+                    "addressFields": {
+                        "addressLine1": null,
+                        "addressLine2": null,
+                        "addressLine3": null,
+                        "addressLine4": null,
+                        "addressLine5": null,
+                        "city": null,
+                        "country": null,
+                        "postcode": null,
+                        "createdBy": "maria.essex.cin3",
+                        "createdOn": "2024-12-05T13:28:06.700118+00:00",
+                        "lastModifiedBy": "maria.essex.cin3",
+                        "lastModifiedOn": "2024-12-05T14:23:13.122425+00:00",
+                        "isRemoved": false
+                    },
+                    "createdBy": "maria.essex.cin3",
+                    "createdOn": "2024-12-05T13:35:30.387516+00:00",
+                    "lastModifiedBy": "maria.essex.cin3",
+                    "lastModifiedOn": "2024-12-05T14:23:13.104695+00:00",
+                    "isRemoved": false
+                },
+                {
+                    "name": "Joey K",
+                    "telephone": "012345",
+                    "email": "joe@cps.com",
+                    "collarNumber": "NX-01",
+                    "contactType": 2,
+                    "addressId": 1,
+                    "addressFields": null,
+                    "createdBy": "JoeyKhattak",
+                    "createdOn": "2024-12-24T15:37:49.273801+00:00",
+                    "lastModifiedBy": "JoeyKhattak",
+                    "lastModifiedOn": "2024-12-24T15:37:49.273801+00:00",
+                    "isRemoved": false
+                },
+                {
+                    "name": "Joey K",
+                    "telephone": "012345",
+                    "email": "joe@cps.com",
+                    "collarNumber": "NX-01",
+                    "contactType": 1,
+                    "addressId": 1,
+                    "addressFields": null,
+                    "createdBy": "JoeyKhattak",
+                    "createdOn": "2024-12-24T15:39:39.419443+00:00",
+                    "lastModifiedBy": "JoeyKhattak",
+                    "lastModifiedOn": "2024-12-24T15:39:39.419443+00:00",
+                    "isRemoved": false
+                }
+            ],
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}

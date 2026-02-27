@@ -1,0 +1,147 @@
+meta {
+  name: Authenticate
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{EnvUrl}}/api/authenticate
+  body: formUrlEncoded
+  auth: none
+}
+
+headers {
+  Content-Type: application/x-www-form-urlencoded
+  x-functions-key: {{EnvKey}}
+}
+
+body:form-urlencoded {
+  username: {{usernamel}}
+  password: {{password}}
+}
+
+script:post-response {
+  const response = res.getBody();
+   
+  bru.setEnvVar("Cookie-Auth", JSON.stringify(response));
+   
+  console.log('environment variables set:', response);
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Authenticate
+  
+  request: {
+    url: {{EnvUrl}}/api/authenticate
+    method: POST
+    mode: formUrlEncoded
+    headers: {
+      Content-Type: application/x-www-form-urlencoded
+      x-functions-key: {{EnvKey}}
+    }
+  
+    body:form-urlencoded: {
+      username: MARIA.ESSEX.CIN3
+      password: jZ25P9G4nF5Xb6su
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Length: 594
+      Content-Type: application/json
+      Date: Thu, 25 Apr 2024 13:11:42 GMT
+      Server: Kestrel
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {}
+      '''
+    }
+  }
+}
+
+example {
+  name: Authenticate - Local
+  
+  request: {
+    url: {{EnvUrl}}/api/authenticate
+    method: POST
+    mode: formUrlEncoded
+    headers: {
+      Content-Type: application/x-www-form-urlencoded
+      x-functions-key: {{EnvKey}}
+    }
+  
+    body:form-urlencoded: {
+      username: MARIA.ESSEX.CIN3
+      password: jZ25P9G4nF5Xb6su
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Length: 602
+      Content-Type: application/json
+      Date: Mon, 02 Dec 2024 16:42:15 GMT
+      Server: Kestrel
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {}
+      '''
+    }
+  }
+}
+
+example {
+  name: Authenticate
+  
+  request: {
+    url: {{EnvUrl}}/api/authenticate
+    method: POST
+    mode: formUrlEncoded
+    headers: {
+      Content-Type: application/x-www-form-urlencoded
+      x-functions-key: {{EnvKey}}
+    }
+  
+    body:form-urlencoded: {
+      username: {{usernamel}}
+      password: {{password}}
+    }
+  }
+  
+  response: {
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

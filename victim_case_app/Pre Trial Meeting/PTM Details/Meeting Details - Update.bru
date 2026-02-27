@@ -1,0 +1,308 @@
+meta {
+  name: Meeting Details - Update
+  type: http
+  seq: 2
+}
+
+patch {
+  url: {{EnvUrl}}/api/victims/pre-trial-meetings/{{PTMDetailsGUID}}
+  body: json
+  auth: inherit
+}
+
+headers {
+  Cms-Auth-Values: {{Cookie-Auth}}
+  x-functions-key: {{EnvKey}}
+  User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+}
+
+body:json {
+  {
+    "MeetingDateTime": "2025-12-01T11:00:19.643Z",
+    "MeetingMethod": 1,
+    "MeetingSource": 2,
+    "LocationType": 2,
+    "Cancelled": false,
+     "CancellationReason": "It My Reason",
+     "CancellationDate": "2025-12-05T11:00:19.643Z",
+     "LastModifiedBy": "MuraliG"
+  }
+  
+}
+
+settings {
+  encodeUrl: true
+}
+
+example {
+  name: Meeting Details - Update invalid location
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/ptm-details/ptm-guid/{{PTM-Guid}}
+    method: PATCH
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+        "LastModifiedBy": "DavidK",
+        "MeetingDateTime": "2024-12-19T15:00:19.643Z",
+        "MeetingMethod": 1,
+        "SpecialNeeds": true,
+        "NatureOfNeeds": "new needs",
+        "MeetingSource": 2,
+        "LocationName": "CPS Adjacent Office",
+        "LocationType": 5,
+        "MeetingConducted": true,
+        "ReasonNotConducted": "",
+        "MeetingDuration": "1hour",
+        "MeetingNotes": "Topics covered"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Fri, 13 Dec 2024 17:55:08 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": false,
+            "value": null,
+            "errorMessage": "Invalid Location Type",
+            "statusCode": 15
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Meeting Details - Update success
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/ptm-details/ptm-guid/{{PTM-Guid}}
+    method: PATCH
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+        "LastModifiedBy": "DavidK",
+        "MeetingDateTime": "2024-12-19T15:00:19.643Z",
+        "MeetingMethod": 1,
+        "SpecialNeeds": true,
+        "NatureOfNeeds": "new needs",
+        "MeetingSource": 2,
+        "LocationName": "CPS Adjacent Office",
+        "LocationType": 2,
+        "MeetingConducted": true,
+        "ReasonNotConducted": "",
+        "MeetingDuration": "1hour",
+        "MeetingNotes": "Topics covered"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Fri, 13 Dec 2024 17:55:54 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": {
+                "meetingDateTime": "2024-12-19T15:00:19.643+00:00",
+                "meetingMethod": 1,
+                "specialNeeds": true,
+                "natureOfNeeds": "new needs",
+                "meetingSource": 2,
+                "locationName": "CPS Adjacent Office",
+                "locationType": 2,
+                "meetingConducted": true,
+                "reasonNotConducted": null,
+                "meetingDuration": "1hour",
+                "meetingNotes": "Topics covered",
+                "victimMeetingDetailsGuid": "49220af0-c798-480b-8f6a-52dc8cd961c7",
+                "createdBy": "JoeyD",
+                "createdOn": "2024-12-13T17:45:04.455122+00:00",
+                "lastModifiedBy": "DavidK",
+                "lastModifiedOn": "2024-12-13T17:55:54.451067+00:00",
+                "isRemoved": false
+            },
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Meeting Details - Update
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/ptm-details/ptm-guid/{{PTM-Guid}}
+    method: PATCH
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+        "LastModifiedBy": "DavidK",
+        "MeetingDateTime": "2024-12-19T15:00:19.643Z",
+        "MeetingMethod": 1,
+        "SpecialNeeds": true,
+        "NatureOfNeeds": "new needs",
+        "MeetingSource": 2,
+        "LocationName": "CPS Adjacent Office",
+        "LocationType": 2,
+        "MeetingConducted": true,
+        "ReasonNotConducted": "",
+        "MeetingDuration": "1hour",
+        "MeetingNotes": "Topics covered"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Length: 0
+      Date: Thu, 08 May 2025 10:59:12 GMT
+      Server: Kestrel
+      Request-Context: appId=cid-v1:24fb9acc-3942-4f50-8002-240bb13f6153
+    }
+  
+    status: {
+      code: Not Found
+      text: 404
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: Meeting Details - Update
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/pre-trial-meetings/{{PTM-Guid}}
+    method: PATCH
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+        "LastModifiedBy": "MuraliG",
+        "MeetingDateTime": "2024-12-19T15:00:19.643Z",
+        "MeetingMethod": 2,
+        "SpecialNeeds": true,
+        "NatureOfNeeds": "Testing",
+        "MeetingSource": 2,
+        "LocationName": "Magistrates Courts",
+        "LocationType": 2,
+        "MeetingConducted": true,
+        "ReasonNotConducted": "",
+        "MeetingDuration": "1hour",
+        "MeetingNotes": "Testing Meeting Notes"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Thu, 08 May 2025 16:04:46 GMT
+      Server: 
+      Cache-Control: no-store, max-age-0
+      Pragma: no-cache
+      Transfer-Encoding: chunked
+      Request-Context: appId=cid-v1:24fb9acc-3942-4f50-8002-240bb13f6153
+      X-Content-Type-Options: nosniff
+      Content-Security-Policy: default-src 'none'
+      X-Frame-Options: deny
+      X-Permitted-Cross-Domain-Policies: none
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": {
+                "meetingDateTime": "2024-12-19T15:00:19.643+00:00",
+                "meetingMethod": 2,
+                "specialNeeds": true,
+                "natureOfNeeds": "Testing",
+                "meetingSource": 2,
+                "locationName": "Magistrates Courts",
+                "locationType": 2,
+                "meetingConducted": true,
+                "reasonNotConducted": null,
+                "meetingDuration": "1hour",
+                "meetingNotes": "Testing Meeting Notes",
+                "cancelled": false,
+                "cancellationReason": null,
+                "cancellationDate": "0001-01-01T00:00:00",
+                "victimMeetingDetailsGuid": "4a56064f-40b2-49b8-842d-238ce5bcbe70",
+                "createdBy": "{{usernamel}}",
+                "createdOn": "2025-05-06T11:03:28.406021+00:00",
+                "lastModifiedBy": "MuraliG",
+                "lastModifiedOn": "2025-05-08T16:04:46.8831211+00:00",
+                "isRemoved": false
+            },
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}

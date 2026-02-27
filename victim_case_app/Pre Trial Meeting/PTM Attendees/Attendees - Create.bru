@@ -1,0 +1,151 @@
+meta {
+  name: Attendees - Create
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{EnvUrl}}/api/victims/pre-trial-meetings/{{PTM-Guid}}/attendees
+  body: json
+  auth: inherit
+}
+
+headers {
+  Cms-Auth-Values: {{Cookie-Auth}}
+  x-functions-key: {{EnvKey}}
+  User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+}
+
+body:json {
+  [
+    {
+  
+      "AttendeeName": "Test",
+      "AttendeeRole": "Support",
+          "CreatedBy": "Joeyd"
+    }
+  ]
+}
+
+settings {
+  encodeUrl: true
+}
+
+example {
+  name: Attendee - Create success
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/ptm-attendee/ptm-guid/{{PTM-Guid}}
+    method: POST
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      [
+        {
+          "CreatedBy": "Joeyd",
+          "AttendeeName": "Michael McClure",
+          "AttendeeRole": "Support",
+          "ChairPerson": false,
+          "AttendedMeeting": false
+        }
+      ]
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Fri, 13 Dec 2024 13:23:57 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": [
+                {
+                    "meetingAttendeeGuid": "197565c0-6a43-464f-a3df-ff28be75e29c",
+                    "attendeeName": "Michael McClure",
+                    "attendeeRole": "Support",
+                    "chairPerson": false,
+                    "attendedMeeting": false,
+                    "createdBy": "Joeyd",
+                    "createdOn": "2024-12-13T13:23:58.0649131+00:00",
+                    "lastModifiedBy": "Joeyd",
+                    "lastModifiedOn": "2024-12-13T13:23:58.0649134+00:00",
+                    "isRemoved": false
+                }
+            ],
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Attendee - Create invalid guid
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/ptm-attendee/ptm-guid/{{PTM-Guid}}
+    method: POST
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      [
+        {
+          "CreatedBy": "Joeyd",
+          "AttendeeName": "Michael McClure",
+          "AttendeeRole": "Support",
+          "ChairPerson": false,
+          "AttendedMeeting": false
+        }
+      ]
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Mon, 16 Dec 2024 18:01:53 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": false,
+            "value": null,
+            "errorMessage": "No Victim Meeting Details Record Found",
+            "statusCode": 20
+        }
+      '''
+    }
+  }
+}

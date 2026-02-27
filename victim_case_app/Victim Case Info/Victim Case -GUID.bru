@@ -1,0 +1,337 @@
+meta {
+  name: Victim Case -GUID
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{EnvUrl}}/api/victims/urns/{{cmsURN}}/cases/{{UrnCaseId}}/parties/{{UrnCaseIdPartyId}}
+  body: text
+  auth: oauth2
+}
+
+headers {
+  Cms-Auth-Values: {{Cookie-Auth}}
+  x-functions-key: {{EnvKey}}
+  User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+}
+
+auth:oauth2 {
+  grant_type: client_credentials
+  access_token_url: 
+  refresh_token_url: 
+  client_id: 
+  client_secret: 
+  scope: 
+  credentials_placement: basic_auth_header
+  credentials_id: 
+  token_placement: header
+  token_header_prefix: 
+  auto_fetch_token: true
+  auto_refresh_token: false
+}
+
+settings {
+  encodeUrl: true
+}
+
+example {
+  name: Victim Case -Read success
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/urn/45MZ1008323/case/2150188/partyId/501
+    method: GET
+    mode: none
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Tue, 19 Nov 2024 14:51:49 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": {
+                "urn": "45MZ1008323",
+                "caseId": 2150188,
+                "partyId": 501,
+                "preferredName": null,
+                "isYouth": false,
+                "preferredMethodOfContact": 0,
+                "suitableContactTimes": null,
+                "specialConsiderationNeeds": null,
+                "victimCaseInfoGuid": "e202a1b4-fbab-42d1-9f99-e332b6b2d1aa",
+                "createdBy": "Joey19A",
+                "createdOn": "2024-11-19T14:48:51.401494+00:00",
+                "lastModifiedBy": "Joey19A",
+                "lastModifiedOn": "2024-11-19T14:48:51.401495+00:00",
+                "isRemoved": false
+            },
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Victim Case -Read split case
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/urn/42MZ1139323/case/2151989/partyId/501
+    method: GET
+    mode: none
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Wed, 27 Nov 2024 12:51:47 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": {
+                "urn": "42MZ1139323/1",
+                "caseId": 2151989,
+                "partyId": 501,
+                "preferredName": null,
+                "isYouth": false,
+                "preferredMethodOfContact": 0,
+                "suitableContactTimes": null,
+                "specialConsiderationNeeds": null,
+                "victimCaseInfoGuid": "2369e77a-8403-4e6a-9ed5-fa25f6967aa8",
+                "createdBy": "Joey19A",
+                "createdOn": "2024-11-27T12:50:28.190416+00:00",
+                "lastModifiedBy": "Joey19A",
+                "lastModifiedOn": "2024-11-27T12:50:28.190417+00:00",
+                "isRemoved": false
+            },
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Victim Case -Read split case 2
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/urn/42MZ1139323/case/2151990/partyId/501
+    method: GET
+    mode: none
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Wed, 27 Nov 2024 12:53:15 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": {
+                "urn": "42MZ1139323/2",
+                "caseId": 2151990,
+                "partyId": 501,
+                "preferredName": null,
+                "isYouth": false,
+                "preferredMethodOfContact": 0,
+                "suitableContactTimes": null,
+                "specialConsiderationNeeds": null,
+                "victimCaseInfoGuid": "30beeb7c-7490-4276-b467-13bd3c59838b",
+                "createdBy": "Joey19A",
+                "createdOn": "2024-11-27T12:52:37.094606+00:00",
+                "lastModifiedBy": "Joey19A",
+                "lastModifiedOn": "2024-11-27T12:52:37.094606+00:00",
+                "isRemoved": false
+            },
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Victim Case -Read 06c
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/urn/06SC1234572/case/2155069/partyId/2771801
+    method: GET
+    mode: none
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Thu, 28 Nov 2024 18:08:24 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": {
+                "urn": "06SC1234572",
+                "caseId": 2155069,
+                "partyId": 2771801,
+                "preferredName": null,
+                "isYouth": false,
+                "preferredMethodOfContact": 0,
+                "suitableContactTimes": null,
+                "specialConsiderationNeeds": null,
+                "victimCaseInfoGuid": "c6456807-d154-4b10-83eb-9baba2691362",
+                "createdBy": "JoeyD",
+                "createdOn": "2024-11-28T18:07:11.396822+00:00",
+                "lastModifiedBy": "JoeyD",
+                "lastModifiedOn": "2024-11-28T18:07:11.396822+00:00",
+                "isRemoved": false
+            },
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Victim Case -Read no records found
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/urn/06SC1234572/case/2155069/partyId/1001701
+    method: GET
+    mode: none
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Wed, 04 Dec 2024 13:07:55 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": false,
+            "value": null,
+            "errorMessage": "No Records Found",
+            "statusCode": 20
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Victim Case -Read
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/urns/07WZ1001124/cases/2150188/parties/111113
+    method: GET
+    mode: none
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Length: 0
+      Date: Fri, 13 Jun 2025 17:57:51 GMT
+      Server: Kestrel
+      Request-Context: appId=cid-v1:6030a391-8efb-4346-be9a-ffa9e17777bb
+    }
+  
+    status: {
+      code: Unauthorized
+      text: 401
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

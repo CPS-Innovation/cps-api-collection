@@ -1,0 +1,194 @@
+meta {
+  name: CD - Update
+  type: http
+  seq: 2
+}
+
+patch {
+  url: {{EnvUrl}}/api/victims/{{VCAGuid}}/charging-decision
+  body: json
+  auth: inherit
+}
+
+headers {
+  Cms-Auth-Values: {{Cookie-Auth}}
+  x-functions-key: {{EnvKey}}
+  User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+}
+
+body:json {
+  {
+      "ChargingDecision": 1,
+      "DateOfHearing": "2025-05-15",
+      "VictimResponseDate": "2024-12-20",
+      "LocationOfHearing": "test",
+      "LastModifiedBy": "JoeyKhattak"
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+example {
+  name: CD - Update success
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/{{VCAGuid}}/charging-decision
+    method: PATCH
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+          "ChargingDecision": 1,
+          "DateOfHearing": "2025-05-15",
+          "VictimResponseDate": "2024-12-20",
+          "LocationOfHearing": "test",
+          "LastModifiedBy": "JoeyKhattak"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Thu, 19 Dec 2024 15:34:01 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": {
+                "chargingDecision": 1,
+                "dateOfHearing": "2025-05-15",
+                "locationOfHearing": "test",
+                "noFurtherAttempts": false,
+                "createdBy": "JoeyKhattak",
+                "createdOn": "2024-12-19T15:24:52.99141+00:00",
+                "lastModifiedBy": "JoeyKhattak",
+                "lastModifiedOn": "2024-12-19T15:33:57.0338259+00:00",
+                "isRemoved": false
+            },
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: CD - Update invalid charging dec
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/{{VCAGuid}}/charging-decision
+    method: PATCH
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+          "ChargingDecision": 0,
+          "DateOfHearing": "2025-05-15",
+          "VictimResponseDate": "2024-12-20",
+          "LocationOfHearing": "test",
+          "LastModifiedBy": "JoeyKhattak"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Thu, 19 Dec 2024 15:34:30 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": false,
+            "value": null,
+            "errorMessage": "Invalid Charging Decision",
+            "statusCode": 15
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: CD - Update charging dec not created
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/{{VCAGuid}}/charging-decision
+    method: PATCH
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+          "ChargingDecision": 2,
+          "DateOfHearing": "2025-05-15",
+          "VictimResponseDate": "2024-12-20",
+          "LocationOfHearing": "test",
+          "LastModifiedBy": "JoeyKhattak"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Thu, 19 Dec 2024 15:35:08 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": false,
+            "value": null,
+            "errorMessage": "Charging Decision record doesn't exist",
+            "statusCode": 15
+        }
+      '''
+    }
+  }
+}
