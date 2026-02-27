@@ -1,25 +1,19 @@
 meta {
-  name: Victim Send Email Notification
+  name: NFA - Get
   type: http
-  seq: 13
+  seq: 3
 }
 
-post {
-  url: {{EnvUrl}}/api/victims/notify/email
-  body: json
+get {
+  url: {{EnvUrl}}/api/victims/{{VCAGuid}}/no-further-action
+  body: none
   auth: inherit
 }
 
 headers {
   Cms-Auth-Values: {{Cookie-Auth}}
-  x-functions-key: AdAb4dkqjrZvNXdU{{EnvKey}}5NGc7ibTLsBJw4UBea6bF5FX9H2yAzFuEsx7ew==
+  x-functions-key: {{EnvKey}}
   User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
-}
-
-body:json {
-  {
-      "EmailAddress": "joey.khattak@cps.gov.uk"
-  }
 }
 
 settings {
@@ -28,10 +22,10 @@ settings {
 }
 
 example {
-  name: Search by URN
+  name: NFA - Get No NFA records
   
   request: {
-    url: {{EnvUrl}}/api/victims/search
+    url: {{EnvUrl}}/api/victims/{{VCAGuid}}/no-further-action
     method: GET
     mode: none
     headers: {
@@ -44,9 +38,15 @@ example {
   response: {
     headers: {
       Content-Type: application/json; charset=utf-8
-      Date: Tue, 29 Oct 2024 16:29:53 GMT
-      Server: Kestrel
+      Date: Thu, 06 Nov 2025 13:13:21 GMT
+      Server: 
+      Cache-Control: no-store, max-age-0
+      Pragma: no-cache
       Transfer-Encoding: chunked
+      X-Content-Type-Options: nosniff
+      Content-Security-Policy: default-src 'self'
+      X-Frame-Options: deny
+      X-Permitted-Cross-Domain-Policies: none
     }
   
     status: {
@@ -57,20 +57,12 @@ example {
     body: {
       type: json
       content: '''
-        [
-            {
-                "caseId": 2150188,
-                "firstName": "Aaron",
-                "surname": "AARONSON",
-                "status": "Not called"
-            },
-            {
-                "caseId": 2150188,
-                "firstName": "Jane",
-                "surname": "JAMESON",
-                "status": null
-            }
-        ]
+        {
+            "isSuccess": false,
+            "value": null,
+            "errorMessage": "No Further Action record Not Found",
+            "statusCode": 20
+        }
       '''
     }
   }
