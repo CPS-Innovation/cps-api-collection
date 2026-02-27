@@ -1,0 +1,122 @@
+meta {
+  name: CD - Get List
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{EnvUrl}}/api/victims/{{VcaCDcaseGuid}}/charging-decisions
+  body: none
+  auth: inherit
+}
+
+headers {
+  Cms-Auth-Values: {{Cookie-Auth}}
+  x-functions-key: {{EnvKey}}
+  User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+}
+
+settings {
+  encodeUrl: true
+}
+
+example {
+  name: CD - Get List success multiple attempts
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/{{VCAGuid}}/charging-decision
+    method: GET
+    mode: none
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Thu, 19 Dec 2024 17:04:48 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": {
+                "chargingDecision": 1,
+                "dateOfHearing": "2025-05-15",
+                "locationOfHearing": "test",
+                "noFurtherAttempts": true,
+                "contactAttempts": [
+                    {
+                        "methodOfContact": 3,
+                        "dateOfContact": "2024-12-19T15:36:36.897+00:00",
+                        "attemptByTelephone": 1,
+                        "ableToInformOnCall": false,
+                        "notes": "Called to inform",
+                        "createdBy": "JoeyKhattak",
+                        "createdOn": "2024-12-19T15:49:24.330652+00:00",
+                        "lastModifiedBy": "JoeyKhattak",
+                        "lastModifiedOn": "2024-12-19T15:49:24.330652+00:00",
+                        "isRemoved": false
+                    },
+                    {
+                        "methodOfContact": 3,
+                        "dateOfContact": "2024-12-19T15:36:36.897+00:00",
+                        "attemptByTelephone": 2,
+                        "ableToInformOnCall": false,
+                        "notes": "Called to inform",
+                        "createdBy": "JoeyKhattak",
+                        "createdOn": "2024-12-19T16:08:28.575549+00:00",
+                        "lastModifiedBy": "JoeyKhattak",
+                        "lastModifiedOn": "2024-12-19T16:08:28.575549+00:00",
+                        "isRemoved": false
+                    },
+                    {
+                        "methodOfContact": 3,
+                        "dateOfContact": "2024-12-19T15:36:36.897+00:00",
+                        "attemptByTelephone": 3,
+                        "ableToInformOnCall": false,
+                        "notes": "Called to inform",
+                        "createdBy": "JoeyKhattak",
+                        "createdOn": "2024-12-19T16:10:47.25483+00:00",
+                        "lastModifiedBy": "JoeyKhattak",
+                        "lastModifiedOn": "2024-12-19T16:10:47.25483+00:00",
+                        "isRemoved": false
+                    },
+                    {
+                        "methodOfContact": 2,
+                        "dateOfContact": "2024-12-19T15:36:36.897+00:00",
+                        "attemptByTelephone": 0,
+                        "ableToInformOnCall": false,
+                        "notes": "Called to inform",
+                        "createdBy": "JoeyKhattak",
+                        "createdOn": "2024-12-19T16:12:09.546245+00:00",
+                        "lastModifiedBy": "JoeyKhattak",
+                        "lastModifiedOn": "2024-12-19T16:12:09.546245+00:00",
+                        "isRemoved": false
+                    }
+                ],
+                "createdBy": "JoeyKhattak",
+                "createdOn": "2024-12-19T15:24:52.99141+00:00",
+                "lastModifiedBy": "JoeyKhattak",
+                "lastModifiedOn": "2024-12-19T16:46:12.290308+00:00",
+                "isRemoved": false
+            },
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}

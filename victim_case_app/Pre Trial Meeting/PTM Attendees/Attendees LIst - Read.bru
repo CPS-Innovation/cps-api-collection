@@ -1,0 +1,182 @@
+meta {
+  name: Attendees LIst - Read
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{EnvUrl}}/api/victims/pre-trial-meetings/{{PTM-Guid}}/attendees
+  body: json
+  auth: inherit
+}
+
+headers {
+  Cms-Auth-Values: {{Cookie-Auth}}
+  x-functions-key: {{EnvKey}}
+  User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+}
+
+body:json {
+  [
+    {
+      "CreatedBy": "string",
+      "AttendeeName": "string",
+      "AttendeeRole": "string",
+      "ChairPerson": true,
+      "AttendedMeeting": true
+    }
+  ]
+}
+
+settings {
+  encodeUrl: true
+}
+
+example {
+  name: Attendees - Get List
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/ptm-attendee/ptm-guid/{{PTM-Guid}}
+    method: GET
+    mode: none
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Fri, 13 Dec 2024 13:30:50 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": [
+                {
+                    "meetingAttendeeGuid": "197565c0-6a43-464f-a3df-ff28be75e29c",
+                    "attendeeName": "Michael McClure 3",
+                    "attendeeRole": "Supporter 1",
+                    "chairPerson": false,
+                    "attendedMeeting": true,
+                    "createdBy": "Joeyd",
+                    "createdOn": "2024-12-13T13:23:58.064913+00:00",
+                    "lastModifiedBy": "David K",
+                    "lastModifiedOn": "2024-12-13T13:29:11.204552+00:00",
+                    "isRemoved": false
+                }
+            ],
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Attendees - Read success
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/ptm-attendee/ptm-guid/{{PTM-Guid}}
+    method: GET
+    mode: none
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Mon, 16 Dec 2024 18:11:34 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": [
+                {
+                    "meetingAttendeeGuid": "5cd88883-abbe-42f0-81ec-a4ade895d66b",
+                    "attendeeName": "Michael McClure",
+                    "attendeeRole": "Support",
+                    "chairPerson": false,
+                    "attendedMeeting": false,
+                    "createdBy": "Joeyd",
+                    "createdOn": "2024-12-16T17:52:49.345089+00:00",
+                    "lastModifiedBy": "Joeyd",
+                    "lastModifiedOn": "2024-12-16T17:52:49.345089+00:00",
+                    "isRemoved": false
+                }
+            ],
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Attendees - Read invalid GUID
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/ptm-attendee/ptm-guid/{{PTM-Guid}}
+    method: GET
+    mode: none
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Mon, 16 Dec 2024 18:13:25 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": false,
+            "value": null,
+            "errorMessage": "No Record Found",
+            "statusCode": 20
+        }
+      '''
+    }
+  }
+}

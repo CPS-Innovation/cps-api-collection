@@ -1,0 +1,77 @@
+meta {
+  name: Victim Send Email Notification
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{EnvUrl}}/api/victims/notify/email
+  body: json
+  auth: inherit
+}
+
+headers {
+  Cms-Auth-Values: {{Cookie-Auth}}
+  x-functions-key: AdAb4dkqjrZvNXdU{{EnvKey}}5NGc7ibTLsBJw4UBea6bF5FX9H2yAzFuEsx7ew==
+  User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+}
+
+body:json {
+  {
+      "EmailAddress": "joey.khattak@cps.gov.uk"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Search by URN
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/search
+    method: GET
+    mode: none
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Tue, 29 Oct 2024 16:29:53 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        [
+            {
+                "caseId": 2150188,
+                "firstName": "Aaron",
+                "surname": "AARONSON",
+                "status": "Not called"
+            },
+            {
+                "caseId": 2150188,
+                "firstName": "Jane",
+                "surname": "JAMESON",
+                "status": null
+            }
+        ]
+      '''
+    }
+  }
+}

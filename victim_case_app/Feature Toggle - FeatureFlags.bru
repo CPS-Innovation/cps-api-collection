@@ -1,0 +1,27 @@
+meta {
+  name: Feature Toggle - FeatureFlags
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{EnvUrl}}/api/FeatureFlags/{{toggleValue}}
+  body: formUrlEncoded
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/x-www-form-urlencoded
+  x-functions-key: {{EnvKey}}
+  Cms-Auth-Values: {{Cookie-Auth}}
+}
+
+body:form-urlencoded {
+  username: {{usernamel}}
+  password: {{password}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
