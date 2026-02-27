@@ -1,0 +1,406 @@
+meta {
+  name: PTM Offer List- Create
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{EnvUrl}}/api/victims/{{VCAGuidPTMOffer}}/pre-trial-meeting-offers
+  body: json
+  auth: inherit
+}
+
+headers {
+  Cms-Auth-Values: {{Cookie-Auth}}
+  x-functions-key: {{EnvKey}}
+  User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+}
+
+body:json {
+  {
+      "PTMAttempt": 6,
+      "MeetingOffered": false,
+      "MethodOfOffer": 10,
+          "ReasonForNoOffer": "Testing Testing",
+      "CreatedBy": "MuraliG"
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+example {
+  name: PTM Offer - Create 06sc success
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/ptmoffer/Guid/c6456807-d154-4b10-83eb-9baba2691362
+    method: POST
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+          "PTMAttempt": 1,
+          "MeetingOffered": true,
+          "MethodOfOffer": 5,
+          "DateOfOffer": "2024-11-28",
+          "ReasonForNoOffer" : "Lorem ipsom",
+          "CreatedBy": "JoeyKhattak"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Thu, 28 Nov 2024 22:31:28 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": {
+                "ptmAttempt": 1,
+                "meetingOffered": true,
+                "dateOfOffer": "2024-11-28",
+                "reasonForNoOffer": "Lorem ipsom",
+                "victimResponse": null,
+                "victimResponseDate": "0001-01-01",
+                "victimReasonForDecline": null,
+                "createdBy": "JoeyKhattak",
+                "createdOn": "2024-11-28T22:30:56.3989234+00:00",
+                "lastModifiedBy": "JoeyKhattak",
+                "lastModifiedOn": "2024-11-28T22:30:56.3989235+00:00",
+                "isRemoved": false
+            },
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: PTM Offer - Create invalid type
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/ptmoffer/Guid/c6456807-d154-4b10-83eb-9baba2691362
+    method: POST
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+          "PTMAttempt": 2,
+          "MeetingOffered": true,
+          "MethodOfOffer": 6,
+          "DateOfOffer": "2024-11-28",
+          "ReasonForNoOffer" : "Lorem ipsom",
+          "CreatedBy": "JoeyKhattak"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Thu, 28 Nov 2024 22:45:28 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": false,
+            "value": null,
+            "errorMessage": "Invalid type",
+            "statusCode": 20
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: PTM Offer - Create 06sc attempt already exists
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/ptmoffer/Guid/f5d89da1-3729-4105-9656-c90bb2e75629
+    method: POST
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+          "PTMAttempt": 1,
+          "MeetingOffered": true,
+          "MethodOfOffer": 5,
+          "DateOfOffer": "2024-11-28",
+          "ReasonForNoOffer" : "Lorem ipsom",
+          "CreatedBy": "JoeyKhattak"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Sat, 30 Nov 2024 16:58:44 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": false,
+            "value": null,
+            "errorMessage": "Pre Trial Meeting Offer attempt already exists",
+            "statusCode": 15
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: PTM Offer - Create 2nd offer
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/ptmoffer/Guid/f5d89da1-3729-4105-9656-c90bb2e75629
+    method: POST
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+          "PTMAttempt": 2,
+          "MeetingOffered": true,
+          "MethodOfOffer": 2,
+          "DateOfOffer": "2024-12-15",
+          "ReasonForNoOffer" : "Lorem ipsom",
+          "CreatedBy": "JoeyKhattak"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Sat, 30 Nov 2024 17:53:01 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": {
+                "ptmAttempt": 2,
+                "meetingOffered": true,
+                "dateOfOffer": "2024-12-15",
+                "reasonForNoOffer": "Lorem ipsom",
+                "victimResponse": null,
+                "victimResponseDate": "0001-01-01",
+                "victimReasonForDecline": null,
+                "createdBy": "JoeyKhattak",
+                "createdOn": "2024-11-30T17:53:00.4358249+00:00",
+                "lastModifiedBy": "JoeyKhattak",
+                "lastModifiedOn": "2024-11-30T17:53:00.4358253+00:00",
+                "isRemoved": false
+            },
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: PTM Offer - Create success
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/ptmoffer/guid/{{VCAGuid}}
+    method: POST
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+          "PTMAttempt": 2,
+          "MeetingOffered": false,
+          "MethodOfOffer": 10,
+          "DateOfOffer": "2024-12-15",
+          "ReasonForNoOffer" : "Lorem ipsom",
+          "CreatedBy": "JoeyKhattak"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Thu, 19 Dec 2024 11:29:36 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": {
+                "ptmAttempt": 2,
+                "meetingOffered": false,
+                "methodOfOffer": 10,
+                "dateOfOffer": "2024-12-15",
+                "reasonForNoOffer": "Lorem ipsom",
+                "victimResponse": null,
+                "victimResponseDate": "0001-01-01",
+                "victimReasonForDecline": null,
+                "createdBy": "JoeyKhattak",
+                "createdOn": "2024-12-19T11:29:36.5111615+00:00",
+                "lastModifiedBy": "JoeyKhattak",
+                "lastModifiedOn": "2024-12-19T11:29:36.5111617+00:00",
+                "isRemoved": false
+            },
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: PTM Offer - Create
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/{{VCAGuid}}/pre-trial-meeting-offers
+    method: POST
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+          "PTMAttempt": 4,
+          "MeetingOffered": true,
+          "MethodOfOffer": 2,
+          "DateOfOffer": "2024-12-15",
+          "ReasonForNoOffer" : "Testing",
+          "CreatedBy": "MuraliG"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Tue, 06 May 2025 08:57:43 GMT
+      Server: 
+      Cache-Control: no-store, max-age-0
+      Pragma: no-cache
+      Transfer-Encoding: chunked
+      Request-Context: appId=cid-v1:24fb9acc-3942-4f50-8002-240bb13f6153
+      X-Content-Type-Options: nosniff
+      Content-Security-Policy: default-src 'none'
+      X-Frame-Options: deny
+      X-Permitted-Cross-Domain-Policies: none
+    }
+  
+    status: {
+      code: Created
+      text: 201
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": {
+                "ptmAttempt": 4,
+                "meetingOffered": true,
+                "methodOfOffer": 2,
+                "dateOfOffer": "2024-12-15",
+                "reasonForNoOffer": "Testing",
+                "victimResponse": "",
+                "methodOfResponse": 0,
+                "noFurtherContactReason": "",
+                "victimResponseDate": "0001-01-01",
+                "victimReasonForDecline": "",
+                "createdBy": "MuraliG",
+                "createdOn": "2025-05-06T08:57:43.7151278+00:00",
+                "lastModifiedBy": "MuraliG",
+                "lastModifiedOn": "2025-05-06T08:57:43.7151279+00:00",
+                "isRemoved": false
+            },
+            "errorMessage": "",
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}

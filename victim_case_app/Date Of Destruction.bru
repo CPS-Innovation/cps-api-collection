@@ -1,0 +1,117 @@
+meta {
+  name: Date Of Destruction
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{EnvUrl}}/api/cases/{{CaseId}}/DateOfDestruction
+  body: none
+  auth: inherit
+}
+
+headers {
+  Cms-Auth-Values: {{Cookie-Auth}}
+  x-functions-key: {{EnvKey}}
+  User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Search by URN
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/search
+    method: GET
+    mode: none
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Tue, 29 Oct 2024 16:29:53 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        [
+            {
+                "caseId": 2150188,
+                "firstName": "Aaron",
+                "surname": "AARONSON",
+                "status": "Not called"
+            },
+            {
+                "caseId": 2150188,
+                "firstName": "Jane",
+                "surname": "JAMESON",
+                "status": null
+            }
+        ]
+      '''
+    }
+  }
+}
+
+example {
+  name: Victim Search Copy
+  
+  request: {
+    url: {{EnvUrl}}/api/cases/{{CaseId}}/DateOfDestruction
+    method: GET
+    mode: none
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Tue, 08 Jul 2025 12:06:44 GMT
+      Server: 
+      Cache-Control: no-store, max-age-0
+      Pragma: no-cache
+      Transfer-Encoding: chunked
+      Request-Context: appId=cid-v1:24fb9acc-3942-4f50-8002-240bb13f6153
+      X-Content-Type-Options: nosniff
+      Content-Security-Policy: default-src 'none'
+      X-Frame-Options: deny
+      X-Permitted-Cross-Domain-Policies: none
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "hasDestructionDate": true,
+            "destructionDate": "2026-02-05"
+        }
+      '''
+    }
+  }
+}

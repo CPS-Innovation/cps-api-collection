@@ -1,0 +1,28 @@
+meta {
+  name: Update No Further Action
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{EnvUrl}}/api/victims/{{VCAGuidNFA}}/no-further-action
+  body: text
+  auth: none
+}
+
+headers {
+  Content-Type: application/x-www-form-urlencoded
+  x-functions-key: {{EnvKey}}
+  Cms-Auth-Values: {{CIN3-Cookie-Auth}}
+}
+
+body:text {
+  {
+      "VictimWithdrawn": false,
+      "CreatedBy": "Testing"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

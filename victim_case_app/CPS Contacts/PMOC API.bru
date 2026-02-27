@@ -1,0 +1,309 @@
+meta {
+  name: PMOC API
+  type: http
+  seq: 2
+}
+
+get {
+  url: https://fa-wm-app-ddei-staging.azurewebsites.net/api/cases/2015399/victim-witnesses/2061822
+  body: none
+  auth: inherit
+}
+
+headers {
+  Cms-Auth-Values: {{Cookie-Auth}}
+  x-functions-key: {{EnvKey}}
+  User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+}
+
+settings {
+  encodeUrl: true
+}
+
+example {
+  name: Victim Contact - Read 1 contact
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/contact/Guid/e202a1b4-fbab-42d1-9f99-e332b6b2d1aa
+    method: GET
+    mode: none
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Tue, 19 Nov 2024 15:40:10 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": [
+                {
+                    "name": "David J",
+                    "telephone": "6839",
+                    "email": "david2@cps.com",
+                    "victimCaseInfoGuid": "00000000-0000-0000-0000-000000000000",
+                    "contactTypeId": 7,
+                    "createdBy": "JK2",
+                    "createdOn": "2024-11-19T15:25:39.185244+00:00",
+                    "lastModifiedBy": "JK2",
+                    "lastModifiedOn": "2024-11-19T15:37:17.127953+00:00",
+                    "isRemoved": false
+                }
+            ],
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Victim Contact - Read 2 Contacts
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/contact/Guid/e202a1b4-fbab-42d1-9f99-e332b6b2d1aa
+    method: GET
+    mode: none
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Tue, 19 Nov 2024 15:49:03 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": [
+                {
+                    "name": "David J",
+                    "telephone": "6839",
+                    "email": "david2@cps.com",
+                    "contactTypeId": 7,
+                    "createdBy": "JK2",
+                    "createdOn": "2024-11-19T15:25:39.185244+00:00",
+                    "lastModifiedBy": "JK2",
+                    "lastModifiedOn": "2024-11-19T15:37:17.127953+00:00",
+                    "isRemoved": false
+                },
+                {
+                    "name": "Joey K",
+                    "telephone": "012345",
+                    "email": "joe@cps.com",
+                    "contactTypeId": 8,
+                    "createdBy": "JK2",
+                    "createdOn": "2024-11-19T15:41:23.017355+00:00",
+                    "lastModifiedBy": "JK2",
+                    "lastModifiedOn": "2024-11-19T15:41:23.017355+00:00",
+                    "isRemoved": false
+                }
+            ],
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Victim Contact - Read 06sc
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/contact/Guid/c6456807-d154-4b10-83eb-9baba2691362
+    method: GET
+    mode: none
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Thu, 28 Nov 2024 18:50:39 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": [
+                {
+                    "name": "David J",
+                    "telephone": "6839",
+                    "email": "david2@cps.com",
+                    "contactTypeId": 8,
+                    "createdBy": "JK2",
+                    "createdOn": "2024-11-28T18:21:29.372918+00:00",
+                    "lastModifiedBy": "David2",
+                    "lastModifiedOn": "2024-11-28T18:49:40.385381+00:00",
+                    "isRemoved": false
+                }
+            ],
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Victim Contact - Read success
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/contact/Guid/f5d89da1-3729-4105-9656-c90bb2e75629
+    method: GET
+    mode: none
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Fri, 29 Nov 2024 21:00:01 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": [
+                {
+                    "name": "JoeyD ",
+                    "telephone": "1234",
+                    "email": "joey@cps.com",
+                    "contactTypeId": 10,
+                    "createdBy": "JK2",
+                    "createdOn": "2024-11-29T20:52:02.092685+00:00",
+                    "lastModifiedBy": "David4",
+                    "lastModifiedOn": "2024-11-29T20:58:46.057674+00:00",
+                    "isRemoved": false
+                }
+            ],
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Victim Contact - Read 2 contacts
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/contact/Guid/f5d89da1-3729-4105-9656-c90bb2e75629
+    method: GET
+    mode: none
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Fri, 29 Nov 2024 21:01:23 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": [
+                {
+                    "name": "JoeyD ",
+                    "telephone": "1234",
+                    "email": "joey@cps.com",
+                    "contactTypeId": 10,
+                    "createdBy": "JK2",
+                    "createdOn": "2024-11-29T20:52:02.092685+00:00",
+                    "lastModifiedBy": "David4",
+                    "lastModifiedOn": "2024-11-29T20:58:46.057674+00:00",
+                    "isRemoved": false
+                },
+                {
+                    "name": "David K",
+                    "telephone": "09787",
+                    "email": "david@cps.com",
+                    "contactTypeId": 11,
+                    "createdBy": "JK2",
+                    "createdOn": "2024-11-29T21:00:43.000341+00:00",
+                    "lastModifiedBy": "David4",
+                    "lastModifiedOn": "2024-11-29T21:01:15.672884+00:00",
+                    "isRemoved": false
+                }
+            ],
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}

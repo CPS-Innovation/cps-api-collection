@@ -1,0 +1,503 @@
+meta {
+  name: CD Contact Attempt - Create
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{EnvUrl}}/api/victims/{{VCAGuid}}/charging-decisions/contact-attempts
+  body: json
+  auth: inherit
+}
+
+headers {
+  Cms-Auth-Values: {{Cookie-Auth}}
+  x-functions-key: {{EnvKey}}
+  User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+}
+
+body:json {
+  {
+      "MethodOfContact": 3,
+      "DateOfContact": "2025-01-14T16:36:36.897Z",
+      "AttemptByTelephone": 1,
+      "AbleToInformOnCall": false,
+      "Notes": "Called to inform",
+      "CreatedBy": "JoeyKhattak"
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+example {
+  name: CD - Create Copy Letter Success
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/{{VCAGuid}}/charging-decision/contact-attempt
+    method: POST
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+          "MethodOfContact": 2,
+          "DateOfContact": "2024-12-19T15:36:36.897Z",
+          "AttemptByTelephone": 0,
+          "AbleToInformOnCall": false,
+          "Notes": "Sent Letter to inform",
+          "CreatedBy": "JoeyKhattak"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Thu, 19 Dec 2024 15:42:57 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": {
+                "methodOfContact": 2,
+                "dateOfContact": "2024-12-19T15:36:36.897+00:00",
+                "attemptByTelephone": 0,
+                "ableToInformOnCall": false,
+                "notes": "Sent Letter to inform",
+                "createdBy": "JoeyKhattak",
+                "createdOn": "2024-12-19T15:42:42.7566603+00:00",
+                "lastModifiedBy": "JoeyKhattak",
+                "lastModifiedOn": "2024-12-19T15:42:42.7566606+00:00",
+                "isRemoved": false
+            },
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: CD - Create No further Attempts
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/{{VCAGuid}}/charging-decision/contact-attempt
+    method: POST
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+          "MethodOfContact": 2,
+          "DateOfContact": "2024-12-19T15:36:36.897Z",
+          "AttemptByTelephone": 0,
+          "AbleToInformOnCall": false,
+          "Notes": "Sent Letter to inform",
+          "CreatedBy": "JoeyKhattak"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Thu, 19 Dec 2024 15:44:03 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": false,
+            "value": null,
+            "errorMessage": "Charging Decision already informed to victim - No Further Attempts",
+            "statusCode": 15
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: CD - Create Phone 1 Success
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/{{VCAGuid}}/charging-decision/contact-attempt
+    method: POST
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+          "MethodOfContact": 3,
+          "DateOfContact": "2024-12-19T15:36:36.897Z",
+          "AttemptByTelephone": 1,
+          "AbleToInformOnCall": true,
+          "Notes": "Called to inform",
+          "CreatedBy": "JoeyKhattak"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Thu, 19 Dec 2024 15:49:40 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": {
+                "methodOfContact": 3,
+                "dateOfContact": "2024-12-19T15:36:36.897+00:00",
+                "attemptByTelephone": 1,
+                "ableToInformOnCall": true,
+                "notes": "Called to inform",
+                "createdBy": "JoeyKhattak",
+                "createdOn": "2024-12-19T15:49:24.3306522+00:00",
+                "lastModifiedBy": "JoeyKhattak",
+                "lastModifiedOn": "2024-12-19T15:49:24.3306525+00:00",
+                "isRemoved": false
+            },
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: CD - Create Phone 1 already exists
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/{{VCAGuid}}/charging-decision/contact-attempt
+    method: POST
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+          "MethodOfContact": 3,
+          "DateOfContact": "2024-12-19T15:36:36.897Z",
+          "AttemptByTelephone": 1,
+          "AbleToInformOnCall": true,
+          "Notes": "Called to inform",
+          "CreatedBy": "JoeyKhattak"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Thu, 19 Dec 2024 15:58:16 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": false,
+            "value": null,
+            "errorMessage": "Attempt Number 1 by telephone already exists",
+            "statusCode": 20
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: CD - Create Phone no further attempts
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/{{VCAGuid}}/charging-decision/contact-attempt
+    method: POST
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+          "MethodOfContact": 3,
+          "DateOfContact": "2024-12-19T15:36:36.897Z",
+          "AttemptByTelephone": 1,
+          "AbleToInformOnCall": true,
+          "Notes": "Called to inform",
+          "CreatedBy": "JoeyKhattak"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Thu, 19 Dec 2024 15:59:41 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": false,
+            "value": null,
+            "errorMessage": "Charging Decision already informed to victim - No Further Attempts",
+            "statusCode": 15
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: CD - Create Phone 2 Success
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/{{VCAGuid}}/charging-decision/contact-attempt
+    method: POST
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+          "MethodOfContact": 3,
+          "DateOfContact": "2024-12-19T15:36:36.897Z",
+          "AttemptByTelephone": 2,
+          "AbleToInformOnCall": true,
+          "Notes": "Called to inform",
+          "CreatedBy": "JoeyKhattak"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Thu, 19 Dec 2024 16:08:30 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": {
+                "methodOfContact": 3,
+                "dateOfContact": "2024-12-19T15:36:36.897+00:00",
+                "attemptByTelephone": 2,
+                "ableToInformOnCall": true,
+                "notes": "Called to inform",
+                "createdBy": "JoeyKhattak",
+                "createdOn": "2024-12-19T16:08:28.5755491+00:00",
+                "lastModifiedBy": "JoeyKhattak",
+                "lastModifiedOn": "2024-12-19T16:08:28.5755493+00:00",
+                "isRemoved": false
+            },
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: CD - Create Phone 3 Success
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/{{VCAGuid}}/charging-decision/contact-attempt
+    method: POST
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+          "MethodOfContact": 3,
+          "DateOfContact": "2024-12-19T15:36:36.897Z",
+          "AttemptByTelephone": 3,
+          "AbleToInformOnCall": false,
+          "Notes": "Called to inform",
+          "CreatedBy": "JoeyKhattak"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Thu, 19 Dec 2024 16:10:49 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": {
+                "methodOfContact": 3,
+                "dateOfContact": "2024-12-19T15:36:36.897+00:00",
+                "attemptByTelephone": 3,
+                "ableToInformOnCall": false,
+                "notes": "Called to inform",
+                "createdBy": "JoeyKhattak",
+                "createdOn": "2024-12-19T16:10:47.2548307+00:00",
+                "lastModifiedBy": "JoeyKhattak",
+                "lastModifiedOn": "2024-12-19T16:10:47.2548308+00:00",
+                "isRemoved": false
+            },
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: CD Contact Attempt - Letter final
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/{{VCAGuid}}/charging-decision/contact-attempt
+    method: POST
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+          "MethodOfContact": 2,
+          "DateOfContact": "2024-12-19T15:36:36.897Z",
+          "AttemptByTelephone": 0,
+          "AbleToInformOnCall": false,
+          "Notes": "Called to inform",
+          "CreatedBy": "JoeyKhattak"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Thu, 19 Dec 2024 16:12:09 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": {
+                "methodOfContact": 2,
+                "dateOfContact": "2024-12-19T15:36:36.897+00:00",
+                "attemptByTelephone": 0,
+                "ableToInformOnCall": false,
+                "notes": "Called to inform",
+                "createdBy": "JoeyKhattak",
+                "createdOn": "2024-12-19T16:12:09.5462457+00:00",
+                "lastModifiedBy": "JoeyKhattak",
+                "lastModifiedOn": "2024-12-19T16:12:09.5462458+00:00",
+                "isRemoved": false
+            },
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}

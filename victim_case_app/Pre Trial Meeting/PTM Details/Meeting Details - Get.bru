@@ -1,0 +1,80 @@
+meta {
+  name: Meeting Details - Get
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{EnvUrl}}/api/victims/pre-trial-meetings/{{PTMDetailsGUID}}
+  body: none
+  auth: inherit
+}
+
+headers {
+  Cms-Auth-Values: {{Cookie-Auth}}
+  x-functions-key: {{EnvKey}}
+  User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+}
+
+settings {
+  encodeUrl: true
+}
+
+example {
+  name: Meeting Details - Create Copy
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/ptm-details/ptm-guid/{{PTM-Guid}}
+    method: GET
+    mode: none
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Fri, 13 Dec 2024 13:14:16 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": {
+                "meetingDateTime": "2024-12-19T15:00:19.643+00:00",
+                "meetingMethod": 1,
+                "specialNeeds": true,
+                "natureOfNeeds": "mobility",
+                "meetingSource": 1,
+                "locationName": "CPS Court House",
+                "locationType": 1,
+                "meetingConducted": false,
+                "reasonNotConducted": null,
+                "meetingDuration": null,
+                "meetingNotes": null,
+                "victimMeetingDetailsGuid": "210c13e9-97e6-4095-a8da-5a091ed5b1c8",
+                "createdBy": "JoeyD",
+                "createdOn": "2024-12-13T13:08:02.044396+00:00",
+                "lastModifiedBy": "JoeyD",
+                "lastModifiedOn": "2024-12-13T13:08:02.044396+00:00",
+                "isRemoved": false
+            },
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}

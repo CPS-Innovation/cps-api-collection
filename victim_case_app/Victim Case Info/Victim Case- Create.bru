@@ -1,0 +1,400 @@
+meta {
+  name: Victim Case- Create
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{EnvUrl}}/api/victims/urns/{{cmsURN}}/cases/{{UrnCaseId}}/parties/{{UrnCaseIdPartyId}}
+  body: json
+  auth: inherit
+}
+
+headers {
+  Cms-Auth-Values: {{Cookie-Auth}}
+  x-functions-key: {{EnvKey}}
+  User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+}
+
+body:json {
+  {
+      "Urn": "05D10133723",
+      "CreatedBy": "TestAutomation"
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+example {
+  name: Victim Case - Create
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/urn/45MZ1008323/case/2150188/partyId/202
+    method: POST
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+          "Urn": "45MZ1008323",
+          "CaseId": 2150188,
+          "PartyId": 202,
+          "CreatedBy": "JK2"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Wed, 16 Oct 2024 10:27:38 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": {
+                "urn": "45MZ1008323",
+                "caseId": 2150188,
+                "partyId": 202,
+                "createdBy": "JK2",
+                "createdOn": "2024-10-16T10:26:35.1331716+00:00",
+                "lastModifiedBy": null,
+                "lastModifiedOn": "2024-10-16T10:26:35.1331717+00:00",
+                "isRemoved": false
+            },
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Victim Case- Create success
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/urn/45MZ1008323/case/2150188/partyId/501
+    method: POST
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+          "CreatedBy": "JK2"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Fri, 15 Nov 2024 15:41:09 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": {
+                "urn": "45MZ1008323",
+                "caseId": 2150188,
+                "partyId": 501,
+                "preferredName": null,
+                "isYouth": false,
+                "preferredMethodOfContact": 0,
+                "suitableContactTimes": null,
+                "specialConsiderationNeeds": null,
+                "victimCaseInfoGuid": "00000000-0000-0000-0000-000000000000",
+                "createdBy": "JK2",
+                "createdOn": "2024-11-15T15:41:04.2057358+00:00",
+                "lastModifiedBy": "JK2",
+                "lastModifiedOn": "2024-11-15T15:41:04.2057363+00:00",
+                "isRemoved": false
+            },
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Victim Case- Create success
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/urn/45MZ1008323/case/2150188/partyId/501
+    method: POST
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+          "CreatedBy": "Joey19A"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Tue, 19 Nov 2024 14:49:37 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": {
+                "urn": "45MZ1008323",
+                "caseId": 2150188,
+                "partyId": 501,
+                "preferredName": null,
+                "isYouth": false,
+                "preferredMethodOfContact": 0,
+                "suitableContactTimes": null,
+                "specialConsiderationNeeds": null,
+                "victimCaseInfoGuid": "e202a1b4-fbab-42d1-9f99-e332b6b2d1aa",
+                "createdBy": "Joey19A",
+                "createdOn": "2024-11-19T14:48:51.4014946+00:00",
+                "lastModifiedBy": "Joey19A",
+                "lastModifiedOn": "2024-11-19T14:48:51.4014951+00:00",
+                "isRemoved": false
+            },
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Victim Case- Create split case
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/urn/42MZ1139323/case/2151989/partyId/501
+    method: POST
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+          "Urn": "42MZ1139323/1",
+          "CreatedBy": "Joey19A"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Wed, 27 Nov 2024 12:50:33 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": {
+                "urn": "42MZ1139323/1",
+                "caseId": 2151989,
+                "partyId": 501,
+                "preferredName": null,
+                "isYouth": false,
+                "preferredMethodOfContact": 0,
+                "suitableContactTimes": null,
+                "specialConsiderationNeeds": null,
+                "victimCaseInfoGuid": "2369e77a-8403-4e6a-9ed5-fa25f6967aa8",
+                "createdBy": "Joey19A",
+                "createdOn": "2024-11-27T12:50:28.1904169+00:00",
+                "lastModifiedBy": "Joey19A",
+                "lastModifiedOn": "2024-11-27T12:50:28.1904172+00:00",
+                "isRemoved": false
+            },
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Victim Case- Create split case2
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/urn/42MZ1139323/case/2151990/partyId/501
+    method: POST
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+          "Urn": "42MZ1139323/2",
+          "CreatedBy": "Joey19A"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Wed, 27 Nov 2024 12:52:37 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": {
+                "urn": "42MZ1139323/2",
+                "caseId": 2151990,
+                "partyId": 501,
+                "preferredName": null,
+                "isYouth": false,
+                "preferredMethodOfContact": 0,
+                "suitableContactTimes": null,
+                "specialConsiderationNeeds": null,
+                "victimCaseInfoGuid": "30beeb7c-7490-4276-b467-13bd3c59838b",
+                "createdBy": "Joey19A",
+                "createdOn": "2024-11-27T12:52:37.0946067+00:00",
+                "lastModifiedBy": "Joey19A",
+                "lastModifiedOn": "2024-11-27T12:52:37.0946068+00:00",
+                "isRemoved": false
+            },
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Victim Case- Create 06sc
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/urn/06SC1234572/case/2155069/partyId/2771801
+    method: POST
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      {
+          "Urn": "06SC1234572",
+          "CreatedBy": "JoeyD"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Thu, 28 Nov 2024 18:07:29 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": {
+                "urn": "06SC1234572",
+                "caseId": 2155069,
+                "partyId": 2771801,
+                "preferredName": null,
+                "isYouth": false,
+                "preferredMethodOfContact": 0,
+                "suitableContactTimes": null,
+                "specialConsiderationNeeds": null,
+                "victimCaseInfoGuid": "c6456807-d154-4b10-83eb-9baba2691362",
+                "createdBy": "JoeyD",
+                "createdOn": "2024-11-28T18:07:11.3968221+00:00",
+                "lastModifiedBy": "JoeyD",
+                "lastModifiedOn": "2024-11-28T18:07:11.3968226+00:00",
+                "isRemoved": false
+            },
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}

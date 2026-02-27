@@ -1,0 +1,155 @@
+meta {
+  name: Attendees - Update
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{EnvUrl}}/api/victims/pre-trial-meetings/{{PTM-Guid}}/attendees
+  body: json
+  auth: inherit
+}
+
+headers {
+  Cms-Auth-Values: {{Cookie-Auth}}
+  x-functions-key: {{EnvKey}}
+  User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+}
+
+body:json {
+  [
+    {
+      "MeetingAttendeeGuid": "c07b8662-934e-4fce-8e64-0fb8cf4c7e7b",
+      "LastModifiedBy": "Test Tester",
+      "AttendeeName": "Michael McClure 3",
+      "AttendeeRole": "Supporter 1",
+      "ChairPerson": false,
+      "AttendedMeeting": true
+    }
+  ]
+}
+
+settings {
+  encodeUrl: true
+}
+
+example {
+  name: Attendees - Add Not found
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/ptm-attendee/
+    method: PATCH
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      [
+        {
+          "MeetingAttendeeGuid": "{{PTM-Guid}}",
+          "LastModifiedBy": "David K",
+          "AttendeeName": "Michael McClure 3",
+          "AttendeeRole": "Supporter 1",
+          "ChairPerson": false,
+          "AttendedMeeting": true
+        }
+      ]
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Fri, 13 Dec 2024 13:28:10 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": false,
+            "value": null,
+            "errorMessage": "At Least One Meeting Attendee Record Not Found",
+            "statusCode": 20
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: Attendees - Add Success
+  
+  request: {
+    url: {{EnvUrl}}/api/victims/ptm-attendee/
+    method: PATCH
+    mode: json
+    headers: {
+      Cms-Auth-Values: {{Cookie-Auth}}
+      x-functions-key: {{EnvKey}}
+      User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+    }
+  
+    body:json: {
+      [
+        {
+          "MeetingAttendeeGuid": "{{PTM-Attendee-Guid}}",
+          "LastModifiedBy": "David K",
+          "AttendeeName": "Michael McClure 3",
+          "AttendeeRole": "Supporter 1",
+          "ChairPerson": false,
+          "AttendedMeeting": true
+        }
+      ]
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json; charset=utf-8
+      Date: Fri, 13 Dec 2024 13:29:11 GMT
+      Server: Kestrel
+      Transfer-Encoding: chunked
+    }
+  
+    status: {
+      code: OK
+      text: 200
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+            "isSuccess": true,
+            "value": [
+                {
+                    "meetingAttendeeGuid": "197565c0-6a43-464f-a3df-ff28be75e29c",
+                    "attendeeName": "Michael McClure 3",
+                    "attendeeRole": "Supporter 1",
+                    "chairPerson": false,
+                    "attendedMeeting": true,
+                    "createdBy": "Joeyd",
+                    "createdOn": "2024-12-13T13:23:58.064913+00:00",
+                    "lastModifiedBy": "David K",
+                    "lastModifiedOn": "2024-12-13T13:29:11.204552+00:00",
+                    "isRemoved": false
+                }
+            ],
+            "errorMessage": null,
+            "statusCode": 0
+        }
+      '''
+    }
+  }
+}
