@@ -1,0 +1,47 @@
+meta {
+  name: addWitnessDetails_to_CMS
+  type: http
+  seq: 10
+}
+
+patch {
+  url: {{StagingWmUrl}}/api/cases/{{DCFCaseID}}/witnesses/{{witnessId}}
+  body: json
+  auth: inherit
+}
+
+headers {
+  Cms-Auth-Values: {{StagingWmCMSAuthValue}}
+  x-functions-key: {{StagingWmKey}}
+  User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+}
+
+body:json {
+  [
+  {
+    "op": "add",
+    "path": "/contactDetails/title",
+    "value": "Dr"
+  },
+  {
+    "op": "add",
+    "path": "/contactDetails/gender",
+    "value": "Male"
+  },
+  {
+    "op": "add",
+    "path": "/dateOfBirth",
+    "value": "1990-02-01"
+  },
+  {
+    "op": "add",
+    "path": "/contactDetails/ethnicity",
+    "value": "British"
+  } 
+  ]
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
