@@ -1,0 +1,39 @@
+meta {
+  name: CaseVictimWitnessList
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{StagingWmUrl}}/api/cases/{{DCFCaseID}}/witnesses
+  body: formUrlEncoded
+  auth: inherit
+}
+
+headers {
+  Cms-Auth-Values: {{StagingWmCMSAuthValue}}
+  x-functions-key: {{StagingWmKey}}
+  User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+}
+
+script:post-response {
+  
+  const response = res.getBody();
+  
+  bru.setEnvVar("victimId",response.filter(w => w.isWitnessAndVictim == true).filter(w => w.types == "V")[0].witnessId);
+  
+  bru.setEnvVar("witnessId",response.filter(w => w.isWitnessAndVictim == false).filter(w => !w.types || w.types.length===0)[0].witnessId);
+  
+  
+  console.log("VictimId:",bru.getEnvVar("victimId")); 
+  
+  
+  console.log("WitnessId:",bru.getEnvVar("witnessId")); 
+  
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
