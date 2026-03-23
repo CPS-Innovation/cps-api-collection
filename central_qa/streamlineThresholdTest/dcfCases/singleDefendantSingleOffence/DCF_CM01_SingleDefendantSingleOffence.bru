@@ -19,18 +19,17 @@ body:json {
     "PreChargeDecisionRequest": {
       "ItemId": "{{DCFCM01itemId}}",
       "PTIURN": {
-        "Force": "45",
-        "Unit": "AA",
+        "Force": "{{DcfForce}}",
+        "Unit": "{{DcfUnit}}",
         "Number": "{{DCFPtiUrnNumber}}",
-        "Year": "26",
+        "Year": "{{DcfYear}}",
         "Split": null
       },
       "CPSUnit": {
-        "TopLevel": "A",
-        "SecondLevel": "45",
-        "ThirdLevel": "AA",
-        "BottomLevel": "00",
-        "LiteralValue": null
+        "TopLevel": "{{DcfToplevel}}",
+        "SecondLevel": "{{DcfSecondlevel}}",
+        "ThirdLevel": "{{DcfThirdlevel}}",
+        "BottomLevel": "{{DcfBottomlevel}}"
       },
       "CaseClassification": [
         {
@@ -137,8 +136,16 @@ body:json {
       },
       "Suspect": [
         {
-          "ReviewType": null,
+          "ReviewType": "Full Code Test",
           "ConditionalCaution": null,
+           "ASN": {
+            "Year": "{{DcfYear}}",
+            "Force": "{{DcfForce}}",
+            "Unit": "{{DcfUnit}}",
+            "System": "00",
+            "Number": "{{ASNNumber}}",
+            "CheckCharacter": "W"
+          },
           "PossibleOrProposedCharge": [
             {
               "Particulars": {
@@ -299,7 +306,7 @@ body:json {
                 "ClassificationType": "StatusInformation",
                 "ClassificationCode": "SuspectDecisionPriority",
                 "ClassificationValue": {
-                  "ClassificationValueText": "G"
+                  "ClassificationValueText": "{{DcfGreenCase}}"
                 }
               }
             ]
@@ -474,6 +481,19 @@ body:json {
 }
 
 script:pre-request {
+  
+  let greenCase = "G"
+  let redCase = "R"
+  
+  let force = "45";
+  let unit = "AA";
+  let year = "26";
+  
+  let toplevel  = "A";
+  let secondlevel = "45";
+  let thirdlevel = "AA";
+  let bottomlevel = "00";
+  
   function generateFiveDigitNumber() {
       return Math.floor(10000 + Math.random() * 90000);
   }
@@ -491,7 +511,6 @@ script:pre-request {
       return result;
   }
   
-  
   let ptiURN = generateFiveDigitNumber();
   let asnNumber = generateSevenDigitNumber();
   let cm01 = generateUppercaseAlphaNumeric(12);
@@ -504,16 +523,19 @@ script:pre-request {
   let ConsPerId = generateUppercaseAlphaNumeric(10);
   
   let wtRef = generateUppercaseAlphaNumeric(12);
-  let wtChild = generateUppercaseAlphaNumeric(12);
-  let wtPolice = generateUppercaseAlphaNumeric(12);
-  let wtVulnerable = generateUppercaseAlphaNumeric(12);
-  let wtIntimidated = generateUppercaseAlphaNumeric(12);
   
   let victimRef = generateUppercaseAlphaNumeric(12);
-  let childVictim = generateUppercaseAlphaNumeric(12);
-  let vulnerableVictim = generateUppercaseAlphaNumeric(12);
-  let intimidatedVictim = generateUppercaseAlphaNumeric(12);
   
+  bru.setGlobalEnvVar("DcfGreenCase", greenCase);
+  bru.setGlobalEnvVar("DcffRedCase", redCase);
+  
+  bru.setGlobalEnvVar("DcfForce", force);
+  bru.setGlobalEnvVar("DcfUnit", unit);
+  bru.setGlobalEnvVar("DcfYear", year);
+  bru.setGlobalEnvVar("DcfToplevel", toplevel);
+  bru.setGlobalEnvVar("DcfSecondlevel", secondlevel);
+  bru.setGlobalEnvVar("DcfThirdlevel", thirdlevel);
+  bru.setGlobalEnvVar("DcfBottomlevel", bottomlevel);
   
   bru.setGlobalEnvVar("DCFCM01itemId", cm01);
   bru.setGlobalEnvVar("DCFPtiUrnNumber", ptiURN);
@@ -527,15 +549,10 @@ script:pre-request {
   bru.setGlobalEnvVar("ConstablePersonId", ConsPerId);
   
   bru.setGlobalEnvVar("WitnessRef_1", wtRef);
-  bru.setGlobalEnvVar("Witness_Child", wtChild);
-  bru.setGlobalEnvVar("Witness_Police", wtPolice);
-  bru.setGlobalEnvVar("Witness_Vulnerable", wtVulnerable);
-  bru.setGlobalEnvVar("Witness_Intimidated", wtIntimidated);
+  
   
   bru.setGlobalEnvVar("VictimWitnessRef_1", victimRef);
-  bru.setGlobalEnvVar("Victim_Child", childVictim);
-  bru.setGlobalEnvVar("Victim_Vulnerable", vulnerableVictim);
-  bru.setGlobalEnvVar("Victim_Intimidated", intimidatedVictim);
+  
   
   console.log("DCFCM01itemId:", cm01);
   console.log("DCFPtiUrnNumber:", ptiURN);
@@ -545,15 +562,9 @@ script:pre-request {
   console.log("ConstableShoulderNo:", "PC"+ConsShoNo);
   
   console.log("WitnessRef_1:", wtRef);
-  console.log("Witness_Child:", wtChild);
-  console.log("Witness_Police:", wtPolice);
-  console.log("Witness_Vulnerable:", wtVulnerable);
-  console.log("Witness_Intimidated:", wtIntimidated);
   
   console.log("VictimWitnessRef_1:", victimRef);
-  console.log("Victim_Child:", childVictim);
-  console.log("Victim_Vulnerable:", vulnerableVictim);
-  console.log("Victim_Intimidated:", intimidatedVictim);
+  
   
   
   
