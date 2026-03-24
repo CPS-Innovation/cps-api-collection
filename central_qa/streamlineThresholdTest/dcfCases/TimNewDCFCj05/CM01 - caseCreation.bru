@@ -14,15 +14,15 @@ body:json {
   {
     "PreChargeDecisionRequest": {
       "PTIURN": {
-        "Force": "21",
-        "Unit": "MG",
+        "Force": "45",
+        "Unit": "VM",
         "Number": "{{DCFPtiUrnNumber}}", /* if this errors, check that the number hasn't been used */
         "Year": "26",
         "Split": null
       },
       "CPSUnit": {
         "TopLevel": "A",
-        "SecondLevel": "21",
+        "SecondLevel": "45",
         "ThirdLevel": "AA",
         "BottomLevel": "00",
         "LiteralValue": null
@@ -137,13 +137,13 @@ body:json {
               "GivenName": [
                 {
                   "NameSequence": 0,
-                  "Value": "Deborah"
+                  "Value": "{{$randomFirstName}}"
                 }
               ],
               "RequestedName": null,
               "FamilyName": {
                 "NameSequence": 0,
-                "Value": "Hogan"
+                "Value": "{{$randomLastName}}"
               },
               "Suffix": null,
               "Type": "Real Name"
@@ -154,7 +154,7 @@ body:json {
           "ASN": {
             "Year": "26",
             "Organisation": null,
-            "Force": "21",
+            "Force": "45",
             "Unit": "AA",
             "System": "PR",
             "Number": "{{ASNNumber}}",
@@ -172,12 +172,12 @@ body:json {
             "Title": "MR",
             "GivenName": [
               {
-                "Value": "SCOOBY"
+                "Value": "{{$randomFirstName}}"
               }
             ],
             "RequestedName": null,
             "FamilyName": {
-              "Value": "DOO"
+              "Value": "{{$randomLastName}}"
             },
             "Suffix": null
           },
