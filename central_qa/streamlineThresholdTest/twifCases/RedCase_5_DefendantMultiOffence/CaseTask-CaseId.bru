@@ -1,11 +1,11 @@
 meta {
   name: CaseTask-CaseId
   type: http
-  seq: 5
+  seq: 8
 }
 
 get {
-  url: {{StagingWmUrl}}/api/cases/{{DCFCaseID}}/tasks
+  url: {{StagingWmUrl}}/api/cases/{{TwifCaseId}}/tasks
   body: formUrlEncoded
   auth: inherit
 }
@@ -21,7 +21,7 @@ script:post-response {
   let response = res.getBody();
    
   // Find the item with the desired type
-  let targetItem = response.find(item => item.type === "Triage Case for PCD");
+  let targetItem = response.find(item => item.type === "Check New PCD Case");
    
   if (targetItem) {
       // Log the ID to the console

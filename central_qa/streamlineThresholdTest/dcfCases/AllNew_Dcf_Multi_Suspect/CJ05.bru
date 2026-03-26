@@ -1,7 +1,7 @@
 meta {
   name: CJ05
   type: http
-  seq: 2
+  seq: 5
 }
 
 post {
@@ -13,7 +13,8 @@ post {
 body:json {
   {
     "CaseStatus": {
-      "InformationSubmitted": {
+      "CaseId": "{{DCFCaseID}}",
+      "InformationSubmitted": {      
         "Reason": "Provide Charging Decision",
         "Certification": null,
         "InformationProvided": null,
@@ -22,15 +23,14 @@ body:json {
       },
       "StatusChanged": null,
       "CaseContacts": null,
-      "ItemId": "{{dcfCJ05ItemId}}",
+      "ItemId": null,
       "PTIURN": {
-        "Force": "45",
-        "Unit": "MG",
-        "Number": "{{DCFPtiUrnNumber}}",
-        "Year": "26",
+        "Force": "00",
+        "Unit": "00",
+        "Number": "00000",
+        "Year": "00",
         "Split": null
-      },
-      "CaseId": "{{DCFCaseID}}"
+      }
     }
   }
 }
@@ -44,6 +44,8 @@ script:pre-request {
       return Math.floor(1000000 + Math.random() * 9000000);
   }
   
+  
+  
   function generateUppercaseAlphaNumeric(length) {
       const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
       let result = '';
@@ -55,10 +57,15 @@ script:pre-request {
   
   
   let cj05 = generateUppercaseAlphaNumeric(12);
+  // let ans11 = generateElevenDigitNumber();
   
   bru.setGlobalEnvVar("dcfCJ05ItemId", cj05);
   
+  // bru.setGlobalEnvVar("ansElevendigit", ans11);
+  
   console.log("dcfCJ05ItemId:", cj05);
+  
+  // console.log("ansElevendigit:", ans11);
   
   
   

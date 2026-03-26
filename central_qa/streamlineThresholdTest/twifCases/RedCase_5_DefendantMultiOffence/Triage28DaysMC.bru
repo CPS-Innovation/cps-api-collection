@@ -1,11 +1,11 @@
 meta {
   name: Triage28DaysMC
   type: http
-  seq: 6
+  seq: 10
 }
 
 post {
-  url: {{StagingWmUrl}}/api/cases/{{DCFCaseID}}/triage/{{pcd_task_id}}/preChargeDecision
+  url: {{StagingWmUrl}}/api/cases/{{TwifCaseId}}/triage/{{pcd_task_id}}/preChargeDecision
   body: text
   auth: inherit
 }
