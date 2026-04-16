@@ -14,17 +14,17 @@ body:json {
   {
     "PreChargeDecisionRequest": {
       "PTIURN": {
-        "Force": "05",
-        "Unit": "GD",
+        "Force": {{DcfForce}},
+        "Unit": "{{DcfUnit}}",
         "Number": "{{DCFPtiUrnNumber}}", 
-        "Year": "26",
+        "Year": "{{DcfYear}}",
         "Split": null
       },
       "CPSUnit": {
-          "TopLevel": "A",
-          "SecondLevel": "21",
-          "ThirdLevel": "AA",
-          "BottomLevel": "00",
+          "TopLevel": "{{DcfToplevel}}",
+          "SecondLevel": "{{DcfSecondlevel}}",
+          "ThirdLevel": "{{DcfThirdlevel}}",
+          "BottomLevel": "{{DcfBottomlevel}}",
           "LiteralValue": null
       },
       "OperationName": "Custody and Charging Officers",
@@ -77,15 +77,15 @@ body:json {
                       "Particulars": {
                           "Address": {
                               "AddressLine": [
-                                  "1 The Yard",
-                                  "Yardley"
+                                  "{{$randomStreetName}}",
+                                  "{{$randomCity}}"
                               ],
                               "Postcode": "ZZ1 XX2",
                               "Country": "UK"
                           }
                       },
                       "AnticipatedPlea": "Not Guilty",
-                      "UniqueID": "DF-1-OF-MG01",
+                      "UniqueID": "{{CaseOffenceId1}}",
                       "CJSCode": {
                           "Code": {
                               "Alternative": {
@@ -106,15 +106,15 @@ body:json {
                       "Particulars": {
                           "Address": {
                               "AddressLine": [
-                                  "1 The Yard",
-                                  "Yardley"
+  "{{$randomStreetName}}",
+                                  "{{$randomCity}}"
                               ],
                               "Postcode": "ZZ1 XX2",
                               "Country": "UK"
                           }
                       },
                       "AnticipatedPlea": "Not Guilty",
-                      "UniqueID": "DF-1-OF-MG02",
+                      "UniqueID": "{{CaseOffenceId2}}",
                       "CJSCode": {
                           "Code": {
                               "Alternative": {
@@ -135,15 +135,15 @@ body:json {
                       "Particulars": {
                           "Address": {
                               "AddressLine": [
-                                  "1 The Yard",
-                                  "Yardley"
+  "{{$randomStreetName}}",
+                                  "{{$randomCity}}"
                               ],
                               "Postcode": "ZZ1 XX2",
                               "Country": "UK"
                           }
                       },
                       "AnticipatedPlea": "Not Guilty",
-                      "UniqueID": "DF-1-OF-3",
+                      "UniqueID": "{{CaseOffenceId3}}",
                       "CJSCode": {
                           "Code": {
                               "Alternative": {
@@ -176,19 +176,19 @@ body:json {
                   "PolicePostChargeRemand": null,
                   "AppropriateAdultPresentId": null,
                   "RemandApplicationIssues": null,
-                  "UniqueId": "DF-1-DMG01",
+                  "UniqueId": "{{DefPersonId1}}",
                   "Name": {
                       "Title": null,
                       "GivenName": [
                           {
                               "NameSequence": 0,
-                              "Value": "Peter"
+                              "Value": "{{$randomFirstName}}"
                           }
                       ],
                       "RequestedName": null,
                       "FamilyName": {
                           "NameSequence": 0,
-                          "Value": "Perfect"
+                          "Value": "{{$randomLastName}}"
                       },
                       "Suffix": null,
                       "Type": "Alias"
@@ -199,7 +199,7 @@ body:json {
                           "ClassificationType": "StatusInformation",
                           "ClassificationCode": "SuspectDecisionPriority",
                           "ClassificationValue": {
-                              "ClassificationValueText": "R"
+                              "ClassificationValueText": "{{DcfGreenCase}}"
                           }
                       },
                       {
@@ -213,12 +213,12 @@ body:json {
               },
               "DefenceSolicitor": null,
               "ASN": {
-                  "Year": "26",
+                  "Year": "{{DcfYear}}",
                   "Organisation": null,
-                  "Force": "45",
-                  "Unit": "GD",
+                  "Force": "{{DcfForce}}",
+                  "Unit": "{{DcfUnit}}",
                   "System": "00",
-                  "Number": "19331000055",
+                  "Number": "{{ASNNumber}}",
                   "CheckCharacter": "B"
               },
               "VersionId": "1",
@@ -228,17 +228,17 @@ body:json {
       "CaseContacts": [
           {
               "Officer": null,
-              "UniqueId": "CONT-1123",
+              "UniqueId": "{{ConstablePersonId}}",
               "Name": {
                   "Title": "Mr",
                   "GivenName": [
                       {
-                          "Value": "Jacques"
+                          "Value": "{{$randomFirstName}}"
                       }
                   ],
-                  "RequestedName": "Peter",
+                  "RequestedName": null,
                   "FamilyName": {
-                      "Value": "Clouseau"
+                      "Value": "{{$randomLastName}}"
                   },
                   "Suffix": "IB"
               },
@@ -250,8 +250,8 @@ body:json {
                   },
                   "Address": {
                       "AddressLine": [
-                          "1 OIC Lane",
-                          "2 OIC Lane"
+  "{{$randomStreetName}}",
+                                  "{{$randomCity}}"
                       ],
                       "Postcode": null,
                       "Country": null
@@ -272,7 +272,7 @@ body:json {
           }
       ],
       "AssociatedCases": null,
-      "ItemId": "MG00001"
+      "ItemId": "{{DCFCM01itemId}}"
       }
   }
 }

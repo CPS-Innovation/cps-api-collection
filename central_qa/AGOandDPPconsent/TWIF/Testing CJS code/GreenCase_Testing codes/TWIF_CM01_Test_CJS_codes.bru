@@ -1,5 +1,5 @@
 meta {
-  name: TWIF_CM01_AG_DPP_SingleDefendanBothOffence
+  name: TWIF_CM01_Test_CJS_codes
   type: http
   seq: 1
 }
@@ -26,6 +26,7 @@ body:json {
         "ThirdLevel": "{{TwifThirdlevel}}",
         "BottomLevel": "{{TwifBottomlevel}}"
       },
+      "OperationName": "TWIF Case Operator",       
       "CaseClassification": [
         {
           "ClassificationType": "CaseMonitoring",
@@ -35,6 +36,10 @@ body:json {
           }
         }
       ],
+          "AdviceDetails": {
+        "AdviceRequiredByDate": "{{todayDate}}",
+        "Paragraphs": null
+      },
       "Suspect": [
         {
           "AccusedPerson": {
@@ -65,42 +70,17 @@ body:json {
           },
           "ProposedCharge": [
             {
-              "UniqueID": "{{TwifCaseOffenceId01}}",
+              "UniqueID": "{{TwifCaseOffenceId}}",
               "CJSCode": {
                 "Code": {
                   "Alternative": {
-                    "ActOrSource": "CJ",
-                    "Year": "93"
+                    "ActOrSource": "SO",
+                    "Year": "74"
                   },
-                  "Reason": "001"
+                  "Reason": "009"
                 }
               },
-              "Description": "AGO and DPP code offence in one CJS code",
-              "Category": "Summary Only",
-              "FromDate": "2001-10-01",
-              "Particulars": {
-                "Address": {
-                  "AddressLine": [
-                    "{{$randomStreetName}}",
-                    "{{$randomCity}}"
-                  ],
-                  "Postcode": "NE1 1BB",
-                  "Country": "UK"
-                }
-              }
-            },
-            {
-              "UniqueID": "{{TwifCaseOffenceId02}}",
-              "CJSCode": {
-                "Code": {
-                  "Alternative": {
-                    "ActOrSource": "OF",
-                    "Year": "61"
-                  },
-                  "Reason": "102"
-                }
-              },
-              "Description": "Normal Offence Code",
+              "Description": "New Code Test",
               "Category": "Summary Only",
               "FromDate": "2001-10-01",
               "Particulars": {
@@ -160,7 +140,6 @@ body:json {
 script:pre-request {
   
   
-  
   function generateFiveDigitNumber() {
       return Math.floor(10000 + Math.random() * 90000);
   }
@@ -182,6 +161,10 @@ script:pre-request {
       return result;
   }
   
+  const moment = require("moment");
+  const now = moment().format("YYYY-MM-DD");
+  bru.setGlobalEnvVar("todayDate", now);
+  
   let greenCase = "G"
   let redCase = "R"
   
@@ -198,8 +181,7 @@ script:pre-request {
   let twifasnNumber = generateElevenDigitNumber();
   let twifcm01 = generateUppercaseAlphaNumeric(12);
   let twifdefPer = generateUppercaseAlphaNumeric(12);
-  let twifcaseOff1 = generateUppercaseAlphaNumeric(12);
-  let twifcaseOff2 = generateUppercaseAlphaNumeric(12);
+  let twifcaseOff = generateUppercaseAlphaNumeric(12);
   let twifvwRef = generateUppercaseAlphaNumeric(12);
   let twifwRef = generateUppercaseAlphaNumeric(12);
   
@@ -224,8 +206,7 @@ script:pre-request {
   bru.setGlobalEnvVar("TwifCM01itemId", twifcm01);
   bru.setGlobalEnvVar("TwifPTIURNNumber", twifptiURN);
   bru.setGlobalEnvVar("TwifDefPersonId", twifdefPer);
-  bru.setGlobalEnvVar("TwifCaseOffenceId01", twifcaseOff1);
-  bru.setGlobalEnvVar("TwifCaseOffenceId02", twifcaseOff2);
+  bru.setGlobalEnvVar("TwifCaseOffenceId", twifcaseOff);
   bru.setGlobalEnvVar("TwifWitnessRef_1", twifwRef);
   bru.setGlobalEnvVar("TwifSolicitor", twifsoliciRef);
   bru.setGlobalEnvVar("TwifASNNumber", twifasnNumber);
@@ -241,8 +222,7 @@ script:pre-request {
   console.log("TWIF-CM01itemId", twifcm01);
   console.log("TWIF-PTIURNNumber", twifptiURN);
   console.log("TWIF-DefPersonId", twifdefPer);
-  console.log("TWIF-CaseOffenceId01", twifcaseOff1);
-  console.log("TWIF-CaseOffenceId02", twifcaseOff2);
+  console.log("TWIF-CaseOffenceId", twifcaseOff);
   console.log("TWIF-WitnessRef_1", twifwRef);
   console.log("TWIF-ASNNumber", twifasnNumber);
   

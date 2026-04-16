@@ -1,478 +1,82 @@
 meta {
-  name: TWIF_CM01_MultiDefendantMultiOffence
+  name: TWIF_LM04_VictimIdPolice
   type: http
-  seq: 1
+  seq: 4
 }
 
 post {
-  url: https://localhost:7165/api/twif/cm01
+  url: https://localhost:7165/api/twif/lm04
   body: json
   auth: inherit
 }
 
 body:json {
   {
-    "PreChargeDecisionRequest": {
-      "ItemId": "{{TwifCM01itemId}}",
+    "NewWitnessOrVictim": {
+      "ItemId": "{{Twiflm04VictimChildItemId}}",
       "PTIURN": {
         "Force": "{{TwifForce}}",
         "Unit": "{{TwifUnit}}",
         "Number": "{{TwifPTIURNNumber}}",
         "Year": "{{TwifYear}}"
       },
-      "CPSUnit": {
-        "TopLevel": "{{TwifToplevel}}",
-        "SecondLevel": "{{TwifSecondlevel}}",
-        "ThirdLevel": "{{TwifThirdlevel}}",
-        "BottomLevel": "{{TwifBottomlevel}}"
-      },
-      "CaseClassification": [
-        {
-          "ClassificationType": "CaseMonitoring",
-          "ClassificationCode": "HonourCrime",
-          "ClassificationValue": {
-            "ClassificationValueFlag": "true"
+      "Person": {
+        "UniqueId": "{{TwifVictimChildId}}",
+        "Name": {
+          "GivenName": "{{$randomLastName}}",
+          "FamilyName": "{{$randomFirstName}}"
+        },
+        "ContactDetails": {
+          "Address": {
+            "AddressLine": [
+              "{{$randomStreetName}}",
+              "{{$randomCity}}"
+            ],
+            "Postcode": "NE1 1BB"
+          },
+          "ContactNumber": [
+            {
+              "Number": {
+                "TelNationalNumber": "07900998844"
+              },
+              "TypeOfNumber": "mobile"
+            },
+            {
+              "Number": {
+                "TelNationalNumber": "01912587414"
+              },
+              "TypeOfNumber": "home"
+            }
+          ],
+          "Email": "vic_wit_test@email.co.gov.uk"
+        },
+        "PersonClassification": [
+          {
+            "ClassificationType": "TypeOfWitness",
+            "ClassificationCode": "Police",
+            "InternalCode": "P",
+            "IsFreeText": "false",
+            "ClassificationValue": {
+              "ClassificationValueFlag": "true",
+              "InternalValueFlag": "true"
+            }
+          }
+        ],
+        "TypeOfPerson": "VictimWitness",
+        "DateOfBirth": "2015-08-03",
+        "WitnessAndVictim": {
+          "Witness": {
+            "Occupation": "Police"
+          },
+          "Victim": {
+            "XOffenceId": ["{{TwifCaseOffenceId}}"],
+            "VPSStatus": {
+              "ResponseToVPSOffer": "Accepted",
+              "SchemeExplained": false
+            }
           }
         }
-      ],
-      "Suspect": [
-        {
-          "AccusedPerson": {
-            "UniqueId": "{{TwifDefPersonId01}}",
-            "Name": {
-              "GivenName": "{{$randomLastName}}",
-              "FamilyName": "{{$randomFirstName}}"
-            },
-            "DateOfBirth": "1992-09-08",
-            "PoliceRemandStatus": "Custody"
-          },
-          "PersonClassification": [
-            {
-              "ClassificationType": "StatusInformation",
-              "ClassificationCode": "SuspectDecisionPriority",
-              "ClassificationValue": {
-                "ClassificationValueText": "{{TwifRedCase}}"
-              }
-            }
-          ],
-          "ASN": {
-            "Year": "{{TwifYear}}",
-            "Force": "{{TwifForce}}",
-            "Unit": "{{TwifUnit}}",
-            "System": "00",
-            "Number": "{{TwifASNNumber01}}",
-            "CheckCharacter": "W"
-          },
-          "ProposedCharge": [
-            {
-              "UniqueID": "{{TwifSus01caseOff01}}",
-              "CJSCode": {
-                "Code": {
-                  "Alternative": {
-                    "ActOrSource": "SO",
-                    "Year": "74"
-                  },
-                  "Reason": "008"
-                }
-              },
-              "Description": "Suspect One Offence 1",
-              "Category": "Summary Only",
-              "FromDate": "2001-10-01",
-              "Particulars": {
-                "Address": {
-                  "AddressLine": [
-                    "{{$randomStreetName}}",
-                    "{{$randomCity}}"
-                  ],
-                  "Postcode": "NE1 1BB",
-                  "Country": "UK"
-                }
-              }
-            },
-            {
-              "UniqueID": "{{TwifSus01caseOff02}}",
-              "CJSCode": {
-                "Code": {
-                  "Alternative": {
-                    "ActOrSource": "BA",
-                    "Year": "10"
-                  },
-                  "Reason": "002"
-                }
-              },
-              "Description": "Suspect one Offence 2",
-              "Category": "Summary Only",
-              "FromDate": "2001-10-01",
-              "Particulars": {
-                "Address": {
-                  "AddressLine": [
-                    "{{$randomStreetName}}",
-                    "{{$randomCity}}"
-                  ],
-                  "Postcode": "NE1 1BB",
-                  "Country": "UK"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "AccusedPerson": {
-            "UniqueId": "{{TwifDefPersonId02}}",
-            "Name": {
-              "GivenName": "{{$randomLastName}}",
-              "FamilyName": "{{$randomFirstName}}"
-            },
-            "DateOfBirth": "1992-09-08",
-            "PoliceRemandStatus": "Custody"
-          },
-          "PersonClassification": [
-            {
-              "ClassificationType": "StatusInformation",
-              "ClassificationCode": "SuspectDecisionPriority",
-              "ClassificationValue": {
-                "ClassificationValueText": "{{TwifRedCase}}"
-              }
-            }
-          ],
-          "ASN": {
-            "Year": "{{TwifYear}}",
-            "Force": "{{TwifForce}}",
-            "Unit": "{{TwifUnit}}",
-            "System": "00",
-            "Number": "{{TwifASNNumber02}}",
-            "CheckCharacter": "W"
-          },
-          "ProposedCharge": [
-            {
-              "UniqueID": "{{TwifSus02caseOff01}}",
-              "CJSCode": {
-                "Code": {
-                  "Alternative": {
-                    "ActOrSource": "OF",
-                    "Year": "61"
-                  },
-                  "Reason": "016"
-                }
-              },
-              "Description": "Suspect Two Offence 1",
-              "Category": "Summary Only",
-              "FromDate": "2001-10-01",
-              "Particulars": {
-                "Address": {
-                  "AddressLine": [
-                    "{{$randomStreetName}}",
-                    "{{$randomCity}}"
-                  ],
-                  "Postcode": "NE1 1BB",
-                  "Country": "UK"
-                }
-              }
-            },
-            {
-              "UniqueID": "{{TwifSus02caseOff02}}",
-              "CJSCode": {
-                "Code": {
-                  "Alternative": {
-                    "ActOrSource": "OF",
-                    "Year": "61"
-                  },
-                  "Reason": "018"
-                }
-              },
-              "Description": "Suspect Two Offence 2",
-              "Category": "Summary Only",
-              "FromDate": "2001-10-01",
-              "Particulars": {
-                "Address": {
-                  "AddressLine": [
-                    "{{$randomStreetName}}",
-                    "{{$randomCity}}"
-                  ],
-                  "Postcode": "NE1 1BB",
-                  "Country": "UK"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "AccusedPerson": {
-            "UniqueId": "{{TwifDefPersonId03}}",
-            "Name": {
-              "GivenName": "{{$randomLastName}}",
-              "FamilyName": "{{$randomFirstName}}"
-            },
-            "DateOfBirth": "1992-09-08",
-            "PoliceRemandStatus": "Custody"
-          },
-          "PersonClassification": [
-            {
-              "ClassificationType": "StatusInformation",
-              "ClassificationCode": "SuspectDecisionPriority",
-              "ClassificationValue": {
-                "ClassificationValueText": "{{TwifRedCase}}"
-              }
-            }
-          ],
-          "ASN": {
-            "Year": "{{TwifYear}}",
-            "Force": "{{TwifForce}}",
-            "Unit": "{{TwifUnit}}",
-            "System": "00",
-            "Number": "{{TwifASNNumber03}}",
-            "CheckCharacter": "W"
-          },
-          "ProposedCharge": [
-            {
-              "UniqueID": "{{TwifSus03caseOff01}}",
-              "CJSCode": {
-                "Code": {
-                  "Alternative": {
-                    "ActOrSource": "OF",
-                    "Year": "61"
-                  },
-                  "Reason": "016"
-                }
-              },
-              "Description": "Suspect Three Offence 1",
-              "Category": "Summary Only",
-              "FromDate": "2001-10-01",
-              "Particulars": {
-                "Address": {
-                  "AddressLine": [
-                    "{{$randomStreetName}}",
-                    "{{$randomCity}}"
-                  ],
-                  "Postcode": "NE1 1BB",
-                  "Country": "UK"
-                }
-              }
-            },
-            {
-              "UniqueID": "{{TwifSus03caseOff02}}",
-              "CJSCode": {
-                "Code": {
-                  "Alternative": {
-                    "ActOrSource": "OF",
-                    "Year": "61"
-                  },
-                  "Reason": "018"
-                }
-              },
-              "Description": "Suspect Three Offence 2",
-              "Category": "Summary Only",
-              "FromDate": "2001-10-01",
-              "Particulars": {
-                "Address": {
-                  "AddressLine": [
-                    "{{$randomStreetName}}",
-                    "{{$randomCity}}"
-                  ],
-                  "Postcode": "NE1 1BB",
-                  "Country": "UK"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "AccusedPerson": {
-            "UniqueId": "{{TwifDefPersonId04}}",
-            "Name": {
-              "GivenName": "{{$randomLastName}}",
-              "FamilyName": "{{$randomFirstName}}"
-            },
-            "DateOfBirth": "1992-09-08",
-            "PoliceRemandStatus": "Custody"
-          },
-          "PersonClassification": [
-            {
-              "ClassificationType": "StatusInformation",
-              "ClassificationCode": "SuspectDecisionPriority",
-              "ClassificationValue": {
-                "ClassificationValueText": "{{TwifRedCase}}"
-              }
-            }
-          ],
-          "ASN": {
-            "Year": "{{TwifYear}}",
-            "Force": "{{TwifForce}}",
-            "Unit": "{{TwifUnit}}",
-            "System": "00",
-            "Number": "{{TwifASNNumber04}}",
-            "CheckCharacter": "W"
-          },
-          "ProposedCharge": [
-            {
-              "UniqueID": "{{TwifSus04caseOff01}}",
-              "CJSCode": {
-                "Code": {
-                  "Alternative": {
-                    "ActOrSource": "TA",
-                    "Year": "10"
-                  },
-                  "Reason": "009"
-                }
-              },
-              "Description": "Suspect four Offence 1",
-              "Category": "Summary Only",
-              "FromDate": "2001-10-01",
-              "Particulars": {
-                "Address": {
-                  "AddressLine": [
-                    "{{$randomStreetName}}",
-                    "{{$randomCity}}"
-                  ],
-                  "Postcode": "NE1 1BB",
-                  "Country": "UK"
-                }
-              }
-            },
-            {
-              "UniqueID": "{{TwifSus04caseOff02}}",
-              "CJSCode": {
-                "Code": {
-                  "Alternative": {
-                    "ActOrSource": "SO",
-                    "Year": "74"
-                  },
-                  "Reason": "009"
-                }
-              },
-              "Description": "Suspect four Offence 2",
-              "Category": "Summary Only",
-              "FromDate": "2001-10-01",
-              "Particulars": {
-                "Address": {
-                  "AddressLine": [
-                    "{{$randomStreetName}}",
-                    "{{$randomCity}}"
-                  ],
-                  "Postcode": "NE1 1BB",
-                  "Country": "UK"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "AccusedPerson": {
-            "UniqueId": "{{TwifDefPersonId05}}",
-            "Name": {
-              "GivenName": "{{$randomLastName}}",
-              "FamilyName": "{{$randomFirstName}}"
-            },
-            "DateOfBirth": "1992-09-08",
-            "PoliceRemandStatus": "Custody"
-          },
-          "PersonClassification": [
-            {
-              "ClassificationType": "StatusInformation",
-              "ClassificationCode": "SuspectDecisionPriority",
-              "ClassificationValue": {
-                "ClassificationValueText": "{{TwifRedCase}}"
-              }
-            }
-          ],
-          "ASN": {
-            "Year": "{{TwifYear}}",
-            "Force": "{{TwifForce}}",
-            "Unit": "{{TwifUnit}}",
-            "System": "00",
-            "Number": "{{TwifASNNumber05}}",
-            "CheckCharacter": "W"
-          },
-          "ProposedCharge": [
-            {
-              "UniqueID": "{{TwifSus05caseOff01}}",
-              "CJSCode": {
-                "Code": {
-                  "Alternative": {
-                    "ActOrSource": "OF",
-                    "Year": "61"
-                  },
-                  "Reason": "016"
-                }
-              },
-              "Description": "Susupect Five Offence 1",
-              "Category": "Summary Only",
-              "FromDate": "2001-10-01",
-              "Particulars": {
-                "Address": {
-                  "AddressLine": [
-                    "{{$randomStreetName}}",
-                    "{{$randomCity}}"
-                  ],
-                  "Postcode": "NE1 1BB",
-                  "Country": "UK"
-                }
-              }
-            },
-            {
-              "UniqueID": "{{TwifSus05caseOff02}}",
-              "CJSCode": {
-                "Code": {
-                  "Alternative": {
-                    "ActOrSource": "OF",
-                    "Year": "61"
-                  },
-                  "Reason": "018"
-                }
-              },
-              "Description": "Susupect Five Offence 2",
-              "Category": "Summary Only",
-              "FromDate": "2001-10-01",
-              "Particulars": {
-                "Address": {
-                  "AddressLine": [
-                    "{{$randomStreetName}}",
-                    "{{$randomCity}}"
-                  ],
-                  "Postcode": "NE1 1BB",
-                  "Country": "UK"
-                }
-              }
-            }
-          ]
-        }
-      ],
-      "CaseOutlineItem": {
-        "CaseOutlineHeading": {
-          "ClassificationType": "CaseOutline",
-          "ClassificationCode": "Heading",
-          "ClassificationValue": {
-            "ClassificationValueText": "KEVD"
-          }
-        },
-        "CaseOutlineText": "Text."
-      },
-      "PCDPoliceContactDetails": {
-        "OfficerCompleting": {
-          "UniqueId": "{{TwifSergeantPersonId}}",
-          "Name": {
-            "GivenName": "{{$randomLastName}}",
-            "FamilyName": "{{$randomFirstName}}"
-          },
-          "Rank": "PC",
-          "Station": "Surrey",
-          "ShoulderNumber": "{{TwifSergeantShoulderNo}}"
-        },
-        "OfficerSupervising": {
-          "UniqueId": "{{TwifConstablePersonId}}",
-          "Name": {
-            "GivenName": "{{$randomLastName}}",
-            "FamilyName": "{{$randomFirstName}}"
-          },
-          "Rank": "PC",
-          "Station": "Surrey",
-          "ShoulderNumber": "{{TwifConstableShoulderNo}}",
-          "Narrative": "Comments by Police"
-        }
-      },
-      "PCDRequestDate": "2025-01-01",
-      "PCDDecisionRequiredByDate": "2026-10-30",
-      "Contact": "Telephone"
+      }
     }
   }
 }
@@ -499,105 +103,15 @@ script:pre-request {
       return result;
   }
   
-  let greenCase = "G"
-  let redCase = "R"
+  let twiflm04VictimItemId = generateUppercaseAlphaNumeric(12);
+  let twifVictimId = generateUppercaseAlphaNumeric(12);
   
-  let force = "16";
-  let unit = "XL";
-  let year = "26";
+  bru.setGlobalEnvVar("Twiflm04VictimItemId", twiflm04VictimItemId);
+  bru.setGlobalEnvVar("TwifVictimId",twifVictimId );
   
-  let toplevel  = "A";
-  let secondlevel = "16";
-  let thirdlevel = "AD";
-  let bottomlevel = "00";
+  console.log("Twiflm04VictimItemId:", twiflm04VictimItemId);
+  console.log("TwifVictimId:", twifVictimId);
   
-  let twifptiURN = generateFiveDigitNumber();
-  let twifcm01 = generateUppercaseAlphaNumeric(12);
-  
-  let twifasnNumber01 = generateElevenDigitNumber();
-  let twifasnNumber02 = generateElevenDigitNumber();
-  let twifasnNumber03 = generateElevenDigitNumber();
-  let twifasnNumber04 = generateElevenDigitNumber();
-  let twifasnNumber05 = generateElevenDigitNumber();
-  
-  let twifdefPer01 = generateUppercaseAlphaNumeric(12);
-  let twifdefPer02 = generateUppercaseAlphaNumeric(12);
-  let twifdefPer03 = generateUppercaseAlphaNumeric(12);
-  let twifdefPer04 = generateUppercaseAlphaNumeric(12);
-  let twifdefPer05 = generateUppercaseAlphaNumeric(12);
-  
-  let twifDef01caseOff01 = generateUppercaseAlphaNumeric(12);
-  let twifDef01caseOff02 = generateUppercaseAlphaNumeric(12);
-  let twifDef02caseOff01 = generateUppercaseAlphaNumeric(12);
-  let twifDef02caseOff02 = generateUppercaseAlphaNumeric(12);
-  let twifDef03caseOff01 = generateUppercaseAlphaNumeric(12);
-  let twifDef03caseOff02 = generateUppercaseAlphaNumeric(12);
-  let twifDef04caseOff01 = generateUppercaseAlphaNumeric(12);
-  let twifDef04caseOff02 = generateUppercaseAlphaNumeric(12);
-  let twifDef05caseOff01 = generateUppercaseAlphaNumeric(12);
-  let twifDef05caseOff02 = generateUppercaseAlphaNumeric(12);
-  
-  let twifvwRef = generateUppercaseAlphaNumeric(12);
-  let twifwRef = generateUppercaseAlphaNumeric(12);
-  
-  let twifsoliciRef = generateUppercaseAlphaNumeric(12);
-  let twifSerShoNo = generateUppercaseAlphaNumeric(10);
-  let twifSerPerId = generateUppercaseAlphaNumeric(10);
-  let twifConsShoNo = generateUppercaseAlphaNumeric(10);
-  let twifConsPerId = generateUppercaseAlphaNumeric(10);
-  
-  bru.setGlobalEnvVar("TwifGreenCase", greenCase);
-  bru.setGlobalEnvVar("TwifRedCase", redCase);
-  
-  bru.setGlobalEnvVar("TwifForce", force);
-  bru.setGlobalEnvVar("TwifUnit", unit);
-  bru.setGlobalEnvVar("TwifYear", year);
-  bru.setGlobalEnvVar("TwifToplevel", toplevel);
-  bru.setGlobalEnvVar("TwifSecondlevel", secondlevel);
-  bru.setGlobalEnvVar("TwifThirdlevel", thirdlevel);
-  bru.setGlobalEnvVar("TwifBottomlevel", bottomlevel);
-  
-  bru.setGlobalEnvVar("TwifCM01itemId", twifcm01);
-  bru.setGlobalEnvVar("TwifPTIURNNumber", twifptiURN);
-  
-  bru.setGlobalEnvVar("TwifDefPersonId01", twifdefPer01);
-  bru.setGlobalEnvVar("TwifDefPersonId02", twifdefPer02);
-  bru.setGlobalEnvVar("TwifDefPersonId03", twifdefPer03);
-  bru.setGlobalEnvVar("TwifDefPersonId04", twifdefPer04);
-  bru.setGlobalEnvVar("TwifDefPersonId05", twifdefPer05);
-  
-  bru.setGlobalEnvVar("TwifSus01caseOff01", twifDef01caseOff01);
-  bru.setGlobalEnvVar("TwifSus01caseOff02", twifDef01caseOff02);
-  bru.setGlobalEnvVar("TwifSus02caseOff01", twifDef02caseOff01);
-  bru.setGlobalEnvVar("TwifSus02caseOff02", twifDef02caseOff02);
-  bru.setGlobalEnvVar("TwifSus03caseOff01", twifDef03caseOff01);
-  bru.setGlobalEnvVar("TwifSus03caseOff02", twifDef03caseOff02);
-  bru.setGlobalEnvVar("TwifSus04caseOff01", twifDef04caseOff01);
-  bru.setGlobalEnvVar("TwifSus04caseOff02", twifDef04caseOff02);
-  bru.setGlobalEnvVar("TwifSus05caseOff01", twifDef05caseOff01);
-  bru.setGlobalEnvVar("TwifSus05caseOff02", twifDef05caseOff02);
-  
-  bru.setGlobalEnvVar("TwifWitnessRef_1", twifwRef);
-  bru.setGlobalEnvVar("TwifSolicitor", twifsoliciRef);
-  
-  bru.setGlobalEnvVar("TwifASNNumber01", twifasnNumber01);
-  bru.setGlobalEnvVar("TwifASNNumber02", twifasnNumber02);
-  bru.setGlobalEnvVar("TwifASNNumber03", twifasnNumber03);
-  bru.setGlobalEnvVar("TwifASNNumber04", twifasnNumber04);
-  bru.setGlobalEnvVar("TwifASNNumber05", twifasnNumber05);
-  
-  bru.setGlobalEnvVar("TwifSergeantShoulderNo", twifSerShoNo);
-  bru.setGlobalEnvVar("TwifSergeantPersonId", twifSerPerId);
-  
-  bru.setGlobalEnvVar("TwifConstableShoulderNo", twifConsShoNo);
-  bru.setGlobalEnvVar("TwifConstablePersonId", twifConsPerId);
-  
-  bru.setGlobalEnvVar("TwifURN", force+unit+twifptiURN+year)
-  
-  console.log("TWIF-CM01itemId", twifcm01);
-  console.log("TWIF-PTIURNNumber", twifptiURN);
-  
-  console.log("TwifURN:", force+unit+twifptiURN+year);
   
 }
 
