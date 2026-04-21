@@ -19,17 +19,17 @@ body:json {
     "PreChargeDecisionRequest": {
       "ItemId": "{{DCFCM01itemId}}",
       "PTIURN": {
-        "Force": "{{DcfForce}}",
-        "Unit": "{{DcfUnit}}",
+        "Force": "45",
+        "Unit": "AA",
         "Number": "{{DCFPtiUrnNumber}}",
-        "Year": "{{DcfYear}}",
+        "Year": "26",
         "Split": null
       },
       "CPSUnit": {
-        "TopLevel": "{{DcfToplevel}}",
-        "SecondLevel": "{{DcfSecondlevel}}",
-        "ThirdLevel": "{{DcfThirdlevel}}",
-        "BottomLevel": "{{DcfBottomlevel}}",
+        "TopLevel": "A",
+        "SecondLevel": "45",
+        "ThirdLevel": "AA",
+        "BottomLevel": "00",
         "LiteralValue": null
       },
       "CaseClassification": [
@@ -137,39 +137,9 @@ body:json {
       },
       "Suspect": [
         {
-          "ReviewType": "Threshold Test",
+          "ReviewType": null,
           "ConditionalCaution": null,
           "PossibleOrProposedCharge": [
-            {
-              "Particulars": {
-                "Address": {
-                  "AddressLine": [
-                    "{{$randomStreetName}}",
-                    "{{$randomStreetName}}",
-                    "{{$randomCity}}"
-                  ],
-                  "Postcode": "NE1 1AA",
-                  "Country": "UK"
-                }
-              },
-              "AnticipatedPlea": "Not Guilty",
-              "UniqueID": "{{CaseOffenceId}}",
-              "CJSCode": {
-                "Code": {
-                  "Alternative": {
-                    "ActOrSource": "{{CJSCodeSource}}",
-                    "Year": "{{CJSCodeYear}}"
-                  },
-                  "Reason": "{{CJSCodeReason}}"
-                },
-                "Qualifier": null,
-                "LiteralValue": null
-              },
-              "Description": "AGO and DPP Testing",
-              "Category": "Either Way",
-              "FromDate": "2025-12-15T00:00:00",
-              "ToDate": null
-            },
             {
               "Particulars": {
                 "Address": {
@@ -190,12 +160,12 @@ body:json {
                     "ActOrSource": "OF",
                     "Year": "61"
                   },
-                  "Reason": "018"
+                  "Reason": "102"
                 },
                 "Qualifier": null,
                 "LiteralValue": null
               },
-              "Description": "Normal CJS code",
+              "Description": "OF 61 102 - Assault a person thereby occasioning them actual bodily harm",
               "Category": "Either Way",
               "FromDate": "2025-12-15T00:00:00",
               "ToDate": null
@@ -207,7 +177,7 @@ body:json {
             "Occupation": "Defender Occupation",
             "Alias": null,
             "PNCId": {
-              "Year": "{{DcfYear}}",
+              "Year": "26",
               "SerialNumber": "{{DCFPtiUrnNumber}}",
               "CheckCharacter": "X"
             },
@@ -254,6 +224,18 @@ body:json {
                     "TelNationalNumber": "07111111111"
                   },
                   "TypeOfNumber": "mobile"
+                },
+                {
+                  "Number": {
+                    "TelNationalNumber": "01912587412"
+                  },
+                  "TypeOfNumber": "home"
+                },
+                {
+                  "Number": {
+                    "TelNationalNumber": "07999999999"
+                  },
+                  "TypeOfNumber": "work"
                 }
               ],
               "Email": "{{$randomEmail}}",
@@ -329,7 +311,7 @@ body:json {
                 "ClassificationType": "StatusInformation",
                 "ClassificationCode": "SuspectDecisionPriority",
                 "ClassificationValue": {
-                  "ClassificationValueText": "R"
+                  "ClassificationValueText": "G"
                 }
               }
             ]
@@ -364,7 +346,14 @@ body:json {
                 "Postcode": "NE1 1AB",
                 "Country": "UK"
               },
-              "ContactNumber": null,
+              "ContactNumber": [
+                {
+                  "Number": {
+                    "TelNationalNumber": "01852585654"
+                  },
+                  "TypeOfNumber": "work"
+                }
+              ],
               "Email": "{{$randomEmail}}"
             },
             "PersonClassification": null
@@ -412,7 +401,7 @@ body:json {
                   "TelCountryCode": "44",
                   "TelNationalNumber": "07777777778"
                 },
-                "TypeOfNumber": "mobile"
+                "TypeOfNumber": "work"
               }
             ],
             "Email": "police.sergeant@police-station.uk",
@@ -467,10 +456,9 @@ body:json {
             "ContactNumber": [
               {
                 "Number": {
-                  "TelCountryCode": "44",
-                  "TelNationalNumber": "07888888888"
+                  "TelNationalNumber": "01912587965"
                 },
-                "TypeOfNumber": "mobile"
+                "TypeOfNumber": "work"
               }
             ],
             "Email": "police.constable@police-station.uk",
@@ -521,50 +509,43 @@ script:pre-request {
       return result;
   }
   
-  let force = "12";
-  let unit = "AH";
-  let year = "26";
-  
-  let toplevel  = "A";
-  let secondlevel = "12";
-  let thirdlevel = "AH";
-  let bottomlevel = "00";
-  
-  let cjsSource = "CE";
-  let cjsYear = "79";
-  let cjsReason = "096C";
   
   let ptiURN = generateFiveDigitNumber();
   let asnNumber = generateSevenDigitNumber();
   let cm01 = generateUppercaseAlphaNumeric(12);
-  let defPer = generateUppercaseAlphaNumeric(12);
-  let caseOff = generateUppercaseAlphaNumeric(12);
-  let soliciRef = generateUppercaseAlphaNumeric(12);
+  let defPer01 = generateUppercaseAlphaNumeric(12);
+  let defPer02 = generateUppercaseAlphaNumeric(12);
+  let caseOff01 = generateUppercaseAlphaNumeric(12);
+  let caseOff02 = generateUppercaseAlphaNumeric(12);
+  let caseOff03 = generateUppercaseAlphaNumeric(12);
+  let soliciRef01 = generateUppercaseAlphaNumeric(12);
+  let soliciRef02 = generateUppercaseAlphaNumeric(12);
   let SerShoNo = generateUppercaseAlphaNumeric(10);
   let SerPerId = generateUppercaseAlphaNumeric(10);
   let ConsShoNo = generateFiveDigitNumber(5);
   let ConsPerId = generateUppercaseAlphaNumeric(10);
+  
   let wtRef = generateUppercaseAlphaNumeric(12);
+  let wtChild = generateUppercaseAlphaNumeric(12);
+  let wtPolice = generateUppercaseAlphaNumeric(12);
+  let wtVulnerable = generateUppercaseAlphaNumeric(12);
+  let wtIntimidated = generateUppercaseAlphaNumeric(12);
+  
   let victimRef = generateUppercaseAlphaNumeric(12);
+  let childVictim = generateUppercaseAlphaNumeric(12);
+  let vulnerableVictim = generateUppercaseAlphaNumeric(12);
+  let intimidatedVictim = generateUppercaseAlphaNumeric(12);
   
-  
-  bru.setGlobalEnvVar("DcfForce", force);
-  bru.setGlobalEnvVar("DcfUnit", unit);
-  bru.setGlobalEnvVar("DcfYear", year);
-  bru.setGlobalEnvVar("DcfToplevel", toplevel);
-  bru.setGlobalEnvVar("DcfSecondlevel", secondlevel);
-  bru.setGlobalEnvVar("DcfThirdlevel", thirdlevel);
-  bru.setGlobalEnvVar("DcfBottomlevel", bottomlevel);
-  
-  bru.setGlobalEnvVar("CJSCodeSource", cjsSource);
-  bru.setGlobalEnvVar("CJSCodeYear", cjsYear);
-  bru.setGlobalEnvVar("CJSCodeReason", cjsReason);
   
   bru.setGlobalEnvVar("DCFCM01itemId", cm01);
   bru.setGlobalEnvVar("DCFPtiUrnNumber", ptiURN);
-  bru.setGlobalEnvVar("DefPersonId", defPer);
-  bru.setGlobalEnvVar("CaseOffenceId", caseOff);
-  bru.setGlobalEnvVar("Solicitor", soliciRef);
+  bru.setGlobalEnvVar("DefPersonId01", defPer01);
+  bru.setGlobalEnvVar("DefPersonId02", defPer02);
+  bru.setGlobalEnvVar("CaseOffenceId01", caseOff01);
+  bru.setGlobalEnvVar("CaseOffenceId02", caseOff02);
+  bru.setGlobalEnvVar("CaseOffenceId03", caseOff03);
+  bru.setGlobalEnvVar("Solicitor01", soliciRef01);
+  bru.setGlobalEnvVar("Solicitor02", soliciRef02);
   bru.setGlobalEnvVar("ASNNumber", asnNumber);
   bru.setGlobalEnvVar("SergeantShoulderNo", SerShoNo);
   bru.setGlobalEnvVar("SergeantPersonId", SerPerId);
@@ -572,18 +553,36 @@ script:pre-request {
   bru.setGlobalEnvVar("ConstablePersonId", ConsPerId);
   
   bru.setGlobalEnvVar("WitnessRef_1", wtRef);
+  bru.setGlobalEnvVar("Witness_Child", wtChild);
+  bru.setGlobalEnvVar("Witness_Police", wtPolice);
+  bru.setGlobalEnvVar("Witness_Vulnerable", wtVulnerable);
+  bru.setGlobalEnvVar("Witness_Intimidated", wtIntimidated);
   
   bru.setGlobalEnvVar("VictimWitnessRef_1", victimRef);
+  bru.setGlobalEnvVar("Victim_Child", childVictim);
+  bru.setGlobalEnvVar("Victim_Vulnerable", vulnerableVictim);
+  bru.setGlobalEnvVar("Victim_Intimidated", intimidatedVictim);
   
   console.log("DCFCM01itemId:", cm01);
   console.log("DCFPtiUrnNumber:", ptiURN);
-  console.log("DefPersonId:", defPer);
-  console.log("CaseOffenceId:", caseOff);
+  console.log("DefPersonId01:", defPer01);
+  console.log("DefPersonId02:", defPer02);
+  console.log("CaseOffenceId01:", caseOff01);
+  console.log("CaseOffenceId02:", caseOff02);
+  console.log("CaseOffenceId03:", caseOff03);
   console.log("ASNNumber:", asnNumber);
   console.log("ConstableShoulderNo:", "PC"+ConsShoNo);
-  console.log("WitnessRef_1:", wtRef);
-  console.log("VictimWitnessRef_1:", victimRef);
   
+  console.log("WitnessRef_1:", wtRef);
+  console.log("Witness_Child:", wtChild);
+  console.log("Witness_Police:", wtPolice);
+  console.log("Witness_Vulnerable:", wtVulnerable);
+  console.log("Witness_Intimidated:", wtIntimidated);
+  
+  console.log("VictimWitnessRef_1:", victimRef);
+  console.log("Victim_Child:", childVictim);
+  console.log("Victim_Vulnerable:", vulnerableVictim);
+  console.log("Victim_Intimidated:", intimidatedVictim);
   
   
   
