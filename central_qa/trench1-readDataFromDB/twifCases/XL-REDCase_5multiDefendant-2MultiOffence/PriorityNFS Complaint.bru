@@ -1,0 +1,40 @@
+meta {
+  name: PriorityNFS Complaint
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{StagingWmUrl}}/api/cases/{{TwifCaseId}}/triage/{{pcd_task_id}}/preChargeDecision
+  body: text
+  auth: inherit
+}
+
+headers {
+  Cms-Auth-Values: {{StagingWmCMSAuthValue}}
+  x-functions-key: {{StagingWmKey}}
+  User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+}
+
+body:text {
+  {
+    "decision": "NFS Compliant",
+    "acceptedDecision": {
+      "caseRecieved": "2026-04-11T10:36:59.690Z",
+      "partyId": {{defendantPersonId}}
+    },
+    "rejectedDecision": {
+      "actionPlanDue": null,
+      "chaseTaskDue": null
+    },
+    "caseType": "MC",
+    "decisionToBeMade": "Priority"
+  }
+  
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
