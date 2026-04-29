@@ -1,7 +1,7 @@
 meta {
   name: CaseVictimWitnessList
   type: http
-  seq: 6
+  seq: 13
 }
 
 get {
@@ -20,13 +20,17 @@ script:post-response {
   
   const response = res.getBody();
   
-  bru.setEnvVar("victimId",response.filter(w => w.isWitnessAndVictim == true).filter(w => w.types == "V")[0].witnessId);
+  bru.setEnvVar("victimPersonId",response.filter(w => w.isWitnessAndVictim == true).filter(w => w.types == "V")[0].witnessId);
+  bru.setEnvVar("victimPersonChild",response.filter(w => w.isWitnessAndVictim == true).filter(w => w.types == "C,V")[0].witnessId);
+  bru.setEnvVar("victimPersonVulnerable",response.filter(w => w.isWitnessAndVictim == true).filter(w => w.types == "L,V")[0].witnessId);
+  bru.setEnvVar("victimPersonIntimidated",response.filter(w => w.isWitnessAndVictim == true).filter(w => w.types == "T,V")[0].witnessId);
   
-  bru.setEnvVar("witnessId",response.filter(w => w.isWitnessAndVictim == false).filter(w => !w.types || w.types.length===0)[0].witnessId);
+  bru.setEnvVar("witnessPersonId",response.filter(w => w.isWitnessAndVictim == false).filter(w => !w.types || w.types.length===0)[0].witnessId);
+  bru.setEnvVar("witnessPersonChild",response.filter(w => w.isWitnessAndVictim == false).filter(w => w.types == "C")[0].witnessId);
+  bru.setEnvVar("witnessPersonPolice",response.filter(w => w.isWitnessAndVictim == false).filter(w => w.types == "P")[0].witnessId);
+  bru.setEnvVar("witnessPersonVulnerable",response.filter(w => w.isWitnessAndVictim == false).filter(w => w.types == "L")[0].witnessId);
+  bru.setEnvVar("witnessPersonIntimidated",response.filter(w => w.isWitnessAndVictim == false).filter(w => w.types == "T")[0].witnessId);
   
-  console.log("VictimId:",bru.getEnvVar("victimId")); 
-  
-  console.log("WitnessId:",bru.getEnvVar("witnessId")); 
   
 }
 

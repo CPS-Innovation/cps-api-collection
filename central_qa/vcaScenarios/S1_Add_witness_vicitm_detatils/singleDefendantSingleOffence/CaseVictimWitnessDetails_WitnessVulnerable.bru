@@ -1,11 +1,11 @@
 meta {
-  name: CaseVictimWitnessDetails_WitnessId
+  name: CaseVictimWitnessDetails_WitnessVulnerable
   type: http
-  seq: 18
+  seq: 22
 }
 
 get {
-  url: {{StagingWmUrl}}/api/cases/{{DCFCaseID}}/victim-witnesses/{{witnessPersonId}}
+  url: {{StagingWmUrl}}/api/cases/{{DCFCaseID}}/victim-witnesses/{{witnessPersonVulnerable}}
   body: formUrlEncoded
   auth: inherit
 }

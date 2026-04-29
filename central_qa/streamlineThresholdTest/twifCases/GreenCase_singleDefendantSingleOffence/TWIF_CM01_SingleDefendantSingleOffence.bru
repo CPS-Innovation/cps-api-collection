@@ -157,13 +157,13 @@ script:pre-request {
   let greenCase = "G"
   let redCase = "R"
   
-  let force = "16";
-  let unit = "VM";
+  let force = "10";
+  let unit = "AE";
   let year = "26";
   
   let toplevel  = "A";
-  let secondlevel = "16";
-  let thirdlevel = "AD";
+  let secondlevel = "10";
+  let thirdlevel = "AE";
   let bottomlevel = "00";
   
   let twifptiURN = generateFiveDigitNumber();
@@ -360,8 +360,8 @@ example {
     }
   
     status: {
-      code: OK
-      text: 200
+      code: 200
+      text: OK
     }
   
     body: {
@@ -587,8 +587,8 @@ example {
     }
   
     status: {
-      code: OK
-      text: 200
+      code: 200
+      text: OK
     }
   
     body: {
@@ -746,8 +746,8 @@ example {
     }
   
     status: {
-      code: OK
-      text: 200
+      code: 200
+      text: OK
     }
   
     body: {
@@ -972,8 +972,8 @@ example {
     }
   
     status: {
-      code: Bad Request
-      text: 400
+      code: 400
+      text: Bad Request
     }
   
     body: {

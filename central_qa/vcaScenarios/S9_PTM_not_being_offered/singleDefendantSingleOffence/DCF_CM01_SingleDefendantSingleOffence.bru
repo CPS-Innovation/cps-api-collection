@@ -19,17 +19,17 @@ body:json {
     "PreChargeDecisionRequest": {
       "ItemId": "{{DCFCM01itemId}}",
       "PTIURN": {
-        "Force": "45",
-        "Unit": "AA",
+        "Force": "{{DcfForce}}",
+        "Unit": "{{DcfUnit}}",
         "Number": "{{DCFPtiUrnNumber}}",
-        "Year": "26",
+        "Year": "{{DcfYear}}",
         "Split": null
       },
       "CPSUnit": {
-        "TopLevel": "A",
-        "SecondLevel": "45",
-        "ThirdLevel": "AA",
-        "BottomLevel": "00",
+        "TopLevel": "{{DcfToplevel}}",
+        "SecondLevel": "{{DcfSecondlevel}}",
+        "ThirdLevel": "{{DcfThirdlevel}}",
+        "BottomLevel": "{{DcfBottomlevel}}",
         "LiteralValue": null
       },
       "CaseClassification": [
@@ -509,6 +509,14 @@ script:pre-request {
       return result;
   }
   
+  let force = "12";
+  let unit = "AH";
+  let year = "26";
+  
+  let toplevel  = "A";
+  let secondlevel = "12";
+  let thirdlevel = "AH";
+  let bottomlevel = "00";
   
   let ptiURN = generateFiveDigitNumber();
   let asnNumber = generateSevenDigitNumber();
