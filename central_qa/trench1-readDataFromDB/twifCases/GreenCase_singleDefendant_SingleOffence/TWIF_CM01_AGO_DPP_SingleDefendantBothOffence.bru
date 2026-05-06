@@ -1,7 +1,7 @@
 meta {
-  name: TWIF_CM01_AGO_SingleDefendantSingleOffence
+  name: TWIF_CM01_AGO_DPP_SingleDefendantBothOffence
   type: http
-  seq: 2
+  seq: 3
 }
 
 post {
@@ -78,6 +78,31 @@ body:json {
                     "Year": "89"
                   },
                   "Reason": "096"
+                }
+              },
+              "Description": "Crime Text",
+              "Category": "Summary Only",
+              "FromDate": "2001-10-01",
+              "Particulars": {
+                "Address": {
+                  "AddressLine": [
+                    "{{$randomStreetName}}",
+                    "{{$randomCity}}"
+                  ],
+                  "Postcode": "NE1 1BB",
+                  "Country": "UK"
+                }
+              }
+            },
+                      {
+              "UniqueID": "{{TwifCaseOffenceId2}}",
+              "CJSCode": {
+                "Code": {
+                  "Alternative": {
+                    "ActOrSource": "FS",
+                    "Year": "23"
+                  },
+                  "Reason": "003"
                 }
               },
               "Description": "Crime Text",
@@ -182,6 +207,7 @@ script:pre-request {
   let twifcm01 = generateUppercaseAlphaNumeric(12);
   let twifdefPer = generateUppercaseAlphaNumeric(12);
   let twifcaseOff = generateUppercaseAlphaNumeric(12);
+  let twifcaseOff2 = generateUppercaseAlphaNumeric(12);
   let twifvwRef = generateUppercaseAlphaNumeric(12);
   let twifwRef = generateUppercaseAlphaNumeric(12);
   
@@ -207,6 +233,7 @@ script:pre-request {
   bru.setGlobalEnvVar("TwifPTIURNNumber", twifptiURN);
   bru.setGlobalEnvVar("TwifDefPersonId", twifdefPer);
   bru.setGlobalEnvVar("TwifCaseOffenceId", twifcaseOff);
+  bru.setGlobalEnvVar("TwifCaseOffenceId2", twifcaseOff2);
   bru.setGlobalEnvVar("TwifWitnessRef_1", twifwRef);
   bru.setGlobalEnvVar("TwifSolicitor", twifsoliciRef);
   bru.setGlobalEnvVar("TwifASNNumber", twifasnNumber);

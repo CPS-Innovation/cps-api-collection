@@ -1,7 +1,7 @@
 meta {
-  name: TWIF_CM01_AGO_SingleDefendantSingleOffence
+  name: TWIF_CM01_DPP_SingleDefendantSingleOffence
   type: http
-  seq: 2
+  seq: 1
 }
 
 post {
@@ -74,10 +74,10 @@ body:json {
               "CJSCode": {
                 "Code": {
                   "Alternative": {
-                    "ActOrSource": "OS",
-                    "Year": "89"
+                    "ActOrSource": "FS",
+                    "Year": "23"
                   },
-                  "Reason": "096"
+                  "Reason": "003"
                 }
               },
               "Description": "Crime Text",
@@ -168,13 +168,13 @@ script:pre-request {
   let greenCase = "G"
   let redCase = "R"
   
-  let force = "05";
-  let unit = "AQ";
+  let force = "10";
+  let unit = "AG";
   let year = "26";
   
   let toplevel  = "A";
-  let secondlevel = "05";
-  let thirdlevel = "AQ";
+  let secondlevel = "10";
+  let thirdlevel = "AG";
   let bottomlevel = "00";
   
   let twifptiURN = generateFiveDigitNumber();

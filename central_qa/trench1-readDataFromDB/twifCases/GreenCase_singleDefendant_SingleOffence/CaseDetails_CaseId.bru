@@ -1,7 +1,7 @@
 meta {
   name: CaseDetails_CaseId
   type: http
-  seq: 6
+  seq: 7
 }
 
 get {
@@ -22,6 +22,8 @@ script:post-response {
   bru.setEnvVar("TwifCaseId",response[0].id);
   console.log("TwifCaseId:",bru.getEnvVar("TwifCaseId")); 
   
+  bru.setEnvVar("TwifCaseUrn",response[0].urn);
+  console.log("TwifCaseUrn:",bru.getEnvVar("TwifCaseUrn")); 
 }
 
 settings {

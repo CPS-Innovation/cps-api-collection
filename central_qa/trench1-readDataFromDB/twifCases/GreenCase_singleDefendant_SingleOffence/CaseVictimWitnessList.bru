@@ -1,7 +1,7 @@
 meta {
   name: CaseVictimWitnessList
   type: http
-  seq: 7
+  seq: 8
 }
 
 get {
@@ -20,13 +20,13 @@ script:post-response {
   
   const response = res.getBody();
   
-  bru.setEnvVar("victimId",response.filter(w => w.isWitnessAndVictim == true).filter(w => w.types == "V")[0].witnessId);
+  bru.setEnvVar("victimPersonId",response.filter(w => w.isWitnessAndVictim == true).filter(w => w.types == "V")[0].witnessId);
   
-  bru.setEnvVar("witnessId",response.filter(w => w.isWitnessAndVictim == false).filter(w => !w.types || w.types.length===0)[0].witnessId);
+  bru.setEnvVar("witnessPersonId",response.filter(w => w.isWitnessAndVictim == false).filter(w => !w.types || w.types.length===0)[0].witnessId);
   
-  console.log("VictimId:",bru.getEnvVar("victimId")); 
+  console.log("VictimPersonId:",bru.getEnvVar("victimPersonId")); 
   
-  console.log("WitnessId:",bru.getEnvVar("witnessId")); 
+  console.log("WitnessPersonId:",bru.getEnvVar("witnessPersonId")); 
 }
 
 settings {
