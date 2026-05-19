@@ -5,13 +5,13 @@ meta {
 }
 
 post {
-  url: {{CIN3_CaseCreateUrl}}/api/twif/cm01
+  url: {{CaseCreate_Url}}/api/twif/cm01
   body: json
   auth: inherit
 }
 
 headers {
-  X-Auth-Cookie: {{CaseCreateAuthValue}}
+  X-Auth-Cookie: {{CaseCreateTwifAuthValue}}
   User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
 }
 
@@ -609,8 +609,8 @@ script:pre-request {
 script:post-response {
   const response = res.getBody();
   
-  bru.setEnvVar("TwifCaseRequestId",response.requestId);
-  console.log("TwifCaseRequestId:",bru.getEnvVar("TwifCaseRequestId")); 
+  bru.setGlobalEnvVar("TwifCaseRequestId",response.requestId);
+  console.log("TwifCaseRequestId:",bru.getGlobalEnvVar("TwifCaseRequestId")); 
 }
 
 settings {

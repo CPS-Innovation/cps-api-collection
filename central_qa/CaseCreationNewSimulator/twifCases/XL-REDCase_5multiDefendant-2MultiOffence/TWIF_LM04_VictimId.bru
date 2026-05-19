@@ -5,9 +5,14 @@ meta {
 }
 
 post {
-  url: https://localhost:7165/api/twif/lm04
+  url: {{CaseCreate_Url}}/api/twif/lm04
   body: json
   auth: inherit
+}
+
+headers {
+  X-Auth-Cookie: {{CaseCreateTwifAuthValue}}
+  User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
 }
 
 body:json {
@@ -93,8 +98,6 @@ script:pre-request {
   bru.setGlobalEnvVar("Twiflm04VictimItemId", twiflm04VictimItemId);
   bru.setGlobalEnvVar("TwifVictimId",twifVictimId );
   
-  console.log("Twiflm04VictimItemId:", twiflm04VictimItemId);
-  console.log("TwifVictimId:", twifVictimId);
   
   
 }

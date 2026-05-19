@@ -5,31 +5,31 @@ meta {
 }
 
 post {
-  url: {{CIN3_CaseCreateAuthUrl}}/api/authenticate
+  url: {{CaseCreate_AuthUrl}}/api/authenticate
   body: formUrlEncoded
   auth: inherit
 }
 
 headers {
   accept: application/json
-  x-functions-key: {{CIN3_CaseCreate_XfunKey}}
+  x-functions-key: {{CaseCreate_XfunKey}}
 }
 
 body:form-urlencoded {
-  username: {{CIN3_Username}}
-  password: {{CIN3_Password}}
+  username: {{TWIF_Username}}
+  password: {{TWIF_Password}}
 }
 
 script:post-response {
   const response = res.getBody();
    
-  bru.setEnvVar("CaseCreateAuthValue", JSON.stringify(response));
+  bru.setGlobalEnvVar("CaseCreateTwifAuthValue", JSON.stringify(response));
    
   console.log("environment variables set:", response);
   
   if (response.Token) {
-      bru.setGlobalEnvVar("CaseCreateAuthValueToken", response.Token);
-      console.log("CaseCreateAuthValueToken:", response.Token);
+      bru.setGlobalEnvVar("CaseCreateTwifAuthToken", response.Token);
+      console.log("CaseCreateTwifAuthToken:", response.Token);
   } else {
       console.log("No Token");
   }

@@ -1,0 +1,43 @@
+meta {
+  name: CIN5_Wm_Authenticate _Staging
+  type: http
+  seq: 11
+}
+
+post {
+  url: {{StagingWmUrl}}/api/authenticate
+  body: formUrlEncoded
+  auth: inherit
+}
+
+headers {
+  accept: application/json
+  x-functions-key: {{StagingWmKey}}
+}
+
+body:form-urlencoded {
+  username: {{CIN5_Username}}
+  password: {{CIN5_Password}}
+}
+
+script:post-response {
+  const response = res.getBody();
+   
+  bru.setEnvVar("StagingWmCMSAuthValue", JSON.stringify(response));
+   
+  console.log('StagingWmCMSAuthValue:', response);
+  
+  if (response.Token) {
+      bru.setEnvVar("StagingWmCMSAuthToken", response.Token);
+      console.log("StagingWmCMSAuthToken:", response.Token);
+  } else {
+      console.log("No Token");
+  }
+  
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

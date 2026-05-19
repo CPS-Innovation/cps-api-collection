@@ -11,22 +11,19 @@ get {
 }
 
 headers {
-  Cms-Auth-Values: {{StagingWmCMSAuthValue}}
+  Cms-Auth-Values: {{StagingTwifAuthValue}}
   x-functions-key: {{StagingWmKey}}
   User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
 }
 
 script:post-response {
   
+  
   const response = res.getBody();
   
-  bru.setEnvVar("victimPersonId",response.filter(w => w.isWitnessAndVictim == true).filter(w => w.types == "V")[0].witnessId);
+  bru.setGlobalEnvVar("Twif_victimPersonId",response.filter(w => w.isWitnessAndVictim == true).filter(w => w.types == "V")[0].witnessId);
   
-  bru.setEnvVar("witnessPersonId",response.filter(w => w.isWitnessAndVictim == false).filter(w => !w.types || w.types.length===0)[0].witnessId);
-  
-  console.log("VictimPersonId:",bru.getEnvVar("victimPersonId")); 
-  
-  console.log("WitnessPersonId:",bru.getEnvVar("witnessPersonId")); 
+  bru.setGlobalEnvVar("Twif_witnessPersonId",response.filter(w => w.isWitnessAndVictim == false).filter(w => !w.types || w.types.length===0)[0].witnessId);
 }
 
 settings {

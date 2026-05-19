@@ -1,0 +1,50 @@
+meta {
+  name: CaseVictimWitnessList
+  type: http
+  seq: 16
+}
+
+get {
+  url: {{StagingWmUrl}}/api/cases/{{DCFCaseID}}/witnesses
+  body: formUrlEncoded
+  auth: inherit
+}
+
+headers {
+  Cms-Auth-Values: {{StagingWmCMSAuthValue}}
+  x-functions-key: {{StagingWmKey}}
+  User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+}
+
+script:post-response {
+  
+  const response = res.getBody();
+  
+  bru.setEnvVar("victimId",response.filter(w => w.isWitnessAndVictim == true).filter(w => w.types == "V")[0].witnessId);
+  bru.setEnvVar("victimChild",response.filter(w => w.isWitnessAndVictim == true).filter(w => w.types == "C,V")[0].witnessId);
+  bru.setEnvVar("victimVulnerable",response.filter(w => w.isWitnessAndVictim == true).filter(w => w.types == "L,V")[0].witnessId);
+  bru.setEnvVar("victimIntimidated",response.filter(w => w.isWitnessAndVictim == true).filter(w => w.types == "T,V")[0].witnessId);
+  
+  bru.setEnvVar("witnessId",response.filter(w => w.isWitnessAndVictim == false).filter(w => !w.types || w.types.length===0)[0].witnessId);
+  bru.setEnvVar("witnessChild",response.filter(w => w.isWitnessAndVictim == false).filter(w => w.types == "C")[0].witnessId);
+  bru.setEnvVar("witnessPolice",response.filter(w => w.isWitnessAndVictim == false).filter(w => w.types == "P")[0].witnessId);
+  bru.setEnvVar("witnessVulnerable",response.filter(w => w.isWitnessAndVictim == false).filter(w => w.types == "L")[0].witnessId);
+  bru.setEnvVar("witnessIntimidated",response.filter(w => w.isWitnessAndVictim == false).filter(w => w.types == "T")[0].witnessId);
+  
+  console.log("VictimId:",bru.getEnvVar("victimId")); 
+  console.log("VictimChild:",bru.getEnvVar("victimChild")); 
+  console.log("VictimVulnerable:",bru.getEnvVar("victimVulnerable")); 
+  console.log("VictimIntimidated:",bru.getEnvVar("victimIntimidated")); 
+  
+  console.log("WitnessId:",bru.getEnvVar("witnessId")); 
+  console.log("WitnessChild:",bru.getEnvVar("witnessChild")); 
+  console.log("WitnessPolice:",bru.getEnvVar("witnessPolice")); 
+  console.log("WitnessVulnerable:",bru.getEnvVar("witnessVulnerable")); 
+  console.log("WitnessIntimidated:",bru.getEnvVar("witnessIntimidated")); 
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
