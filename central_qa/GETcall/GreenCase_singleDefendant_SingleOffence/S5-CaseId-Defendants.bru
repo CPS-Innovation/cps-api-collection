@@ -16,6 +16,20 @@ headers {
   User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
 }
 
+script:post-response {
+  let response = res.getBody();
+   
+  // Find the lead defendent
+  const id = response.find(item => item.listOrder === 1)?.id;
+  
+   bru.setGlobalEnvVar("TwifDefendantPersonId",response.find(item => item.listOrder === 1)?.id);
+  
+  console.log("TwifDefendantPersonId:", bru.getGlobalEnvVar("TwifDefendantPersonId"));
+  
+  
+  
+}
+
 settings {
   encodeUrl: true
   timeout: 0

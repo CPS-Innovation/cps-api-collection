@@ -1,11 +1,11 @@
 meta {
-  name: Triage5DaysMC
+  name: Triage28DaysMC
   type: http
-  seq: 9
+  seq: 12
 }
 
 post {
-  url: {{StagingWmUrl}}/api/cases/{{TwifCaseId}}/triage/{{pcd_task_id}}/preChargeDecision
+  url: {{StagingWmUrl}}/api/cases/{{DCFCaseID}}/triage/{{pcd_task_id}}/preChargeDecision
   body: text
   auth: inherit
 }
@@ -28,7 +28,7 @@ body:text {
       "chaseTaskDue": null
     },
     "caseType": "MC",
-    "decisionToBeMade": "5Day"
+    "decisionToBeMade": "28Day"
   }
   
   

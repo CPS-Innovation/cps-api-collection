@@ -26,7 +26,7 @@ body:json {
         "ThirdLevel": "{{TwifThirdlevel}}",
         "BottomLevel": "{{TwifBottomlevel}}"
       },
-      "OperationName": "TWIF Case Operator",       
+      "OperationName": "TWIF Case Operator",
       "CaseClassification": [
         {
           "ClassificationType": "CaseMonitoring",
@@ -36,7 +36,7 @@ body:json {
           }
         }
       ],
-          "AdviceDetails": {
+      "AdviceDetails": {
         "AdviceRequiredByDate": "{{todayDate}}",
         "Paragraphs": null
       },
@@ -49,7 +49,41 @@ body:json {
               "FamilyName": "{{$randomFirstName}}"
             },
             "DateOfBirth": "1992-09-08",
-            "PoliceRemandStatus": "Custody"
+            "PoliceRemandStatus": "Custody",
+            "Nationality": "British",
+            "ContactDetails": {
+              "Address": {
+                "AddressLine": [
+                  "{{$randomStreetName}}",
+                  "{{$randomStreetName}}",
+                  "{{$randomStreetName}}",
+                  "{{$randomCity}}"
+                ],
+                "Postcode": "NE1 1BB"
+              },
+              "ContactNumber": [
+                {
+                  "Number": {
+                    "TelNationalNumber": "07900998844"
+                  },
+                  "TypeOfNumber": "mobile"
+                },
+                {
+                  "Number": {
+                    "TelNationalNumber": "01912587414"
+                  },
+                  "TypeOfNumber": "work"
+                },
+                {
+                  "Number": {
+                    "TelNationalNumber": "01912587414"
+                  },
+                  "TypeOfNumber": "home"
+                }
+              ],
+              "Email": "01912587414"
+            },
+            "Occupation": "Testing"
           },
           "PersonClassification": [
             {

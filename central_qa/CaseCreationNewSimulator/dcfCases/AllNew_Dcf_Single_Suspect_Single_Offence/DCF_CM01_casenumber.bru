@@ -1,0 +1,31 @@
+meta {
+  name: DCF_CM01_casenumber
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{CaseCreate_Url}}/api/request/{{DcfCaseRequestId}}
+  body: json
+  auth: inherit
+}
+
+headers {
+  X-Auth-Cookie: {{CaseCreateDcfAuthValue}}
+  User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+}
+
+script:post-response {
+  const response = res.getBody();
+  
+  bru.setGlobalEnvVar("DcfCaseId",response.caseId);
+  console.log("DcfCaseId:",bru.getGlobalEnvVar("DcfCaseId")); 
+  
+  bru.setGlobalEnvVar("DcfCaseUrn",response.caseUrn);
+  console.log("DcfCaseUrn:",bru.getGlobalEnvVar("DcfCaseUrn")); 
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
