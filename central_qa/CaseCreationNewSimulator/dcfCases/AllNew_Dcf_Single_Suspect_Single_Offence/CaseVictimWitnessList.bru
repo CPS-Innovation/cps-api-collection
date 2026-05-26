@@ -1,11 +1,11 @@
 meta {
-  name: CaseDefendantDetails
+  name: CaseVictimWitnessList
   type: http
-  seq: 11
+  seq: 12
 }
 
 get {
-  url: {{StagingWmUrl}}//api/cases/{{DcfCaseId}}
+  url: {{StagingWmUrl}}/api/cases/{{DcfCaseId}}/witnesses
   body: formUrlEncoded
   auth: inherit
 }
@@ -17,10 +17,13 @@ headers {
 }
 
 script:post-response {
+  
+  
   const response = res.getBody();
-  bru.setEnvVar("DcfDefendantPersonId",response.defendants[0].id);
-  // bru.setEnvVar("defendantPersonId",response.filter(w => w.defendants[0]).id);
-  console.log("DcfDefendantPersonId:",bru.getEnvVar("DcfDefendantPersonId")); 
+  
+  bru.setGlobalEnvVar("Dcf_victimPersonId",response.filter(w => w.isWitnessAndVictim == true).filter(w => w.types == "V")[0].witnessId);
+  
+  bru.setGlobalEnvVar("Dcf_witnessPersonId",response.filter(w => w.isWitnessAndVictim == false).filter(w => !w.types || w.types.length===0)[0].witnessId);
 }
 
 settings {
