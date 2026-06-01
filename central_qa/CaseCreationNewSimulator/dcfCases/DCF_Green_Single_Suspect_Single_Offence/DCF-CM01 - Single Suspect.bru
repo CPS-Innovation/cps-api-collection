@@ -17,6 +17,7 @@ headers {
 body:json {
   {
     "PreChargeDecisionRequest": {
+      "ItemId": "{{DCFCM01itemId}}",
       "PTIURN": {
         "Force": {{DcfForce}},
         "Unit": "{{DcfUnit}}",
@@ -181,7 +182,17 @@ body:json {
                 ],
                 "Postcode": "NE1 1BB",
                 "Country": "UK"
-              }
+              },
+              "ContactNumber": [
+                {
+                  "Number": {
+                    "TelCountryCode": "44",
+                    "TelNationalNumber": "07777777778"
+                  },
+                  "TypeOfNumber": "mobile"
+                }
+              ],
+              "Email": "{{$randomEmail}}"
             },
             "PersonClassification": [
               {
@@ -220,8 +231,17 @@ body:json {
               "AddressLine": [
                 "{{$randomStreetName}}",
                 "{{$randomCity}}"
-              ],
+              ]
             },
+            "ContactNumber": [
+              {
+                "Number": {
+                  "TelNationalNumber": "01912589632"
+                },
+                "TypeOfNumber": "work"
+              }
+            ],
+            "Email": "{{$randomEmail}}"
           },
           "PersonClassification": [
             {
@@ -234,8 +254,7 @@ body:json {
           ]
         }
       ],
-      "AssociatedCases": null,
-      "ItemId": "{{DCFCM01itemId}}"
+      "AssociatedCases": null
     }
   }
 }
