@@ -1,11 +1,11 @@
 meta {
-  name: witness_onboard_to_VCA
+  name: victim_onboard_to_VCA
   type: http
-  seq: 15
+  seq: 14
 }
 
 post {
-  url: {{StagingWmUrl}}/api/victims/urns/{{DcfCaseUrn}}/cases/{{DcfCaseId}}/parties/{{Dcf_witnessPersonId}}
+  url: {{StagingWmUrl}}/api/victims/urns/{{DcfCaseUrn}}/cases/{{DcfCaseId}}/parties/{{Dcf_victimPersonId}}
   body: json
   auth: inherit
 }

@@ -90,10 +90,6 @@ script:pre-request {
   let lm04Witness = generateUppercaseAlphaNumeric(12);
   
   bru.setGlobalEnvVar("WitnessLM04ItemId", lm04Witness);
-  
-  let WitnessRef_1 = generateUppercaseAlphaNumeric(12);
-  
-  bru.setGlobalEnvVar("WitnessRef_1", WitnessRef_1);
 }
 
 script:post-response {

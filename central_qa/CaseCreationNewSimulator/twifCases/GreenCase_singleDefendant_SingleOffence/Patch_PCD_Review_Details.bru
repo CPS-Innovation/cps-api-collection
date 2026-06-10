@@ -1,0 +1,195 @@
+meta {
+  name: Patch_PCD_Review_Details
+  type: http
+  seq: 16
+}
+
+patch {
+  url: {{StagingWmUrl}}/api/cases/{{TwifCaseId}}/pcd-review
+  body: json
+  auth: inherit
+}
+
+headers {
+  Cms-Auth-Values: {{StagingTwifAuthValue}}
+  x-functions-key: {{StagingWmKey}}
+  User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+}
+
+body:json {
+  {
+    "saveToCaseManagementDataStore": false,
+    "excludeVerification": false,
+    "urn": null,
+    "hasMonitoringUpdated": "Y",
+    "caseSummaryText": "Testing Case Summary text",
+    "evidentialAnalysisText": "Testing Evidential Assessment text",
+    "publicInterestText": "Testing Public Interest Assessment text",
+    "witnessVictimStrategyText": "Testing Witness Victim Strategy text",
+    "humanRightsText": "Testing Human Right Review text",
+    "allocationText": "Testing Allocation text",
+    "disclosureText": "Testing Disclosure text",
+    "trialStrategyText": "Testing Trial Strategy text",
+    "advocateAndOpText": "Testing Advocate Opinion text",
+    "addedMonitoringCodes": "HNRC,CSEA",
+    "removedMonitoringCodes":"AMHC,ASHC,ATRY,BSEC,CPRO,CVOF,COVB,COVC,CAOP,CEGP,DISA,DOMV,SDVC,ETMP,FATL,FORM,GAP,HMPH,HUTR,IVIC,JOEN,KER,MI,MEDI,MENT,NBAR,NGAP,OVEN,POCO,PROW,PTWI,RAIN,RRIN,RAPE,RTCC,REIN,SE,STK,NFS,SUCA,TPHB,VCRT,VIVM,DRUG,FOOT,HATC,HOAX,INFA,MCAN,MEDO,MODO,MURD,NACR,OBTU,PERO,PEYO,POFC,RTAF,JUST,SCIN",
+    "testType": 1,
+    "defendantsVictimRelationships": [
+      {
+        "defendantId": null,
+        "defendantName": null,
+        "partner": false,
+        "exPartner": false,
+        "familyMember": false,
+        "extendedFamilyMember": false,
+        "spouseCivilPartner": false,
+        "formerSpouseCivilPartner": false,
+        "noRelationship": false,
+        "partnerSameSex": false,
+        "exPartnerSameSex": false,
+        "familyMemberSameSex": false,
+        "extendedFamilyMemberSameSex": false,
+        "spouseCivilPartnerSameSex": false,
+        "formerSpouseCivilPartnerSameSex": false
+      }
+    ],
+    "disclosureStatements": {
+      "consideredDisclosureImpact": false,
+      "notConsideredDisclosureImpact": false
+    },
+    "screenEditMode": "1",
+    "isACompleteConsultation": "N",
+    "reviewId": 0,
+    "correlationId": "00000000-0000-0000-0000-000000000000",
+    "caseId": 12345,
+    "dgAssessments": {
+      "dG6Assessment": "",
+      "isDGAssessmentApplicable": "",
+      "isDGCompliant": "",
+      "dateMaterialReceived": "",
+      "q00": {
+        "q00R01": {
+          "q00R01r": false
+        },
+        "q00R02": {
+          "q00R02r": false,
+          "q00R0201r": false,
+          "q00R0202r": false,
+          "q00R0204r": false,
+          "q00R0299h": false
+        }
+      },
+      "q01": {
+        "q01R01": {
+          "q01R01c": false
+        },
+        "q01R02": {
+          "q01R02c": false,
+          "q01R0201c": false,
+          "q01R0202c": false,
+          "q01R0203c": false,
+          "q01R0299h": false
+        },
+        "q01R03": {
+          "q01R03c": false,
+          "q01R0301c": false,
+          "q01R0302c": false,
+          "q01R0303c": false,
+          "q01R0399h": false
+        },
+        "q01R04": {
+          "q01R04c": false,
+          "q01R0401c": false,
+          "q01R0402c": false,
+          "q01R0403c": false,
+          "q01R0499h": false
+        },
+        "q01R05": {
+          "q01R05c": false
+        },
+        "q01R06": {
+          "q01R06c": false
+        },
+        "q01R07": {
+          "q01R07c": false
+        },
+        "q01R09": {
+          "q01R09c": false
+        },
+        "q01R10": {
+          "q01R10t": ""
+        }
+      },
+      "q02": {
+        "q02R01": {
+          "q02R01c": false,
+          "q02R0101c": false,
+          "q02R0102c": false,
+          "q02R0199h": false
+        },
+        "q02R06": {
+          "q02R06c": false
+        },
+        "q02R07": {
+          "q02R07c": false
+        },
+        "q02R04": {
+          "q02R04c": false,
+          "q02R0401c": false,
+          "q02R0402c": false,
+          "q02R0499h": false
+        },
+        "q02R05": {
+          "q02R05t": ""
+        },
+        "q02R02": {
+          "q02R0299h": false
+        },
+        "q02R03": {
+          "q02R0399h": false
+        }
+      },
+      "q03": {
+        "q03R01": {
+          "q03R01c": false
+        },
+        "q03R02": {
+          "q03R02c": false
+        },
+        "q03R03": {
+          "q03R03c": false
+        },
+        "q03R04": {
+          "q03R04t": ""
+        }
+      },
+      "q04": {
+        "q04R01": {
+          "q04R01c": false
+        },
+        "q04R02": {
+          "q04R02t": ""
+        }
+      }
+    },
+    "listDefaultClassificationCodes": "",
+    "listDefaultClassificationCodesRetired": ""
+  }
+  
+}
+
+script:post-response {
+  let responseData = res.getBody();
+  
+  if (responseData.status) {
+      bru.setGlobalEnvVar("TwifPcdRinitialStatus", responseData.status);
+      console.log("PCD Review initial status", responseData.status);
+  } else {
+      console.log("PCD Review initial status not found");
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

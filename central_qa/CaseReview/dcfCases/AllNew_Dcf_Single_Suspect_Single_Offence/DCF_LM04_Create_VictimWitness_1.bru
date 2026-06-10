@@ -1,7 +1,7 @@
 meta {
-  name: DCF_LM04_Create_Witness_1
+  name: DCF_LM04_Create_VictimWitness_1
   type: http
-  seq: 6
+  seq: 4
 }
 
 post {
@@ -17,7 +17,7 @@ headers {
 body:json {
   {
     "WitnessOrVictim": {
-      "ItemId": "{{WitnessLM04ItemId}}",
+      "ItemId": "{{VicWitLM04ItemId}}",
       "PTIURN": {
         "Force": "{{DcfForce}}",
         "Unit": "{{DcfUnit}}",
@@ -31,7 +31,7 @@ body:json {
       },
       "VictimWitness": {
         "Person": {
-          "UniqueId": "{{WitnessRef_1}}",
+          "UniqueId": "{{VictimWitnessRef_1}}",
           "Name": {
             "Title": "{{$randomNamePrefix}}",
             "GivenName": "{{$randomLastName}}",
@@ -56,9 +56,22 @@ body:json {
             }
           ]
         },
-        "TypeOfPerson": "Witness",
-        "Witness": {
-          "WarnedByPolice": false,
+        "TypeOfPerson": "VictimWitness",
+        "DateOfBirth": "1970-08-03",
+        "WitnessAndVictim": {
+          "Witness": {
+            "Occupation": "Civilian",
+            "WarnedByPolice": false,
+          },
+          "Victim": {
+            "XOffenceId": [
+              "{{CaseOffenceId}}"
+            ],
+            "VPSStatus": {
+              "ResponseToVPSOffer": "Accepted",
+              "SchemeExplained": false
+            }
+          }
         },
         "LinkedSuspects": null
       }
@@ -67,9 +80,10 @@ body:json {
 }
 
 script:pre-request {
+  
   console.log("DCFCaseID:", bru.getGlobalEnvVar("DCFCaseID"));
   console.log("DCFCaseUrn:", bru.getGlobalEnvVar("DCFCaseUrn"));
-  console.log("WitnessRef_1:", bru.getGlobalEnvVar("WitnessRef_1"));
+  console.log("VictimWitnessRef_1:", bru.getGlobalEnvVar("VictimWitnessRef_1"));
   console.log("CaseOffenceId:", bru.getGlobalEnvVar("CaseOffenceId"));
   
   console.log("DCFptnNo:", bru.getGlobalEnvVar("DCFptnNo"));
@@ -87,19 +101,15 @@ script:pre-request {
       return result;
   }
   
-  let lm04Witness = generateUppercaseAlphaNumeric(12);
+  let lm04VicWit = generateUppercaseAlphaNumeric(12);
   
-  bru.setGlobalEnvVar("WitnessLM04ItemId", lm04Witness);
-  
-  let WitnessRef_1 = generateUppercaseAlphaNumeric(12);
-  
-  bru.setGlobalEnvVar("WitnessRef_1", WitnessRef_1);
+  bru.setGlobalEnvVar("VicWitLM04ItemId", lm04VicWit);
 }
 
 script:post-response {
   const response = res.getBody();
   
-  bru.setGlobalEnvVar("DcfCaseWitRequestId",response.requestId);
+  bru.setGlobalEnvVar("DcfCaseVicRequestId",response.requestId);
 }
 
 settings {

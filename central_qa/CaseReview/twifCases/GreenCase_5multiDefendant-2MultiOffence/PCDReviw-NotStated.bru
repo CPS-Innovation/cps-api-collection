@@ -27,7 +27,7 @@ script:post-response {
   let responseData = res.getBody();
   
   if (responseData.status) {
-      bru.setGlobalEnvVar("TwifPcdRinitialStatus", responseData.status);
+      bru.setGlobalEnvVar("PcdRinitialStatus", responseData.status);
       console.log("PCD Review initial status", responseData.status);
   } else {
       console.log("PCD Review initial status not found");
