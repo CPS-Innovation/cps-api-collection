@@ -1,0 +1,376 @@
+meta {
+  name: DCF-CM01 - Single Suspect
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{CaseCreate_Url}}/api/dcf/cm01
+  body: json
+  auth: inherit
+}
+
+headers {
+  X-Auth-Cookie: {{CaseCreateDcfAuthValue}}
+}
+
+body:json {
+  {
+    "PreChargeDecisionRequest": {
+      "ItemId": "6P9XQS1J35BOD",
+      "PTIURN": {
+        "Force": "45",
+        "Unit": "AA",
+        "Number": "20963",
+        "Year": "26"
+      },
+      "CPSUnit": {
+        "TopLevel": "A",
+        "SecondLevel": "45",
+        "ThirdLevel": "AA",
+        "BottomLevel": "00",
+        "LiteralValue": null
+      },
+      "OperationName": "Custody and Charging Officers",
+      "CaseClassification": [
+        {
+          "ClassificationType": "Case Monitoring",
+          "ClassificationCode": "Pre Charge Decision",
+          "ClassificationValue": {
+            "ClassificationValueFlag": true
+          }
+        },
+        {
+          "ClassificationType": "Case Monitoring",
+          "ClassificationCode": "Not Guilty Anticipated Plea",
+          "ClassificationValue": {
+            "ClassificationValueFlag": true
+          }
+        }
+      ],
+      "FactualSummary": {
+        "Paragraphs": [
+          {
+            "ItemHeading": {
+              "ClassificationType": "Police Narrative",
+              "ClassificationCode": "Factual Summary",
+              "ClassificationValue": {
+                "ClassificationValueText": "Summary of Circumstances of Offence(s)"
+              }
+            },
+            "ItemText": "Narrative text for Summary of Circumstances of Offence(s)"
+          }
+        ]
+      },
+      "CITP": {
+        "Paragraphs": [
+          {
+            "ItemHeading": {
+              "ClassificationType": "Police Narrative",
+              "ClassificationCode": "Confidential Information",
+              "ClassificationValue": {
+                "ClassificationValueText": "Reasonable Lines of Enquiry"
+              }
+            },
+            "ItemText": "Narrative text for Reasonable Lines of Enquiry"
+          }
+        ]
+      },
+      "Suspect": [
+        {
+          "ReviewType": "Full Code Test",
+          "PossibleOrProposedCharge": [
+            {
+              "Particulars": {
+                "Address": {
+                  "AddressLine": [
+                    "80127",
+                    "1599 Nannie Light",
+                    "Lake Krysta"
+                  ],
+                  "Postcode": "ZZ1 XX2",
+                  "Country": "UK"
+                }
+              },
+              "AnticipatedPlea": "Not Guilty",
+              "UniqueID": "FCJRG1XDMZ55E",
+              "CJSCode": {
+                "Code": {
+                  "Alternative": {
+                    "ActOrSource": "OF",
+                    "Year": "61"
+                  },
+                  "Reason": "102"
+                }
+              },
+              "Description": "OF 61 102 - Attempt to assault a person thereby occasioning them actual bodily harm",
+              "Category": "Summary Only",
+              "FromDate": "2019-02-10",
+              "ToDate": "2019-03-01"
+            },
+            {
+              "Particulars": {
+                "Address": {
+                  "AddressLine": [
+                    "80127",
+                    "1599 Nannie Light",
+                    "Lake Krysta"
+                  ],
+                  "Postcode": "ZZ1 XX2",
+                  "Country": "UK"
+                }
+              },
+              "AnticipatedPlea": "Not Guilty",
+              "UniqueID": "1ME1VZZJZIUYF",
+              "CJSCode": {
+                "Code": {
+                  "Alternative": {
+                    "ActOrSource": "OF",
+                    "Year": "61"
+                  },
+                  "Reason": "018"
+                }
+              },
+              "Description": "OF 61 018 - Section 18 - wounding with intent to resist / prevent arrest",
+              "Category": "Either Way",
+              "FromDate": "2019-02-10",
+              "ToDate": "2019-03-01"
+            },
+            {
+              "Particulars": {
+                "Address": {
+                  "AddressLine": [
+                    "80127",
+                    "1599 Nannie Light",
+                    "Lake Krysta"
+                  ],
+                  "Postcode": "ZZ1 XX2",
+                  "Country": "UK"
+                }
+              },
+              "AnticipatedPlea": "Not Guilty",
+              "UniqueID": "RLVEDVHP23F5",
+              "CJSCode": {
+                "Code": {
+                  "Alternative": {
+                    "ActOrSource": "OF",
+                    "Year": "61"
+                  },
+                  "Reason": "016"
+                }
+              },
+              "Description": "OF61016 - Section 18 - wounding with intent",
+              "Category": "Summary Only",
+              "FromDate": "2019-02-10",
+              "ToDate": "2019-03-01"
+            }
+          ],
+          "Person": {
+            "PolicePreChargeRemand": {
+              "PolicePreChargeRemandStatus": "Released Under Investigation",
+              "ProposedRemandAfterCharge": "Summons"
+            },
+            "UniqueId": "POHGHCTDPO7G",
+            "Name": {
+              "GivenName": "Aurelio",
+              "FamilyName": "Abernathy"
+            },
+            "DateOfBirth": "1992-09-08",
+            "ContactDetails": {
+              "Address": {
+                "AddressLine": [
+                  "80127",
+                  "1599 Nannie Light",
+                  "Lake Krysta"
+                ],
+                "Postcode": "NE1 1BB",
+                "Country": "UK"
+              },
+              "ContactNumber": [
+                {
+                  "Number": {
+                    "TelNationalNumber": "07270528349"
+                  },
+                  "TypeOfNumber": "mobile"
+                },
+                {
+                  "Number": {
+                    "TelNationalNumber": "01914264424"
+                  },
+                  "TypeOfNumber": "home"
+                }
+              ],
+              "Email": "ashlie.stanton@yahoo.com"
+            },
+            "PersonClassification": [
+              {
+                "ClassificationType": "StatusInformation",
+                "ClassificationCode": "SuspectDecisionPriority",
+                "ClassificationValue": {
+                  "ClassificationValueText": "Green"
+                }
+              }
+            ]
+          },
+          "ASN": {
+            "Year": "26",
+            "Force": "45",
+            "Unit": "AA",
+            "System": "00",
+            "Number": "24226724999",
+            "CheckCharacter": "B"
+          },
+          "DefenceSolicitor": {
+            "Firm": "Goodwin-Cole",
+            "UniqueId": "Z473Q71D4THF",
+            "Name": {
+              "Title": "Mr",
+              "GivenName": "Felipe",
+              "FamilyName": "Marvin"
+            },
+            "ContactDetails": {
+              "Address": {
+                "AddressLine": [
+                  "80127",
+                  "1599 Nannie Light",
+                  "Lake Krysta"
+                ],
+                "Postcode": "NE1 1AB",
+                "Country": "UK"
+              },
+              "ContactNumber": [
+                {
+                  "Number": {
+                    "TelNationalNumber": "01312345678"
+                  },
+                  "TypeOfNumber": "work"
+                }
+              ],
+              "Email": "lance.marquardt@yahoo.com"
+            }
+          },
+          "VersionId": "1"
+        }
+      ],
+      "CaseContacts": [
+        {
+          "UniqueId": "POL997942177",
+          "Name": {
+            "Title": "PC",
+            "GivenName": [
+              "BENJAMIN",
+              "JOHN"
+            ],
+            "FamilyName": "MORGAN"
+          },
+          "ContactDetails": {
+            "Address": {
+              "AddressLine": [
+                "SOUTH WALES POLICE - CENTRAL DIVISION BRIDGEND SOUTH WALES POLICE HEADQUARTERS",
+                "COWBRIDGE ROAD",
+                "BRIDGEND",
+                "BRIDGEND"
+              ],
+              "Postcode": "CF313SU",
+              "Country": "UK"
+            },
+            "ContactNumber": [
+              {
+                "Number": {
+                  "TelCountryCode": "44",
+                  "TelNationalNumber": "07584770642"
+                },
+                "TypeOfNumber": "mobile"
+              }
+            ],
+            "Email": "benjamin.morgan@south-wales.police.uk",
+            "ContactPreferences": {
+              "PreferredMethod": "Email"
+            }
+          },
+          "PersonClassification": [
+            {
+              "ClassificationType": "RoleInCase",
+              "ClassificationCode": "Role",
+              "ClassificationValue": {
+                "ClassificationValueText": "Supervising Officer"
+              }
+            }
+          ],
+          "Officer": {
+            "PoliceOfficerRank": "Sergeant",
+            "ShoulderNumber": "SWP5275"
+          }
+        },
+        {
+          "UniqueId": "POL936698613",
+          "Name": {
+            "GivenName": [
+              "BARBARA",
+              "dtSWPPC"
+            ],
+            "FamilyName": "RAMSEY"
+          },
+          "ContactDetails": {
+            "Address": {
+              "AddressLine": [
+                "SOUTH WALES CONSTABULARY SWANSEA CENTRAL POLICE STATION",
+                "GROVE PLACE",
+                "CITY CENTRE",
+                "SWANSEA",
+                "SWANSEA"
+              ],
+              "Postcode": "SA15EA",
+              "Country": "UK"
+            },
+            "ContactNumber": [
+              {
+                "Number": {
+                  "TelNationalNumber": "07700900006"
+                },
+                "TypeOfNumber": "work"
+              }
+            ],
+            "Email": "BARBARA.RAMSEY@south-wales.police.uk",
+            "ContactPreferences": {
+              "PreferredMethod": "Work Tel"
+            }
+          },
+          "PersonClassification": [
+            {
+              "ClassificationType": "RoleInCase",
+              "ClassificationCode": "Role",
+              "ClassificationValue": {
+                "ClassificationValueText": "Officer In Case"
+              }
+            },
+            {
+              "ClassificationType": "RoleInCase",
+              "ClassificationCode": "Role",
+              "ClassificationValue": {
+                "ClassificationValueText": "Disclosure Officer"
+              }
+            }
+          ],
+          "Officer": {
+            "PoliceOfficerRank": "Constable",
+            "ShoulderNumber": "SWP99006"
+          }
+        }
+      ],
+      "AssociatedCases": null
+    }
+  }
+}
+
+script:post-response {
+  const response = res.getBody();
+  
+  bru.setGlobalEnvVar("DcfCaseRequestId",response.requestId);
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

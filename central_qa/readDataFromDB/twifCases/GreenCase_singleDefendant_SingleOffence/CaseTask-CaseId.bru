@@ -21,11 +21,11 @@ script:post-response {
   let response = res.getBody();
    
   // Find the item with the desired type
-  let targetItem = response.find(item => item.type === "Check New PCD Case");
+  let targetItem = response.find(item => item.type === "28 day PCD Review");
    
   if (targetItem) {
       // Log the ID to the console
-      console.log("ID for 'Check New PCD Case':", targetItem.id);
+      console.log("ID for '28 day PCD Review':", targetItem.id);
    
       // Optionally store it in an environment variable
       bru.setEnvVar("pcd_task_id", targetItem.id);
