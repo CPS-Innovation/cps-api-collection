@@ -1,0 +1,16 @@
+meta {
+  name: PreChargeDecision
+  type: http
+  seq: 21
+}
+
+post {
+  url: {{StagingWmUrl}}/api/cases/{{TwifCaseId}}/triage/{{Twif_pcd_task_id}}/preChargeDecision
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

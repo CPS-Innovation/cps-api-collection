@@ -1,0 +1,668 @@
+meta {
+  name: DCF-CJ01- with hearing data
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{CaseCreate_Url}}/api/dcf/cj01
+  body: json
+  auth: inherit
+}
+
+headers {
+  X-Auth-Cookie: {{CaseCreateDcfAuthValue}}
+}
+
+body:json {
+  {
+    "ItemId": "{{DCFCM01itemId}}",
+    "PTIURN": {
+      "Force": "{{DcfForce}}",
+      "Unit": "{{DcfUnit}}",
+      "Number": "{{DCFPtiUrnNumber}}",
+      "Year": "{{DcfYear}}"
+    },
+    "CPSUnit": {
+      "TopLevel": "{{DcfToplevel}}",
+      "SecondLevel": "{{DcfSecondlevel}}",
+      "ThirdLevel": "{{DcfThirdlevel}}",
+      "BottomLevel": "{{DcfBottomlevel}}"
+    },
+    "OperationName": "{{$randomFileName}}",
+    "CaseClassification": [
+      {
+        "ClassificationType": "Case Monitoring",
+        "ClassificationCode": "Major or Complex Investigation Protocol",
+        "ClassificationValue": {
+          "ClassificationValueFlag": false
+        }
+      },
+      {
+        "ClassificationType": "Case Monitoring",
+        "ClassificationCode": "Pre Charge Decision",
+        "ClassificationValue": {
+          "ClassificationValueFlag": true
+        }
+      },
+      {
+        "ClassificationType": "Case Monitoring",
+        "ClassificationCode": "Not Guilty Anticipated Plea",
+        "ClassificationValue": {
+          "ClassificationValueFlag": true
+        }
+      }
+    ],
+    "Defendant": [
+      {
+        "DefenceSolicitor": {
+          "UniqueId": "{{SolicitorRef}}",
+          "Name": {
+            "Title": "Ms",
+            "GivenName": [
+              "{{$randomFirstName}}"
+            ],
+            "FamilyName": "{{$randomLastName}}"
+          },
+          "ContactDetails": {
+            "Address": {
+              "AddressLine": [
+                "18 FISHGUARD ROAD",
+                "LLANISHEN",
+                "CARDIFF",
+                "CARDIFF"
+              ],
+              "Postcode": "CF145PP",
+              "Country": "UK"
+            }
+          },
+          "Firm": "Sample Solicitor"
+        },
+        "ASN": {
+          "Year": "{{DcfYear}}",
+          "Force": "{{DcfForce}}",
+          "Unit": "{{DcfUnit}}",
+          "System": "00",
+          "Number": "{{ASNNumber}}",
+          "CheckCharacter": "X"
+        },
+        "VersionId": 1,
+        "CandidateCourtOrders": {
+          "Excluded": "N/A for this case"
+        },
+        "Person": {
+          "UniqueId": "{{DefPersonId1}}",
+          "Name": {
+            "Title": "Mr",
+            "GivenName": "{{$randomLastName}}",
+            "FamilyName": "{{$randomFirstName}}"
+          },
+          "ContactDetails": {
+            "Address": {
+              "AddressLine": [
+                "58 BLAISE PLACE",
+                "LECKWITH",
+                "CARDIFF",
+                "CARDIFF"
+              ],
+              "Postcode": "CF116JR",
+              "Country": "UK"
+            },
+            "ContactNumber": [
+              {
+                "Number": {
+                  "TelCountryCode": "44",
+                  "TelNationalNumber": "00781100000"
+                },
+                "TypeOfNumber": "mobile"
+              }
+            ],
+            "Email": "ROSSDCFADULT@JOTMAIL.COM"
+          },
+          "PersonClassification": [
+            {
+              "ClassificationType": "StatusInformation",
+              "ClassificationCode": "PrisonerOnLicense",
+              "ClassificationValue": {
+                "ClassificationValueFlag": false
+              }
+            },
+            {
+              "ClassificationType": "StatusInformation",
+              "ClassificationCode": "ACROConvictions",
+              "ClassificationValue": {
+                "ClassificationValueText": "Not Applicable"
+              }
+            },
+            {
+              "ClassificationType": "Language",
+              "ClassificationCode": "SelfDefinedPreferredLanguageHearing",
+              "ClassificationValue": {
+                "ClassificationValueText": "English"
+              }
+            },
+            {
+              "ClassificationType": "Language",
+              "ClassificationCode": "SelfDefinedPreferredLanguageCorrespondence",
+              "ClassificationValue": {
+                "ClassificationValueText": "English"
+              }
+            },
+            {
+              "ClassificationType": "EqualityDiversity",
+              "ClassificationCode": "SelfDefinedGender",
+              "ClassificationValue": {
+                "ClassificationValueText": "Male"
+              }
+            },
+            {
+              "ClassificationType": "StatusInformation",
+              "ClassificationCode": "PreviousTransgression",
+              "ClassificationValue": {
+                "ClassificationValueText": "Complete - Positive"
+              }
+            },
+            {
+              "ClassificationType": "Charging",
+              "ClassificationCode": "InitiatedBy",
+              "ClassificationValue": {
+                "ClassificationValueText": "Charge"
+              }
+            }
+          ],
+          "DateOfBirth": "2004-03-20",
+          "Nationality": "Wales",
+          "Occupation": "Doorman",
+          "PolicePostChargeRemand": {
+            "PolicePostChargeRemandStatus": "Unconditional Bail"
+          }
+        },
+        "Offence": [
+          {
+            "UniqueId": "{{CaseOffenceId1}}",
+            "CPR": {
+              "DefendantOffender": {
+                "Year": "26",
+                "OrganisationUnit": {
+                  "TopLevel": "0",
+                  "SecondLevel": "00",
+                  "ThirdLevel": "00",
+                  "BottomLevel": "00"
+                },
+                "Number": "07324702611",
+                "CheckDigit": "X"
+              },
+              "OffenceCode": {
+                "Code": {
+                  "Reason": "102",
+                  "Alternative": {
+                    "ActOrSource": "OF",
+                    "Year": "61"
+                  }
+                }
+              },
+              "OffenceSequence": "001"
+            },
+            "ASNSequenceNumber": "001",
+            "CJSCode": {
+              "Code": {
+                "Reason": "102",
+                "Alternative": {
+                  "ActOrSource": "OF",
+                  "Year": "61"
+                }
+              }
+            },
+            "Description": "Assault a person thereby occasioning them actual bodily harm",
+            "OffenceWording": "The summary of the offence goes in here. Victim was walking along the street, when she was approached by the suspect who is known to her, who then punched her to the nose, causing bruising and bleeding.",
+            "Category": "Either Way",
+            "ArrestDate": "2025-01-17",
+            "StartDate": "2025-01-15",
+            "ChargeDate": "2025-01-17",
+            "AnticipatedPlea": "Not Guilty",
+            "CustodyOfficer": "{{CustodyOfficer}}",
+            "ChargingOfficer": "{{ChargingOfficer}}"
+          }
+        ],
+        "FirstHearing": {
+          "CourtID": {
+            "TopLevel": "B",
+            "SecondLevel": "62",
+            "ThirdLevel": "DC",
+            "BottomLevel": "00"
+          },
+          "CourtRoom": 1,
+          "TypeOfCourt": "Magistrates Court",
+          "DateAndTime": "2026-01-27T05:00:00.000Z"
+        },
+        "OffencesTIC": [
+          {
+            "SequenceNumber": 1,
+            "CrimeReferenceNumber": "CR227365341",
+            "Location": "Oxford",
+            "StartDateOfOffence": "2023-06-20",
+            "CJSCode": {
+              "Code": {
+                "Reason": "102",
+                "Alternative": {
+                  "ActOrSource": "OF",
+                  "Year": "61"
+                }
+              }
+            },
+            "RelevantFactors": "Inconvenienced home owner",
+            "VictimName": "Mark Henry",
+            "Property": "House",
+            "AcceptanceDate": "2020-01-05",
+            "Comment": "Tried to steal bricks from a house"
+          },
+          {
+            "SequenceNumber": 2,
+            "CrimeReferenceNumber": "CR872876252",
+            "Location": "Leatherhead",
+            "StartDateOfOffence": "2023-06-20",
+            "CJSCode": {
+              "Code": {
+                "Reason": "102",
+                "Alternative": {
+                  "ActOrSource": "OF",
+                  "Year": "61"
+                }
+              }
+            },
+            "RelevantFactors": "Footprint",
+            "VictimName": "John Cena",
+            "Property": "Rear garden",
+            "AcceptanceDate": "2020-01-06",
+            "Comment": "Damaged lawn by stepping on it"
+          },
+          {
+            "SequenceNumber": 3,
+            "CrimeReferenceNumber": "CR28973263",
+            "Location": "Watford",
+            "StartDateOfOffence": "2023-06-20",
+            "CJSCode": {
+              "Code": {
+                "Reason": "102",
+                "Alternative": {
+                  "ActOrSource": "OF",
+                  "Year": "61"
+                }
+              }
+            },
+            "RelevantFactors": "No body found",
+            "VictimName": "The Rock",
+            "Property": "Body",
+            "AcceptanceDate": "2020-01-07",
+            "Comment": "Admitted it during interview"
+          }
+        ],
+        "BreachOfBail": {
+          "UniqueId": "BOB_1",
+          "BreachDetails": "Breach details",
+          "KeyEvidence": "Key evidence",
+          "ExistingBailBreached": "Bail breached",
+          "BreachArrestDate": "2026-01-27T05:00:00.000Z"
+        },
+      }
+    ],
+    "RationaleForCharge": {
+      "EvidentialAssessment": "Full Code Test met.",
+      "PublicInterestAssessment": "Public interest test passed."
+    },
+    "CaseContacts": [
+      {
+        "UniqueId": "{{ConstablePersonId}}",
+        "Name": {
+          "Title": "PC",
+          "GivenName": "{{$randomLastName}}",
+          "FamilyName": "{{$randomFirstName}}"
+        },
+        "ContactDetails": {
+          "Address": {
+            "AddressLine": [
+              "SOUTH WALES POLICE - CENTRAL DIVISION BRIDGEND SOUTH WALES POLICE HEADQUARTERS",
+              "COWBRIDGE ROAD",
+              "BRIDGEND",
+              "BRIDGEND"
+            ],
+            "Postcode": "CF313SU",
+            "Country": "UK"
+          },
+          "ContactNumber": [
+            {
+              "Number": {
+                "TelCountryCode": "44",
+                "TelNationalNumber": "07584770642"
+              },
+              "TypeOfNumber": "mobile"
+            }
+          ],
+          "Email": "benjamin.morgan@south-wales.police.uk",
+          "ContactPreferences": {
+            "PreferredMethod": "Email"
+          }
+        },
+        "PersonClassification": [
+          {
+            "ClassificationType": "RoleInCase",
+            "ClassificationCode": "Role",
+            "ClassificationValue": {
+              "ClassificationValueText": "Supervising Officer"
+            }
+          }
+        ],
+        "Officer": {
+          "PoliceOfficerRank": "Sergeant",
+          "ShoulderNumber": "SWP5275"
+        }
+      },
+      {
+        "UniqueId": "POL784789485",
+        "Name": {
+          "GivenName": "{{$randomLastName}}",
+          "FamilyName": "{{$randomFirstName}}"
+        },
+        "ContactDetails": {
+          "Address": {
+            "AddressLine": [
+              "SOUTH WALES CONSTABULARY SWANSEA CENTRAL POLICE STATION",
+              "GROVE PLACE",
+              "CITY CENTRE",
+              "SWANSEA",
+              "SWANSEA"
+            ],
+            "Postcode": "SA15EA",
+            "Country": "UK"
+          },
+          "ContactNumber": [
+            {
+              "Number": {
+                "TelNationalNumber": "07700900006"
+              },
+              "TypeOfNumber": "work"
+            }
+          ],
+          "Email": "BARBARA.RAMSEY@south-wales.police.uk",
+          "ContactPreferences": {
+            "PreferredMethod": "Work Tel"
+          }
+        },
+        "PersonClassification": [
+          {
+            "ClassificationType": "RoleInCase",
+            "ClassificationCode": "Role",
+            "ClassificationValue": {
+              "ClassificationValueText": "Officer In Case"
+            }
+          },
+          {
+            "ClassificationType": "RoleInCase",
+            "ClassificationCode": "Role",
+            "ClassificationValue": {
+              "ClassificationValueText": "Disclosure Officer"
+            }
+          }
+        ],
+        "Officer": {
+          "PoliceOfficerRank": "Constable",
+          "ShoulderNumber": "SWP99006"
+        }
+      }
+    ],
+    "FactualSummary": {
+      "Paragraphs": [
+        {
+          "ItemHeading": {
+            "ClassificationType": "Police Narrative",
+            "ClassificationCode": "Factual Summary",
+            "ClassificationValue": {
+              "ClassificationValueText": "Summary of Circumstances of Offence(s)"
+            }
+          },
+          "ItemText": "The summary of the offence goes in here. Victim was walking along the street, when she was approached by the suspect who is known to her, who then punched her to the nose, causing bruising and bleeding."
+        },
+        {
+          "ItemHeading": {
+            "ClassificationType": "Police Narrative",
+            "ClassificationCode": "Factual Summary",
+            "ClassificationValue": {
+              "ClassificationValueText": "Arrest Details"
+            }
+          },
+          "ItemText": "What was the date and time of arrest? 17/01/2025 05:00 \n\tReply to caution (if no reply, state 'None') I didn't do anything. \n\tWhat was the location of arrest? TESCO SUPERSTORE, TESCO APPROACH ROAD, UPPER BOAT, PONTYPRIDD, RHONDDA CYNON TAF UK CF37 5SN (TESCO)",
+          "PersonUniqueId": "{{DefPersonId1}}"
+        },
+        {
+          "ItemHeading": {
+            "ClassificationType": "Police Narrative",
+            "ClassificationCode": "Factual Summary",
+            "ClassificationValue": {
+              "ClassificationValueText": "Interview Summary"
+            }
+          },
+          "ItemText": "Date of interview: 18/01/2025 08:52\n\tInterview duration: 1h 8mi \n\tInterviewing officer(s) present during the interview: Constable #SWP99029 READY, BRYAN; Constable #SWP99006 RAMSEY, BARBARA; \n\tAppropriate adult(s) present during the interview: \n\tInterpreter(s) used during the interview: \n\tLegal representative(s) used during the interview: RIOS, BRYCE; \n\tWas the interview a no comment interview? No \n\tDid the suspect provide a prepared statement during the interview? No \n\tWere any special warnings given? No\n\tDuring the interview was the suspect shown any multi-media? No \n\tWere any admissions made? No \n\tDuring the interview the suspect made the following denials Maintained he wasnt in the area as he was not at work that day and had no reason to be there. Denied seeing the Victim that day. \n\tDid the suspect raise any defences? No \n\tHas the suspect offered any mitigation? No",
+          "PersonUniqueId": "{{DefPersonId1}}"
+        },
+        {
+          "ItemHeading": {
+            "ClassificationType": "Police Narrative",
+            "ClassificationCode": "Factual Summary",
+            "ClassificationValue": {
+              "ClassificationValueText": "Witness Involvement"
+            }
+          },
+          "ItemText": "What is the evidence the key witness can give? Gives evidence of arrest and interview and speaking to Victim.",
+          "PersonUniqueId": "{{ConstablePersonId}}"
+        },
+        {
+          "ItemHeading": {
+            "ClassificationType": "Police Narrative",
+            "ClassificationCode": "Factual Summary",
+            "ClassificationValue": {
+              "ClassificationValueText": "Witness Involvement"
+            }
+          },
+          "ItemText": "What is the evidence the key witness can give? Victim will state suspect approached her outside work and hit her in an unprovoked atwifack.",
+          "PersonUniqueId": "{{DefPersonId2}}"
+        },
+        {
+          "ItemHeading": {
+            "ClassificationType": "Police Narrative",
+            "ClassificationCode": "Factual Summary",
+            "ClassificationValue": {
+              "ClassificationValueText": "Injuries"
+            }
+          },
+          "ItemText": "Description of injuries Victim claims she has had a bloody nose, but nothing is visible. \n\tWas medical treatment received? No",
+          "PersonUniqueId": "{{DefPersonId2}}"
+        }
+      ]
+    },
+    "CITP": {
+      "Paragraphs": [
+        {
+          "ItemHeading": {
+            "ClassificationType": "Police Narrative",
+            "ClassificationCode": "Confidential Information",
+            "ClassificationValue": {
+              "ClassificationValueText": "Reasonable Lines of Enquiry"
+            }
+          },
+          "ItemText": "Summary of reasonable lines of enquiry pursued, ongoing, or contemplated particularly those that point away from the suspect(s), or which may assist the defence including the rationale for any lines of enquiry not pursued (social media and mobile phones / electronic devices are covered elsewhere so you do not need to cover these here): This is a summary of the enquiries which have been conducted so far. There is no social media or phones which are relevant. No cctv in the area. Have any social media accounts been considered as a reasonable line of enquiry in this case? No Provide the rationale as to why no social media accounts have been considered as a reasonable line of enquiry in this case Facebook has been checked and X. There is nothing relevant which would assist in this case Provide the rationale as to why no mobile / electronic devices have been considered as a reasonable line of enquiry in this case Not relevant for this offence ** Suspect: SIMPSON, ROSS DCFADULT ** Explanation offered by the suspect: Suspect stated he was nowhere near his workplace that day."
+        },
+        {
+          "ItemHeading": {
+            "ClassificationType": "Police Narrative",
+            "ClassificationCode": "Confidential Information",
+            "ClassificationValue": {
+              "ClassificationValueText": "Evidential Issues"
+            }
+          },
+          "ItemText": "There are no visible injuries to the victim."
+        },
+        {
+          "ItemHeading": {
+            "ClassificationType": "Police Narrative",
+            "ClassificationCode": "Confidential Information",
+            "ClassificationValue": {
+              "ClassificationValueText": "Any Other Confidential Information"
+            }
+          },
+          "ItemText": "The victim has been a bit evasive about the history between her and the suspect bearing in mind they work together."
+        },
+        {
+          "ItemHeading": {
+            "ClassificationType": "Police Narrative",
+            "ClassificationCode": "Confidential Information",
+            "ClassificationValue": {
+              "ClassificationValueText": "Other Offenders"
+            }
+          },
+          "ItemText": "We believe there are other offenders"
+        }
+      ]
+    }
+  }
+}
+
+script:pre-request {
+  function generateFiveDigitNumber() {
+      return Math.floor(10000 + Math.random() * 90000);}
+  
+  function generateSevenDigitNumber() {
+      return Math.floor(1000000 + Math.random() * 9000000);}
+  
+  function generateElevenDigitNumber() {
+      return Math.floor(10000000000 + Math.random() * 90000000000);}
+  
+  function generateNineDigitNumber() {
+      return Math.floor(100000000 + Math.random() * 900000000);}
+  
+  function generateUppercaseAlphaNumeric(length) {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let result = '';
+      for (let i = 0; i < length; i++) {
+          result += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return result;
+  }
+  
+  const moment = require("moment");
+  const now = moment().format("YYYY-MM-DD");
+  const plus28days = moment().add(28, "days").format("YYYY-MM-DD");
+  const plus5days = moment().add(5, "days").format("YYYY-MM-DD");
+  
+  bru.setGlobalEnvVar("todayDate", now);
+  bru.setGlobalEnvVar("plus28Date", plus28days);
+  bru.setGlobalEnvVar("plus28Date", plus5days);
+  
+  
+  let greenCase = "G"
+  let redCase = "R"
+  
+  let force = "62";
+  let unit = "AC";
+  let year = "26";
+  
+  let toplevel  = "A";
+  let secondlevel = "62";
+  let thirdlevel = "AC";
+  let bottomlevel = "00";
+  
+  bru.setGlobalEnvVar("DcfGreenCase", greenCase);
+  bru.setGlobalEnvVar("DcffRedCase", redCase);
+  
+  bru.setGlobalEnvVar("DcfForce", force);
+  bru.setGlobalEnvVar("DcfUnit", unit);
+  bru.setGlobalEnvVar("DcfYear", year);
+  bru.setGlobalEnvVar("DcfToplevel", toplevel);
+  bru.setGlobalEnvVar("DcfSecondlevel", secondlevel);
+  bru.setGlobalEnvVar("DcfThirdlevel", thirdlevel);
+  bru.setGlobalEnvVar("DcfBottomlevel", bottomlevel);
+  
+  
+  let ptiURN = generateFiveDigitNumber();
+  let cm01 = generateUppercaseAlphaNumeric(12);
+  
+  let defPer1 = generateUppercaseAlphaNumeric(12);
+  let defPer2 = generateUppercaseAlphaNumeric(12);
+  let defPer3 = generateUppercaseAlphaNumeric(12);
+  let defPer4 = generateUppercaseAlphaNumeric(12);
+  let defPer5 = generateUppercaseAlphaNumeric(12);
+  
+  let caseOff1 = generateUppercaseAlphaNumeric(12);
+  let caseOff2 = generateUppercaseAlphaNumeric(12);
+  let caseOff3 = generateUppercaseAlphaNumeric(12);
+  
+  let asnNumber = generateElevenDigitNumber();
+  let policeNumber = generateNineDigitNumber();
+  let policeNumber2 = generateNineDigitNumber();
+  
+  let soliciRef = generateUppercaseAlphaNumeric(12);
+  let SerShoNo = generateUppercaseAlphaNumeric(10);
+  let SerPerId = generateUppercaseAlphaNumeric(10);
+  let ConsShoNo = generateFiveDigitNumber(5);
+  let ConsPerId = generateUppercaseAlphaNumeric(10);
+  let CourtOrderId = generateUppercaseAlphaNumeric(5);
+  let CourtOrderId2 = generateUppercaseAlphaNumeric(5);
+  let wtRef = generateUppercaseAlphaNumeric(12);
+  let victimRef = generateUppercaseAlphaNumeric(12);
+  
+  
+  bru.setGlobalEnvVar("DCFCM01itemId", cm01);
+  bru.setGlobalEnvVar("DCFPtiUrnNumber", ptiURN);
+  
+  bru.setGlobalEnvVar("DefPersonId1", defPer1);
+  bru.setGlobalEnvVar("DefPersonId2", defPer2);
+  bru.setGlobalEnvVar("DefPersonId3", defPer3);
+  bru.setGlobalEnvVar("DefPersonId4", defPer4);
+  bru.setGlobalEnvVar("DefPersonId5", defPer5);
+  
+  bru.setGlobalEnvVar("CaseOffenceId1", caseOff1);
+  bru.setGlobalEnvVar("CaseOffenceId2", caseOff2);
+  bru.setGlobalEnvVar("CaseOffenceId3", caseOff3);
+  
+  bru.setGlobalEnvVar("SolicitorRef", soliciRef);
+  
+  bru.setGlobalEnvVar("ASNNumber", asnNumber);
+  bru.setGlobalEnvVar("CustodyOfficer", policeNumber);
+  bru.setGlobalEnvVar("ChargingOfficer", policeNumber2);
+  
+  
+  bru.setGlobalEnvVar("SergeantShoulderNo", SerShoNo);
+  bru.setGlobalEnvVar("SergeantPersonId", SerPerId);
+  bru.setGlobalEnvVar("ConstableShoulderNo", "PC"+ConsShoNo);
+  bru.setGlobalEnvVar("ConstablePersonId", ConsPerId);
+  bru.setGlobalEnvVar("CourtOrderId", CourtOrderId);
+  bru.setGlobalEnvVar("CourtOrderId2", CourtOrderId);
+  bru.setGlobalEnvVar("WitnessRef_1", wtRef);
+  bru.setGlobalEnvVar("VictimRef_1", victimRef);
+  
+  console.log("DCFCM01itemId:", cm01);
+  console.log("DCFPtiUrnNumber:", ptiURN);
+  
+  console.log("ASNNumber:", asnNumber);
+  console.log("ConstableShoulderNo:", "PC"+ConsShoNo);
+  
+  console.log("WitnessRef_1:", wtRef);
+  console.log("VictimRef_1:", victimRef);
+  
+  
+  
+  
+  
+  
+}
+
+script:post-response {
+  const response = res.getBody();
+  
+  bru.setGlobalEnvVar("DcfCaseRequestId",response.requestId);
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

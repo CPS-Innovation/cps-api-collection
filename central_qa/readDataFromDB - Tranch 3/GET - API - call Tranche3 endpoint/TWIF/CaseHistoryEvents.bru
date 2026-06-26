@@ -1,0 +1,78 @@
+meta {
+  name: CaseHistoryEvents
+  type: http
+  seq: 22
+}
+
+get {
+  url: {{StagingWmUrl}}/api/cases/{{GetCaseId}}/history
+  body: formUrlEncoded
+  auth: inherit
+}
+
+headers {
+  Cms-Auth-Values: {{StagingGetAuthValue}}
+  x-functions-key: {{StagingWmKey}}
+  User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+}
+
+script:pre-request {
+  
+  
+  
+  
+  
+}
+
+script:post-response {
+  // let response = res.getBody();
+   
+  // // Find the item with the desired type
+  // let PCDTriage = response.find(item => item.name === "PCD Triage");
+   
+  // if (PCDTriage) {
+  //     // Log the ID to the console
+  //     console.log("ID for 'PCD Triage':", PCDTriage.id);
+   
+  //     // Optionally store it in an environment variable
+  //     bru.setGlobalEnvVar("PCD_Triage_Id", PCDTriage.id);
+  // } else {
+  //     console.log("Type 'PCD Triage' not found.");
+  // }
+  
+  const data = res.body;
+  
+  const map = Object.fromEntries(
+    data.map(item => [item.name, item.id])
+  );
+  
+  
+  let PrechargeDecision = "Pre-charge Decision";
+  const prechargeDecisionId = map[PrechargeDecision];
+  console.log("Pre-charge DecisionId ID:", prechargeDecisionId);
+  bru.setGlobalEnvVar("Pre_Charge_Decision_Id", prechargeDecisionId);
+  
+  let PCDTriage = "PCD Triage";
+  const pcdTriageId = map[PCDTriage];
+  console.log("PCDTriage ID:", pcdTriageId);
+  bru.setGlobalEnvVar("PCD_Triage_Id", pcdTriageId);
+  
+  let PCDRequest = "PCD Request";
+  const pcdRequestId = map[PCDRequest];
+  console.log("PCDRequest ID:", pcdRequestId);
+  bru.setGlobalEnvVar("PCD_Request_Id", pcdRequestId);
+  
+  
+  let Registration = "Registration";
+  const registrationId = map[Registration];
+  console.log("Registration ID:", registrationId);
+  bru.setGlobalEnvVar("RegistrationId_Id", registrationId);
+  
+  
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

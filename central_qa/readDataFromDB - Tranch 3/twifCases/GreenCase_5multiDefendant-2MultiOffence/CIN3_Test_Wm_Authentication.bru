@@ -1,0 +1,43 @@
+meta {
+  name: CIN3_Test_Wm_Authentication
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{StagingWmUrl}}/api/authenticate
+  body: formUrlEncoded
+  auth: inherit
+}
+
+headers {
+  accept: application/json
+  x-functions-key: {{StagingWmKey}}
+}
+
+body:form-urlencoded {
+  username: {{TWIF_Username}}
+  password: {{TWIF_Password}}
+}
+
+script:post-response {
+  const response = res.getBody();
+   
+  bru.setGlobalEnvVar("StagingTwifAuthValue", JSON.stringify(response));
+   
+  console.log("environment variables set:", response);
+  
+  if (response.Token) {
+      bru.setGlobalEnvVar("StagingTwifAuthToken", response.Token);
+      console.log("StagingTwifAuthToken:", response.Token);
+  } else {
+      console.log("No Token");
+  }
+  
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

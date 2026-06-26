@@ -1,0 +1,40 @@
+meta {
+  name: CIN3_CaseCreate_Authentication
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{CaseCreate_AuthUrl}}/api/authenticate
+  body: formUrlEncoded
+  auth: inherit
+}
+
+headers {
+  accept: application/json
+  x-functions-key: {{CaseCreate_XfunKey}}
+}
+
+body:form-urlencoded {
+  username: {{TWIF_Username}}
+  password: {{TWIF_Password}}
+}
+
+script:post-response {
+  const response = res.getBody();
+   
+  bru.setGlobalEnvVar("CaseCreateTwifAuthValue", JSON.stringify(response));
+   
+  if (response.Token) {
+      bru.setGlobalEnvVar("CaseCreateTwifAuthToken", response.Token);
+  } else {
+      console.log("No Token");
+  }
+  
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
