@@ -1,0 +1,58 @@
+meta {
+  name: GetProsecutorId
+  type: http
+  seq: 20
+}
+
+get {
+  url: {{StagingWmUrl}}/api/cases/{{TwifCaseId}}/user-allocation-resources?resourceType=Prosecutor
+  body: formUrlEncoded
+  auth: inherit
+}
+
+params:query {
+  resourceType: Prosecutor
+}
+
+headers {
+  Cms-Auth-Values: {{StagingGetAuthValue}}
+  x-functions-key: {{StagingWmKey}}
+  User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+}
+
+script:post-response {
+  
+  let response = res.getBody();
+  
+  const resourceId = response.resources.filter(r => r.surname === "Govindachar")[0].resourceId;
+  
+  // console.log(resourceId);
+  
+  bru.setGlobalEnvVar("prosecutorId", resourceId);
+  
+  // bru.setGlobalEnvVar("twifPartyId", response[0].partyId);
+  
+  // // console.log("Partid ID :", response[0].partyId);
+  
+  // // bru.setGlobalEnvVar("partyId", partyId);
+  
+  // // let response = res.getBody();
+   
+  // // Find the item with the desired type
+  // let targetItem = response.find(item => item.surname === "Govindachar");
+   
+  // if (targetItem) {
+  //     // Log the ID to the console
+  //     console.log("resourceId':", targetItem.resourceId);
+   
+  //     // Optionally store it in an environment variable
+  // //     bru.setGlobalEnvVar("28_day_PCD_Review", targetItem.id);
+  // } else {
+  //     console.log("No Resourece Id' not found.");
+  // }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
