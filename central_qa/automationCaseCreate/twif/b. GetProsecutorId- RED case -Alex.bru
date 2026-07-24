@@ -1,7 +1,7 @@
 meta {
-  name: GetProsecutorId
+  name: b. GetProsecutorId- RED case -Alex
   type: http
-  seq: 20
+  seq: 31
 }
 
 get {
@@ -24,7 +24,7 @@ script:post-response {
   
   let response = res.getBody();
   
-  const resourceId = response.resources.filter(r => r.surname === "Govindachar")[0].resourceId;
+  const resourceId = response.resources.filter(r => r.surname === "Alexander")[0].resourceId;
   
   // console.log(resourceId);
   

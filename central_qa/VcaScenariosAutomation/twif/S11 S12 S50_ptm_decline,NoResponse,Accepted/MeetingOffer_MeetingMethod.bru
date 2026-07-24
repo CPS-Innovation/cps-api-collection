@@ -1,0 +1,45 @@
+meta {
+  name: MeetingOffer_MeetingMethod
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{StagingWmUrl}}/api/victims/{{victimGuid}}/meeting-offers
+  body: json
+  auth: inherit
+}
+
+headers {
+  Cms-Auth-Values: {{StagingGetAuthValue}}
+  x-functions-key: {{StagingWmKey}}
+  User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+  Token: {{StagingGetAuthToken}}
+}
+
+body:json {
+  {
+      "MeetingType": 1,
+      "MeetingContextGuid": "{{$guid}}",
+      "MeetingOffered": true,
+      "MeetingRequested": false,
+      "MethodOfOffer": 1,
+      "DateOfOffer": "2026-07-17",
+      "CreatedBy": "automationUser"
+  }
+}
+
+script:post-response {
+  const response = res.getBody();
+  
+  bru.setEnvVar("meetingContextGuid",response.value.meetingContextGuid)
+  
+  console.log("meetingContextGuid:",bru.getEnvVar("meetingContextGuid")); 
+  
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

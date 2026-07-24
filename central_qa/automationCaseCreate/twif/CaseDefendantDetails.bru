@@ -1,7 +1,7 @@
 meta {
   name: CaseDefendantDetails
   type: http
-  seq: 10
+  seq: 16
 }
 
 get {
@@ -18,20 +18,23 @@ headers {
 
 script:post-response {
   const response = res.getBody();
-  bru.setGlobalEnvVar("TwifDefendantPersonId",response.defendants[0].id);
-  
-  console.log("TwifdefendantPersonId:",bru.getGlobalEnvVar("TwifdefendantPersonId")); 
   
   
-  // const response = res.getBody();
-  // // Ensure that there's at least one defendant and access the witnessId of the first defendant
-  // const defendant = response.defendants && response.defendants.length > 0 ? response.defendants[0] : null;
-  // if (defendant) {
-  //   bru.setEnvVar("defendantPersonId", defendant.id);
-  //   console.log("defendantPersonId:", bru.getEnvVar("defendantPersonId"));
-  // } else {
-  //   console.log("No defendants found in the response.");
-  // }
+  const defId = response.defendants.find(
+    listOrder => listOrder.listOrder ===1)?.id;
+  
+  bru.setGlobalEnvVar("TwifDefendantPersonId",defId);
+  
+  // console.log("TwifdefendantPersonId:",bru.setGlobalEnvVar("TwifDefendantPersonId",defId)); 
+  
+  
+  
+  // console.log("TwifdefendantPersonId:",bru.setGlobalEnvVar("TwifDefendantPersonId", defId)); 
+  
+  // bru.setGlobalEnvVar("TwifDefendantPersonId",response.defendants[0].id);
+  
+  // console.log("TwifdefendantPersonId:",bru.getGlobalEnvVar("TwifdefendantPersonId")); 
+  
 }
 
 settings {

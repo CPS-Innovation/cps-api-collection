@@ -1,7 +1,7 @@
 meta {
   name: CaseVictimWitnessList
   type: http
-  seq: 11
+  seq: 17
 }
 
 get {
@@ -24,6 +24,8 @@ script:post-response {
   bru.setGlobalEnvVar("Twif_victimPersonId",response.filter(w => w.isWitnessAndVictim == true).filter(w => w.types == "V")[0].witnessId);
   
   bru.setGlobalEnvVar("Twif_witnessPersonId",response.filter(w => w.isWitnessAndVictim == false).filter(w => !w.types || w.types.length===0)[0].witnessId);
+  
+  bru.setGlobalEnvVar("Twif_pureVictimPersonId",response.filter(w => w.isPureVictim == true)[0].witnessId);
 }
 
 settings {
