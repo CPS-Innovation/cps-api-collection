@@ -18,11 +18,11 @@ headers {
 script:post-response {
   const response = res.getBody();
   
-  bru.setGlobalEnvVar("GetCaseId",response.caseId);
-  // console.log("GetCaseId:",bru.getGlobalEnvVar("GetCaseId")); 
+  bru.setGlobalEnvVar("TwifCaseId",response.caseId);
+  console.log("TwifCaseId:",bru.getGlobalEnvVar("TwifCaseId")); 
   
-  bru.setGlobalEnvVar("GetUrn",response.caseUrn);
-  // console.log("GetUrn:",bru.getGlobalEnvVar("GetUrn")); 
+  bru.setGlobalEnvVar("TwifCaseUrn",response.caseUrn);
+  console.log("TwifCaseUrn:",bru.getGlobalEnvVar("TwifCaseUrn")); 
 }
 
 settings {
