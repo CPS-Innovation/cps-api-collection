@@ -1,0 +1,53 @@
+meta {
+  name: PriorityNonNFS Complaint
+  type: http
+  seq: 9
+}
+
+post {
+  url: {{StagingWmUrl}}/api/cases/{{TwifCaseId}}/triage/{{pcd_task_id}}/preChargeDecision
+  body: text
+  auth: inherit
+}
+
+headers {
+  Cms-Auth-Values: {{StagingWmCMSAuthValue}}
+  x-functions-key: {{StagingWmKey}}
+  User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3)
+}
+
+body:text {
+  {
+    "decision": "NFS Non-Compliant",
+    "rejectedDecision": {
+      "rejectionReasons": [
+        {
+          "reasonId": "TRR13",
+          "reasonTitle": "No/missing Disclosure Schedule",
+          "additionalComments": "test missing disclosure"
+        },
+        {
+          "reasonId": "TRR02",
+          "reasonTitle": "No MG3",
+          "additionalComments": "test mg3 "
+        },
+        {
+          "reasonId": "TRR04",
+          "reasonTitle": "No DV Checklist",
+          "additionalComments": "test dv check"
+        }
+      ],
+      "actionPlanDue": "2026-06-11T10:36:59.690Z",
+      "chaseTaskDue": null
+    },
+    "caseType": "MC",
+    "decisionToBeMade": "Priority"
+  }
+  
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
