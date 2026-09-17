@@ -22,28 +22,38 @@ script:post-response {
       : res.getBody();
   
   const mg3 = response.find(doc => doc.subject === "MG3");
-  const mg3s = response.find(doc => doc.subject === "MG3s");
+  const mg3s = response.find(doc => doc.subject === "MG3S");
+  const mg3a = response.find(doc => doc.subject === "MG3A");
+  const mg3as = response.find(doc => doc.subject === "MG3As");
   
   // MG3
   bru.setVar("documentId_mg3", mg3 ? mg3.documentId : "");
   bru.setVar("materialId_mg3", mg3 ? mg3.materialId : "");
   
-  
   // MG3S
   bru.setVar("documentId_mg3s", mg3s ? mg3s.documentId : "");
   bru.setVar("materialId_mg3s", mg3s ? mg3s.materialId : "");
   
+  // MG3A
+  bru.setVar("documentId_mg3a", mg3a ? mg3a.documentId : "");
+  bru.setVar("materialId_mg3a", mg3a ? mg3a.materialId : "");
+  
+  // MG3AS
+  bru.setVar("documentId_mg3as", mg3as ? mg3as.documentId : "");
+  bru.setVar("materialId_mg3as", mg3as ? mg3as.materialId : "");
+  
   // Console output
-  17
   console.log("documentId_mg3:", mg3 ? mg3.documentId : "");
-  18
   console.log("materialId_mg3:", mg3 ? mg3.materialId : "");
-  19
-   
-  20
+  
   console.log("documentId_mg3s:", mg3s ? mg3s.documentId : "");
-  21
   console.log("materialId_mg3s:", mg3s ? mg3s.materialId : "");
+  
+  console.log("documentId_mg3a:", mg3a ? mg3a.documentId : "");
+  console.log("materialId_mg3a:", mg3a ? mg3a.materialId : "");
+  
+  console.log("documentId_mg3as:", mg3as ? mg3as.documentId : "");
+  console.log("materialId_mg3as:", mg3as ? mg3as.materialId : "");
 }
 
 settings {

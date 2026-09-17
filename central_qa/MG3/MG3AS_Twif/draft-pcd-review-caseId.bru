@@ -1,11 +1,11 @@
 meta {
-  name: /cases/{caseId}/documents/{materialId}/versions/{documentId}
+  name: /draft-pcd-review/caseId
   type: http
-  seq: 14
+  seq: 12
 }
 
 get {
-  url: {{StagingWmUrl}}/api/cases/{{TwifCaseId}}/documents/{{materialId_mg3s}}/versions/{{documentId_mg3s}}
+  url: {{StagingWmUrl}}/api/draft-pcd-review/caseId/{{TwifCaseId}}
   body: formUrlEncoded
   auth: inherit
 }
