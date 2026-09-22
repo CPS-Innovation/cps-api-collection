@@ -1,0 +1,92 @@
+meta {
+  name: DCF_LM06_Create_CaseMaterial
+  type: http
+  seq: 14
+}
+
+post {
+  url: {{CaseCreate_Url}}/api/dcf/lm06
+  body: json
+  auth: inherit
+}
+
+headers {
+  X-Auth-Cookie: {{CaseCreateDcfAuthValue}}
+}
+
+body:json {
+  {
+    "PTIURN": {
+       "Force": "{{DcfForce}}",
+        "Unit": "{{DcfUnit}}",
+        "Number": "{{DCFPtiUrnNumber}}",
+        "Year": "{{DcfYear}}"
+    },
+    "MaterialId": "{{LM06MaterialId}}",
+    "CaseMaterial": {
+      "ItemId": "{{LM06ItemId}}",
+      "PTIURN": {
+         "Force": "{{DcfForce}}",
+        "Unit": "{{DcfUnit}}",
+        "Number": "{{DCFPtiUrnNumber}}",
+        "Year": "{{DcfYear}}"
+      },
+      "MaterialId": "{{LM06MaterialId}}",
+      "Material": {
+        "MaterialClassification": [
+          {
+            "ClassificationType": "Purpose",
+            "ClassificationCode": "Material Type",
+            "ClassificationValue": {
+              "ClassificationValueText": "Physical Object"
+            }
+          }
+        ],
+        "Title": "Small bag containing herbal cannabis",
+        "Reference": "BR/2",
+        "ProducedByWitnessId": "{{VictimWitnessRef_1}}",
+        "RelatedParticipantId": "{{VictimVulnerableLM04ItemId}}"
+      },
+      "PoliceMaterialStatus": {
+        "DisclosureStatus": "Evidence",
+        "Rebuttable": false
+      }
+    }
+  }
+}
+
+script:pre-request {
+  
+  console.log("DCFCaseID:", bru.getGlobalEnvVar("DCFCaseID"));
+  console.log("DCFCaseUrn:", bru.getGlobalEnvVar("DCFCaseUrn"));
+  console.log("VictimWitnessRef_1:", bru.getGlobalEnvVar("VictimWitnessRef_1"));
+  console.log("CaseOffenceId:", bru.getGlobalEnvVar("CaseOffenceId"));
+  
+  console.log("DCFptnNo:", bru.getGlobalEnvVar("DCFptnNo"));
+  console.log("DCFforceNo:", bru.getGlobalEnvVar("DCFforceNo"));
+  console.log("DCFunit:", bru.getGlobalEnvVar("DCFunit"));
+  console.log("DCFyear:", bru.getGlobalEnvVar("DCFyear"));
+  
+  
+  function generateUppercaseAlphaNumeric(length) {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let result = '';
+      for (let i = 0; i < length; i++) {
+          result += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return result;
+  }
+  
+  let lm06VicWit = generateUppercaseAlphaNumeric(12);
+  bru.setGlobalEnvVar("LM06ItemId", lm06VicWit);
+  
+  const lm06MatId = generateUppercaseAlphaNumeric(12);
+  bru.setGlobalEnvVar("LM06MaterialId", lm06MatId);
+  
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

@@ -1,0 +1,138 @@
+meta {
+  name: DCF_LM04_Create_VictimWitness_1
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{CaseCreate_Url}}/api/dcf/lm04
+  body: json
+  auth: inherit
+}
+
+headers {
+  X-Auth-Cookie: {{CaseCreateDcfAuthValue}}
+}
+
+body:json {
+  {
+    "ItemId": "{{VicWitLM04ItemId}}",
+    "PTIURN": {
+      "Force": "{{DcfForce}}",
+      "Unit": "{{DcfUnit}}",
+      "Number": "{{DCFPtiUrnNumber}}",
+      "Year": "{{DcfYear}}"
+    },
+    "WitnessOrVictim": {
+      "CaseId": "{{DCFCaseID}}",
+      "ItemId": "{{VicWitLM04ItemId}}",
+      "PTIURN": {
+        "Force": "{{DcfForce}}",
+        "Unit": "{{DcfUnit}}",
+        "Number": "{{DCFPtiUrnNumber}}",
+        "Year": "{{DcfYear}}"
+      },
+      "UpdateStatus": {
+        "VersionId": "1",
+        "UpdateReasonType": "Create"
+      },
+      "VictimWitness": {
+        "Person": {
+          "UniqueId": "{{VictimWitnessRef_1}}",
+          "Name": {
+            "Type": "Real Name",
+            "Title": "Ms",
+            "GivenName": "LEXIE",
+            "MiddleName": "ADULT",
+            "FamilyName": "TERRY"
+          },
+          "ContactDetails": {
+            "Address": {
+              "AddressLine": [
+                "570A GWILI STREET",
+                "MAYHILL",
+                "SWANSEA",
+                "SWANSEA"
+              ],
+              "Postcode": "SA16TN",
+              "Country": "UK"
+            },
+            "ContactNumber": {
+              "Number": {
+                "TelCountryCode": "44",
+                "TelNationalNumber": "0712341122"
+              },
+              "TypeOfNumber": "mobile"
+            },
+            "Email": "lexieterry@lexieterry.com",
+            "ContactPreferences": {
+              "PreferredMethod": "In Person",
+              "TimesToAvoid": "None"
+            }
+          },
+          "PersonClassification": [
+            {
+              "ClassificationType": "StatusInformation",
+              "ClassificationCode": "ACROConvictions",
+              "ClassificationValue": {
+                "ClassificationValueText": "Not Applicable"
+              }
+            }
+          ],
+          "DateOfBirth": "1982-04-06",
+          "Occupation": "Waitress",
+          "ApplyForReportingRestrictions": false
+        },
+        "TypeOfPerson": "VictimWitness",
+        "WitnessAndVictim": {
+          "Witness": {
+            "WitnessNeeds": {
+              "DetailsOfMeasures": "Not eligible",
+              "MeetingRequired": false
+            },
+            "WarnedByPolice": false
+          },
+          "Victim": {
+            "OffenceId": "{{CaseOffenceId}}",
+            "VPSStatus": {
+              "ResponseToVPSOffer": "Declined",
+              "SchemeExplained": true
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+script:pre-request {
+  
+  console.log("DCFCaseID:", bru.getGlobalEnvVar("DCFCaseID"));
+  console.log("DCFCaseUrn:", bru.getGlobalEnvVar("DCFCaseUrn"));
+  console.log("VictimWitnessRef_1:", bru.getGlobalEnvVar("VictimWitnessRef_1"));
+  console.log("CaseOffenceId:", bru.getGlobalEnvVar("CaseOffenceId"));
+  
+  console.log("DCFptnNo:", bru.getGlobalEnvVar("DCFptnNo"));
+  console.log("DCFforceNo:", bru.getGlobalEnvVar("DCFforceNo"));
+  console.log("DCFunit:", bru.getGlobalEnvVar("DCFunit"));
+  console.log("DCFyear:", bru.getGlobalEnvVar("DCFyear"));
+  
+  
+  function generateUppercaseAlphaNumeric(length) {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let result = '';
+      for (let i = 0; i < length; i++) {
+          result += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return result;
+  }
+  
+  let lm04VicWit = generateUppercaseAlphaNumeric(12);
+  
+  bru.setGlobalEnvVar("VicWitLM04ItemId", lm04VicWit);
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

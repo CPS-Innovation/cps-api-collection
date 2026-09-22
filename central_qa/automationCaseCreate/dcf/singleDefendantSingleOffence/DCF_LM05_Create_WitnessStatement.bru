@@ -1,0 +1,98 @@
+meta {
+  name: DCF_LM05_Create_WitnessStatement
+  type: http
+  seq: 13
+}
+
+post {
+  url: {{CaseCreate_Url}}/api/dcf/lm05
+  body: json
+  auth: inherit
+}
+
+headers {
+  X-Auth-Cookie: {{CaseCreateDcfAuthValue}}
+}
+
+body:json {
+  {
+    "PTIURN": {
+         "Force": "{{DcfForce}}",
+        "Unit": "{{DcfUnit}}",
+        "Number": "{{DCFPtiUrnNumber}}",
+        "Year": "{{DcfYear}}"
+      },
+    "MaterialId": "{{LM05MaterialId}}",
+    "WitnessStatement": {
+      "ItemId": "{{LM05ItemId}}",
+     "PTIURN": {
+         "Force": "{{DcfForce}}",
+        "Unit": "{{DcfUnit}}",
+        "Number": "{{DCFPtiUrnNumber}}",
+        "Year": "{{DcfYear}}"
+      },
+      "MaterialId": "{{LM05MaterialId}}",
+      "Material": {
+        "MaterialClassification": [
+          {
+            "ClassificationType": "Transmission",
+            "ClassificationCode": "Media",
+            "ClassificationValue": {
+              "ClassificationValueText": "Document"
+            }
+          },
+          {
+            "ClassificationType": "Purpose",
+            "ClassificationCode": "Statement Type",
+            "ClassificationValue": {
+              "ClassificationValueText": "Witness Statement"
+            }
+          }
+        ],
+        "WitnessId": "{{VictimWitnessRef_1}}",
+        "WitnessStatement": {
+          "StatementNumber": "1",
+          "StatementDateTime": "2025-02-14T18:04:20+00:00"
+        }
+      },
+      "PoliceMaterialStatus": {
+        "DisclosureStatus": "Evidence",
+        "Rebuttable": false
+      }
+    }
+  }
+}
+
+script:pre-request {
+  
+  console.log("DCFCaseID:", bru.getGlobalEnvVar("DCFCaseID"));
+  console.log("DCFCaseUrn:", bru.getGlobalEnvVar("DCFCaseUrn"));
+  console.log("VictimWitnessRef_1:", bru.getGlobalEnvVar("VictimWitnessRef_1"));
+  console.log("CaseOffenceId:", bru.getGlobalEnvVar("CaseOffenceId"));
+  
+  console.log("DCFptnNo:", bru.getGlobalEnvVar("DCFptnNo"));
+  console.log("DCFforceNo:", bru.getGlobalEnvVar("DCFforceNo"));
+  console.log("DCFunit:", bru.getGlobalEnvVar("DCFunit"));
+  console.log("DCFyear:", bru.getGlobalEnvVar("DCFyear"));
+  
+  
+  function generateUppercaseAlphaNumeric(length) {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let result = '';
+      for (let i = 0; i < length; i++) {
+          result += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return result;
+  }
+  
+  let lm05VicWit = generateUppercaseAlphaNumeric(12);
+  bru.setGlobalEnvVar("LM05ItemId", lm05VicWit);
+  
+  let lm05MatId = generateUppercaseAlphaNumeric(12);
+  bru.setGlobalEnvVar("LM05MaterialId", lm05MatId);
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

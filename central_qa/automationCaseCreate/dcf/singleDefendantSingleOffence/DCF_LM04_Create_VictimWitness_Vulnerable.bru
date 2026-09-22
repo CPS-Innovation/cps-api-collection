@@ -1,0 +1,120 @@
+meta {
+  name: DCF_LM04_Create_VictimWitness_Vulnerable
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{CaseCreate_Url}}/api/dcf/lm04
+  body: json
+  auth: inherit
+}
+
+headers {
+  X-Auth-Cookie: {{CaseCreateDcfAuthValue}}
+}
+
+body:json {
+  {
+    "WitnessOrVictim": {
+      "CaseId": "{{DCFCaseID}}",
+      "ItemId": "{{VictimVulnerableLM04ItemId}}",
+      "PTIURN": {
+        "Force": "{{DcfForce}}",
+        "Unit": "{{DcfUnit}}",
+        "Number": "{{DCFPtiUrnNumber}}",
+        "Year": "{{DcfYear}}"
+      },
+      "UpdateStatus": {
+        "VersionId": "1",
+        "UpdateReasonType": "Create",
+        "UpdateReason": "Need to create witness"
+      },
+      "VictimWitness": {
+        "Person": {
+          "UniqueId": "{{Victim_Vulnerable}}",
+          "Name": {
+            "Title": "{{$randomNamePrefix}}",
+            "GivenName": "{{$randomFirstName}}",
+            "FamilyName": "{{$randomLastName}}"
+          },
+          "ContactDetails": {
+            "Address": {
+              "AddressLine": [
+                "{{$randomStreetName}}",
+                "{{$randomStreetName}}",
+                "{{$randomCity}}"
+              ],
+              "Postcode": "NE1 1AB",
+              "Country": "UK"
+            },
+            "ContactNumber": [
+              {
+                "Number": {
+                  "TelNationalNumber": "07111111111"
+                },
+                "TypeOfNumber": "mobile"
+              }
+            ],
+            "Email": "{{$randomEmail}}"
+          },
+          "DateOfBirth": "2012-09-03",
+          "Occupation": "Student",
+          "PersonClassification": [
+            {
+              "ClassificationType": "TypeOfWitness",
+              "ClassificationCode": "L",
+              "ClassificationValue": {
+                "ClassificationValueFlag": true
+              }
+            }
+          ]
+        },
+        "TypeOfPerson": "VictimWitness",
+        "WitnessAndVictim": {
+          "Witness": {
+            "WarnedByPolice": false
+          },
+          "Victim": {
+            "OffenceId": "{{CaseOffenceId}}",
+            "VPSStatus": {
+              "ResponseToVPSOffer": "Accepted",
+              "SchemeExplained": false
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+script:pre-request {
+  console.log("DCFCaseID:", bru.getGlobalEnvVar("DCFCaseID"));
+  console.log("DCFCaseUrn:", bru.getGlobalEnvVar("DCFCaseUrn"));
+  console.log("Victim_Vulnerable:", bru.getGlobalEnvVar("Victim_Vulnerable"));
+  console.log("CaseOffenceId:", bru.getGlobalEnvVar("CaseOffenceId"));
+  
+  console.log("DCFptnNo:", bru.getGlobalEnvVar("DCFptnNo"));
+  console.log("DCFforceNo:", bru.getGlobalEnvVar("DCFforceNo"));
+  console.log("DCFunit:", bru.getGlobalEnvVar("DCFunit"));
+  console.log("DCFyear:", bru.getGlobalEnvVar("DCFyear"));
+  
+  
+  function generateUppercaseAlphaNumeric(length) {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let result = '';
+      for (let i = 0; i < length; i++) {
+          result += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return result;
+  }
+  
+  let lm04VicWit = generateUppercaseAlphaNumeric(12);
+  
+  bru.setGlobalEnvVar("VictimVulnerableLM04ItemId", lm04VicWit);
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

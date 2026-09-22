@@ -1,0 +1,120 @@
+meta {
+  name: DCF_LM04_Create_Witness_Police
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{CaseCreate_Url}}/api/dcf/lm04
+  body: json
+  auth: inherit
+}
+
+headers {
+  X-Auth-Cookie: {{CaseCreateDcfAuthValue}}
+}
+
+body:json {
+  {
+    "WitnessOrVictim": {
+      "CaseId": "{{DCFCaseID}}",
+      "ItemId": "{{WitnessPoliceLM04ItemId}}",
+      "PTIURN": {
+        "Force": "{{DCFforceNo}}",
+        "Unit": "{{DCFunit}}",
+        "Number": "{{DCFptnNo}}",
+        "Year": "{{DCFyear}}"
+      },
+      "UpdateStatus": {
+        "VersionId": "1",
+        "UpdateReasonType": "Create",
+        "UpdateReason": "Need to create witness"
+      },
+      "VictimWitness": {
+        "Person": {
+          "UniqueId": "{{Witness_Police}}",
+          "Name": {
+            "GivenName": "{{$randomFirstName}}",
+            "FamilyName": "{{$randomLastName}}"
+          },
+          "ContactDetails": {
+            "Address": {
+              "AddressLine": [
+                "{{$randomStreetName}}",
+                "{{$randomStreetName}}",
+                "{{$randomCity}}"
+              ],
+              "Postcode": "NE1 1AB",
+              "Country": "UK"
+            },
+            "ContactNumber": [
+              {
+                "Number": {
+                  "TelNationalNumber": "07111111111"
+                },
+                "TypeOfNumber": "mobile"
+              }
+            ],
+            "Email": "{{$randomEmail}}"
+          },
+          "PersonClassification": [
+            {
+              "ClassificationType": "StatusInformation",
+              "ClassificationCode": "KeyWitness",
+              "ClassificationValue": {
+                "ClassificationValueText": "Y"
+              }
+            },
+            {
+              "ClassificationType": "TypeOfWitness",
+              "ClassificationCode": "P",
+              "ClassificationValue": {
+                "ClassificationValueFlag": true
+              }
+            }
+          ]
+        },
+        "TypeOfPerson": "Witness",
+        "Witness": {
+          "Officer": {
+            "PoliceOfficerRank": "Constable",
+            "ShoulderNumber": "{{ConstableShoulderNo}}"
+          },
+          "WarnedByPolice": false
+        }
+      }
+    }
+  }
+}
+
+script:pre-request {
+  console.log("DCFCaseID:", bru.getGlobalEnvVar("DCFCaseID"));
+  console.log("DCFCaseUrn:", bru.getGlobalEnvVar("DCFCaseUrn"));
+  console.log("Witness_Police:", bru.getGlobalEnvVar("Witness_Police"));
+  console.log("CaseOffenceId:", bru.getGlobalEnvVar("CaseOffenceId"));
+  console.log("ConstableShoulderNo:", bru.getGlobalEnvVar("ConstableShoulderNo"));
+  
+  console.log("DCFptnNo:", bru.getGlobalEnvVar("DCFptnNo"));
+  console.log("DCFforceNo:", bru.getGlobalEnvVar("DCFforceNo"));
+  console.log("DCFunit:", bru.getGlobalEnvVar("DCFunit"));
+  console.log("DCFyear:", bru.getGlobalEnvVar("DCFyear"));
+  
+  
+  function generateUppercaseAlphaNumeric(length) {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let result = '';
+      for (let i = 0; i < length; i++) {
+          result += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return result;
+  }
+  
+  let lm04Witness = generateUppercaseAlphaNumeric(12);
+  
+  bru.setGlobalEnvVar("WitnessPoliceLM04ItemId", lm04Witness);
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

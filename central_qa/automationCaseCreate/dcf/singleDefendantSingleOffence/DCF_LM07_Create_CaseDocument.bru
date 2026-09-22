@@ -1,0 +1,101 @@
+meta {
+  name: DCF_LM07_Create_CaseDocument
+  type: http
+  seq: 15
+}
+
+post {
+  url: {{CaseCreate_Url}}/api/dcf/lm07
+  body: json
+  auth: inherit
+}
+
+headers {
+  X-Auth-Cookie: {{CaseCreateDcfAuthValue}}
+}
+
+body:json {
+  {
+    "PTIURN": {
+      "Force": "{{DcfForce}}",
+        "Unit": "{{DcfUnit}}",
+        "Number": "{{DCFPtiUrnNumber}}",
+        "Year": "{{DcfYear}}"
+    },
+    "MaterialId": "{{LM07MaterialId}}",
+    "ExternalFileLocation": {
+      "ExternalFileURL": "https://example.test/MG18-TIC-Offences.docx"
+    },
+    "CaseDocument": {
+      "ItemId": "{{LM07ItemId}}",
+      "PTIURN": {
+        "Force": "{{DcfForce}}",
+        "Unit": "{{DcfUnit}}",
+        "Number": "{{DCFPtiUrnNumber}}",
+        "Year": "{{DcfYear}}"
+      },
+      "MaterialId": "{{LM07MaterialId}}",
+      "Material": {
+        "MaterialClassification": [
+          {
+            "ClassificationType": "Transmission",
+            "ClassificationCode": "Media",
+            "ClassificationValue": {
+              "ClassificationValueText": "Document"
+            }
+          },
+          {
+            "ClassificationType": "Purpose",
+            "ClassificationCode": "Document Type",
+            "ClassificationValue": {
+              "ClassificationValueText": "Other Document"
+            }
+          }
+        ],
+        "Title": "MG18 TIC Offences",
+        "RelatedParticipantId": "{{VictimVulnerableLM04ItemId}}"
+      },
+      "DigitalRepresentation": {
+        "ExternalFileLocation": {
+          "ExternalFileURL": "https://example.test/MG18-TIC-Offences.docx"
+        }
+      }
+    }
+  }
+}
+
+script:pre-request {
+  
+  console.log("DCFCaseID:", bru.getGlobalEnvVar("DCFCaseID"));
+  console.log("DCFCaseUrn:", bru.getGlobalEnvVar("DCFCaseUrn"));
+  console.log("VictimWitnessRef_1:", bru.getGlobalEnvVar("VictimWitnessRef_1"));
+  console.log("CaseOffenceId:", bru.getGlobalEnvVar("CaseOffenceId"));
+  
+  console.log("DCFptnNo:", bru.getGlobalEnvVar("DCFptnNo"));
+  console.log("DCFforceNo:", bru.getGlobalEnvVar("DCFforceNo"));
+  console.log("DCFunit:", bru.getGlobalEnvVar("DCFunit"));
+  console.log("DCFyear:", bru.getGlobalEnvVar("DCFyear"));
+  
+  
+  function generateUppercaseAlphaNumeric(length) {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let result = '';
+      for (let i = 0; i < length; i++) {
+          result += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return result;
+  }
+  
+  let lm07VicWit = generateUppercaseAlphaNumeric(12);
+  bru.setGlobalEnvVar("LM07ItemId", lm07VicWit);
+  
+  const lm07MatId = generateUppercaseAlphaNumeric(12);
+  bru.setGlobalEnvVar("LM07MaterialId", lm07MatId);
+  
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
