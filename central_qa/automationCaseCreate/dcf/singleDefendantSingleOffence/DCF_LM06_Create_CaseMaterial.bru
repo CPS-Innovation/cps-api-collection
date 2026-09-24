@@ -17,16 +17,16 @@ headers {
 body:json {
   {
     "PTIURN": {
-       "Force": "{{DcfForce}}",
-        "Unit": "{{DcfUnit}}",
-        "Number": "{{DCFPtiUrnNumber}}",
-        "Year": "{{DcfYear}}"
+      "Force": "{{DcfForce}}",
+      "Unit": "{{DcfUnit}}",
+      "Number": "{{DCFPtiUrnNumber}}",
+      "Year": "{{DcfYear}}"
     },
     "MaterialId": "{{LM06MaterialId}}",
     "CaseMaterial": {
       "ItemId": "{{LM06ItemId}}",
       "PTIURN": {
-         "Force": "{{DcfForce}}",
+        "Force": "{{DcfForce}}",
         "Unit": "{{DcfUnit}}",
         "Number": "{{DCFPtiUrnNumber}}",
         "Year": "{{DcfYear}}"
@@ -48,8 +48,11 @@ body:json {
         "RelatedParticipantId": "{{VictimVulnerableLM04ItemId}}"
       },
       "PoliceMaterialStatus": {
-        "DisclosureStatus": "Evidence",
-        "Rebuttable": false
+        "DisclosureStatus": "Unused - Passes Disclosure Test",
+        "UnusedSequence": "1",
+        "RationaleForDisclosureDecision": "This can be disclosed",
+        "Rebuttable": true,
+        "Description": "Witness statement 1 (Unused)"
       }
     }
   }

@@ -20,10 +20,10 @@ body:json {
       "CaseId": "{{DCFCaseID}}",
       "ItemId": "{{WitnessPoliceLM04ItemId}}",
       "PTIURN": {
-        "Force": "{{DCFforceNo}}",
-        "Unit": "{{DCFunit}}",
-        "Number": "{{DCFptnNo}}",
-        "Year": "{{DCFyear}}"
+        "Force": "{{DcfForce}}",
+        "Unit": "{{DcfUnit}}",
+        "Number": "{{DCFPtiUrnNumber}}",
+        "Year": "{{DcfYear}}"
       },
       "UpdateStatus": {
         "VersionId": "1",
@@ -34,7 +34,8 @@ body:json {
         "Person": {
           "UniqueId": "{{Witness_Police}}",
           "Name": {
-            "GivenName": "{{$randomFirstName}}",
+            "Title":  "{{$randomNamePrefix}}",
+            "GivenName": "Sunil",
             "FamilyName": "{{$randomLastName}}"
           },
           "ContactDetails": {
@@ -57,17 +58,11 @@ body:json {
             ],
             "Email": "{{$randomEmail}}"
           },
+          "DateOfBirth": "1985-02-10",
           "PersonClassification": [
             {
-              "ClassificationType": "StatusInformation",
-              "ClassificationCode": "KeyWitness",
-              "ClassificationValue": {
-                "ClassificationValueText": "Y"
-              }
-            },
-            {
               "ClassificationType": "TypeOfWitness",
-              "ClassificationCode": "P",
+              "ClassificationCode": "Police",
               "ClassificationValue": {
                 "ClassificationValueFlag": true
               }
@@ -76,10 +71,7 @@ body:json {
         },
         "TypeOfPerson": "Witness",
         "Witness": {
-          "Officer": {
-            "PoliceOfficerRank": "Constable",
-            "ShoulderNumber": "{{ConstableShoulderNo}}"
-          },
+          "Occupation": "Civilian",
           "WarnedByPolice": false
         }
       }

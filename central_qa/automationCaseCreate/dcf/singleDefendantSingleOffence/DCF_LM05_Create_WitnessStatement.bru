@@ -16,51 +16,54 @@ headers {
 
 body:json {
   {
-    "PTIURN": {
-         "Force": "{{DcfForce}}",
-        "Unit": "{{DcfUnit}}",
-        "Number": "{{DCFPtiUrnNumber}}",
-        "Year": "{{DcfYear}}"
-      },
-    "MaterialId": "{{LM05MaterialId}}",
     "WitnessStatement": {
-      "ItemId": "{{LM05ItemId}}",
-     "PTIURN": {
-         "Force": "{{DcfForce}}",
-        "Unit": "{{DcfUnit}}",
-        "Number": "{{DCFPtiUrnNumber}}",
-        "Year": "{{DcfYear}}"
-      },
       "MaterialId": "{{LM05MaterialId}}",
       "Material": {
+        "WitnessId": "{{VictimWitnessRef_1}}",
+        "WitnessStatement": {
+          "StatementNumber": 1,
+          "StatementDateTime": "2025-02-14T18:04:20+00:00"
+        },
         "MaterialClassification": [
           {
             "ClassificationType": "Transmission",
             "ClassificationCode": "Media",
             "ClassificationValue": {
-              "ClassificationValueText": "Document"
+              "ClassificationValueText": "D"
             }
           },
           {
             "ClassificationType": "Purpose",
             "ClassificationCode": "Statement Type",
             "ClassificationValue": {
-              "ClassificationValueText": "Witness Statement"
+              "ClassificationValueText": "1031"
             }
           }
-        ],
-        "WitnessId": "{{VictimWitnessRef_1}}",
-        "WitnessStatement": {
-          "StatementNumber": "1",
-          "StatementDateTime": "2025-02-14T18:04:20+00:00"
+        ]
+      },
+      "DigitalRepresentation": {
+        "Attachment": {
+          "FileName": "Simple Little Text File.txt",
+          "Document": "VGhpcyBpcyBhIHRlc3QgZmlsZSBpbiB0ZXh0IGZvcm1hdA=="
         }
       },
       "PoliceMaterialStatus": {
         "DisclosureStatus": "Evidence",
-        "Rebuttable": false
-      }
+        "RationaleForDisclosureDecision": "Discloseable",
+        "Rebuttable": false,
+        "Description": "Witness statement 1"
+      },
+      "ItemId": "1",
+      "PTIURN": {
+        "Force": "{{DcfForce}}",
+        "Unit": "{{DcfUnit}}",
+        "Number": "{{DCFPtiUrnNumber}}",
+        "Year": "{{DcfYear}}"
+      },
+      "CaseId": "{{DCFCaseID}}"
     }
   }
+   
 }
 
 script:pre-request {

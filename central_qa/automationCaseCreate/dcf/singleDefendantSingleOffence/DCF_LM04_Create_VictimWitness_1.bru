@@ -16,87 +16,53 @@ headers {
 
 body:json {
   {
-    "ItemId": "{{VicWitLM04ItemId}}",
-    "PTIURN": {
-      "Force": "{{DcfForce}}",
-      "Unit": "{{DcfUnit}}",
-      "Number": "{{DCFPtiUrnNumber}}",
-      "Year": "{{DcfYear}}"
-    },
     "WitnessOrVictim": {
       "CaseId": "{{DCFCaseID}}",
       "ItemId": "{{VicWitLM04ItemId}}",
       "PTIURN": {
-        "Force": "{{DcfForce}}",
+         "Force": "{{DcfForce}}",
         "Unit": "{{DcfUnit}}",
         "Number": "{{DCFPtiUrnNumber}}",
         "Year": "{{DcfYear}}"
       },
       "UpdateStatus": {
         "VersionId": "1",
-        "UpdateReasonType": "Create"
+        "UpdateReasonType": "Create",
+        "UpdateReason": "Need to create witness"
       },
       "VictimWitness": {
         "Person": {
           "UniqueId": "{{VictimWitnessRef_1}}",
           "Name": {
-            "Type": "Real Name",
-            "Title": "Ms",
-            "GivenName": "LEXIE",
-            "MiddleName": "ADULT",
-            "FamilyName": "TERRY"
+            "Title": "{{$randomNamePrefix}}",
+            "GivenName": "Jeku",
+            "FamilyName": "{{$randomLastName}}"
           },
-          "ContactDetails": {
-            "Address": {
-              "AddressLine": [
-                "570A GWILI STREET",
-                "MAYHILL",
-                "SWANSEA",
-                "SWANSEA"
-              ],
-              "Postcode": "SA16TN",
-              "Country": "UK"
-            },
-            "ContactNumber": {
-              "Number": {
-                "TelCountryCode": "44",
-                "TelNationalNumber": "0712341122"
-              },
-              "TypeOfNumber": "mobile"
-            },
-            "Email": "lexieterry@lexieterry.com",
-            "ContactPreferences": {
-              "PreferredMethod": "In Person",
-              "TimesToAvoid": "None"
-            }
-          },
+          "DateOfBirth": "1985-02-10",
           "PersonClassification": [
             {
               "ClassificationType": "StatusInformation",
-              "ClassificationCode": "ACROConvictions",
+              "ClassificationCode": "KeyWitness",
               "ClassificationValue": {
-                "ClassificationValueText": "Not Applicable"
+                "ClassificationValueText": "Yes"
               }
             }
-          ],
-          "DateOfBirth": "1982-04-06",
-          "Occupation": "Waitress",
-          "ApplyForReportingRestrictions": false
+          ]
         },
         "TypeOfPerson": "VictimWitness",
+        "DateOfBirth": "1970-08-03",
         "WitnessAndVictim": {
           "Witness": {
-            "WitnessNeeds": {
-              "DetailsOfMeasures": "Not eligible",
-              "MeetingRequired": false
-            },
+            "Occupation": "Civilian",
             "WarnedByPolice": false
           },
           "Victim": {
-            "OffenceId": "{{CaseOffenceId}}",
+            "XOffenceId": [
+              "{{CaseOffenceId}}"
+            ],
             "VPSStatus": {
-              "ResponseToVPSOffer": "Declined",
-              "SchemeExplained": true
+              "ResponseToVPSOffer": "Accepted",
+              "SchemeExplained": false
             }
           }
         }

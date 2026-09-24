@@ -35,7 +35,7 @@ body:json {
           "UniqueId": "{{Victim_Vulnerable}}",
           "Name": {
             "Title": "{{$randomNamePrefix}}",
-            "GivenName": "{{$randomFirstName}}",
+            "GivenName": "Simon",
             "FamilyName": "{{$randomLastName}}"
           },
           "ContactDetails": {
@@ -59,11 +59,10 @@ body:json {
             "Email": "{{$randomEmail}}"
           },
           "DateOfBirth": "2012-09-03",
-          "Occupation": "Student",
           "PersonClassification": [
             {
               "ClassificationType": "TypeOfWitness",
-              "ClassificationCode": "L",
+              "ClassificationCode": "Vulnerable",
               "ClassificationValue": {
                 "ClassificationValueFlag": true
               }
@@ -71,12 +70,16 @@ body:json {
           ]
         },
         "TypeOfPerson": "VictimWitness",
+        "DateOfBirth": "1970-08-03",
         "WitnessAndVictim": {
           "Witness": {
+            "Occupation": "Civilian",
             "WarnedByPolice": false
           },
           "Victim": {
-            "OffenceId": "{{CaseOffenceId}}",
+            "XOffenceId": [
+              "{{CaseOffenceId}}"
+            ],
             "VPSStatus": {
               "ResponseToVPSOffer": "Accepted",
               "SchemeExplained": false

@@ -20,10 +20,10 @@ body:json {
       "CaseId": "{{DCFCaseID}}",
       "ItemId": "{{VictimIntimidatedM04ItemId}}",
       "PTIURN": {
-        "Force": "{{DCFforceNo}}",
-        "Unit": "{{DCFunit}}",
-        "Number": "{{DCFptnNo}}",
-        "Year": "{{DCFyear}}"
+         "Force": "{{DcfForce}}",
+        "Unit": "{{DcfUnit}}",
+        "Number": "{{DCFPtiUrnNumber}}",
+        "Year": "{{DcfYear}}"
       },
       "UpdateStatus": {
         "VersionId": "1",
@@ -35,7 +35,7 @@ body:json {
           "UniqueId": "{{Victim_Intimidated}}",
           "Name": {
             "Title": "{{$randomNamePrefix}}",
-            "GivenName": "{{$randomFirstName}}",
+            "GivenName": "Zizu",
             "FamilyName": "{{$randomLastName}}"
           },
           "ContactDetails": {
@@ -59,11 +59,10 @@ body:json {
             "Email": "{{$randomEmail}}"
           },
           "DateOfBirth": "2000-09-03",
-          "Occupation": "Worker",
           "PersonClassification": [
             {
               "ClassificationType": "TypeOfWitness",
-              "ClassificationCode": "T",
+              "ClassificationCode": "Intimidated",
               "ClassificationValue": {
                 "ClassificationValueFlag": true
               }
@@ -71,12 +70,16 @@ body:json {
           ]
         },
         "TypeOfPerson": "VictimWitness",
+        "DateOfBirth": "1970-08-03",
         "WitnessAndVictim": {
           "Witness": {
+            "Occupation": "Civilian",
             "WarnedByPolice": false
           },
           "Victim": {
-            "OffenceId": "{{CaseOffenceId}}",
+            "XOffenceId": [
+              "{{CaseOffenceId}}"
+            ],
             "VPSStatus": {
               "ResponseToVPSOffer": "Accepted",
               "SchemeExplained": false
