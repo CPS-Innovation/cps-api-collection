@@ -17,53 +17,51 @@ headers {
 body:json {
   {
     "WitnessStatement": {
-      "MaterialId": "{{LM05MaterialId}}",
-      "Material": {
-        "WitnessId": "{{VictimWitnessRef_1}}",
-        "WitnessStatement": {
-          "StatementNumber": 1,
-          "StatementDateTime": "2025-02-14T18:04:20+00:00"
-        },
-        "MaterialClassification": [
-          {
-            "ClassificationType": "Transmission",
-            "ClassificationCode": "Media",
-            "ClassificationValue": {
-              "ClassificationValueText": "D"
-            }
-          },
-          {
-            "ClassificationType": "Purpose",
-            "ClassificationCode": "Statement Type",
-            "ClassificationValue": {
-              "ClassificationValueText": "1031"
-            }
-          }
-        ]
-      },
-      "DigitalRepresentation": {
-        "Attachment": {
-          "FileName": "Simple Little Text File.txt",
-          "Document": "VGhpcyBpcyBhIHRlc3QgZmlsZSBpbiB0ZXh0IGZvcm1hdA=="
-        }
-      },
-      "PoliceMaterialStatus": {
-        "DisclosureStatus": "Evidence",
-        "RationaleForDisclosureDecision": "Discloseable",
-        "Rebuttable": false,
-        "Description": "Witness statement 1"
-      },
-      "ItemId": "1",
+      "CaseId": "{{DCFCaseID}}",
+      "ItemId": "{{LM05ItemId}}",
       "PTIURN": {
         "Force": "{{DcfForce}}",
         "Unit": "{{DcfUnit}}",
         "Number": "{{DCFPtiUrnNumber}}",
         "Year": "{{DcfYear}}"
       },
-      "CaseId": "{{DCFCaseID}}"
+      "MaterialId": "{{LM05MaterialId}}",
+      "Material": {
+        "MaterialClassification": [
+          {
+            "ClassificationType": "Transmission",
+            "ClassificationCode": "Media",
+            "ClassificationValue": {
+              "ClassificationValueText": "Document"
+            }
+          },
+          {
+            "ClassificationType": "Purpose",
+            "ClassificationCode": "Statement Type",
+            "ClassificationValue": {
+              "ClassificationValueText": "Witness Statement"
+            }
+          }
+        ],
+        "WitnessId": "{{VictimWitnessRef_1}}",
+        "WitnessStatement": {
+          "StatementNumber": 1,
+          "StatementDateTime": "2025-02-14T18:04:20+00:00"
+        }
+      },
+      "DigitalRepresentation": {
+        "Attachment": {
+          "Document": "VGhpcyBpcyBhIHRlc3QgZmlsZSBpbiB0ZXh0IGZvcm1hdA==",
+          "FileName": "Simple Little Text File.txt"
+        }
+      },
+      "PoliceMaterialStatus": {
+        "DisclosureStatus": "Evidence",
+        "Rebuttable": false
+      }
     }
   }
-   
+  
 }
 
 script:pre-request {

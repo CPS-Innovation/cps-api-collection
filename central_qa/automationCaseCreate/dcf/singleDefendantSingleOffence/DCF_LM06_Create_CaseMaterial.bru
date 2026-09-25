@@ -16,22 +16,16 @@ headers {
 
 body:json {
   {
-    "PTIURN": {
-      "Force": "{{DcfForce}}",
-      "Unit": "{{DcfUnit}}",
-      "Number": "{{DCFPtiUrnNumber}}",
-      "Year": "{{DcfYear}}"
-    },
-    "MaterialId": "{{LM06MaterialId}}",
     "CaseMaterial": {
-      "ItemId": "{{LM06ItemId}}",
+      "CaseId": "{{DCFCaseID}}",
+      "ItemId": "{{LM06UnusedItemId}}",
       "PTIURN": {
         "Force": "{{DcfForce}}",
         "Unit": "{{DcfUnit}}",
         "Number": "{{DCFPtiUrnNumber}}",
         "Year": "{{DcfYear}}"
       },
-      "MaterialId": "{{LM06MaterialId}}",
+      "MaterialId": "{{LM06UnusedMaterialId}}",
       "Material": {
         "MaterialClassification": [
           {
@@ -44,15 +38,13 @@ body:json {
         ],
         "Title": "Small bag containing herbal cannabis",
         "Reference": "BR/2",
-        "ProducedByWitnessId": "{{VictimWitnessRef_1}}",
-        "RelatedParticipantId": "{{VictimVulnerableLM04ItemId}}"
+        "ProducedByWitnessId": "{{WitnessRef_1}}",
+        "RelatedParticipantId": "{{Victim_Vulnerable}}"
       },
       "PoliceMaterialStatus": {
-        "DisclosureStatus": "Unused - Passes Disclosure Test",
-        "UnusedSequence": "1",
-        "RationaleForDisclosureDecision": "This can be disclosed",
-        "Rebuttable": true,
-        "Description": "Witness statement 1 (Unused)"
+        "DisclosureStatus": "Unused - Disclosure Not Yet Considered",
+        "Rebuttable": false,
+        "Description": "Small bag containing herbal cannabis"
       }
     }
   }
@@ -80,11 +72,11 @@ script:pre-request {
       return result;
   }
   
-  let lm06VicWit = generateUppercaseAlphaNumeric(12);
-  bru.setGlobalEnvVar("LM06ItemId", lm06VicWit);
+  let lm06ItemId = generateUppercaseAlphaNumeric(12);
+  bru.setGlobalEnvVar("LM06UnusedItemId", lm06ItemId);
   
   const lm06MatId = generateUppercaseAlphaNumeric(12);
-  bru.setGlobalEnvVar("LM06MaterialId", lm06MatId);
+  bru.setGlobalEnvVar("LM06UnusedMaterialId", lm06MatId);
   
   
 }

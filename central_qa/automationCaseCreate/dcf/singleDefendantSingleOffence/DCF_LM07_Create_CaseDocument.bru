@@ -16,17 +16,8 @@ headers {
 
 body:json {
   {
-    "PTIURN": {
-      "Force": "{{DcfForce}}",
-        "Unit": "{{DcfUnit}}",
-        "Number": "{{DCFPtiUrnNumber}}",
-        "Year": "{{DcfYear}}"
-    },
-    "MaterialId": "{{LM07MaterialId}}",
-    "ExternalFileLocation": {
-      "ExternalFileURL": "https://example.test/MG18-TIC-Offences.docx"
-    },
     "CaseDocument": {
+      "CaseId": "{{DCFCaseID}}",
       "ItemId": "{{LM07ItemId}}",
       "PTIURN": {
         "Force": "{{DcfForce}}",
@@ -53,11 +44,12 @@ body:json {
           }
         ],
         "Title": "MG18 TIC Offences",
-        "RelatedParticipantId": "{{VictimVulnerableLM04ItemId}}"
+        "RelatedParticipantId": "{{Victim_Vulnerable}}"
       },
       "DigitalRepresentation": {
-        "ExternalFileLocation": {
-          "ExternalFileURL": "https://example.test/MG18-TIC-Offences.docx"
+        "Attachment": {
+          "Document": "VGhpcyBpcyBhIHRlc3QgZmlsZSBpbiB0ZXh0IGZvcm1hdA==",
+          "FileName": "MG18 TIC Offences.docx"
         }
       }
     }
